@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import com.team4.project.HomeController;
 import com.team4.project.government.dto.GoCitizen;
 import com.team4.project.government.dto.GoHospital;
 import com.team4.project.government.dto.GoMedicine;
+import com.team4.project.util.Http;
 
 @Controller
 public class GovernmentController {
@@ -86,14 +89,53 @@ public class GovernmentController {
 	
 	//약코드 가져오기
 	@ResponseBody
-	@RequestMapping(value="/government/getMedicineCode")
+	@RequestMapping(value="/government/getMedicineCode", method=RequestMethod.POST,
+					produces = "text/json; charset=UTF-8")
 	public String getMdedicine(){
 		logger.debug("getMdedicine 진입");
 		List<GoMedicine> list = goService.getMedicine();
+		JSONObject jsonObj = new JSONObject();
 		JSONArray jsonArray = new JSONArray();
-		jsonArray.addAll(list);
-		String jsonStr = jsonArray.toString();
+		jsonArray.add(list);
+		jsonObj.put("jsonObj", jsonArray);
+		String jsonStr = jsonObj.toString();
 		logger.debug("List<GoMedicine>:"+list);
 		return jsonStr;
+	}
+	
+	//약코드 가져오기
+	@ResponseBody
+	@RequestMapping(value="/government/getMedicineCode", method=RequestMethod.GET,
+					produces = "text/json; charset=UTF-8")
+	public String getMdedicine(String a){
+		logger.debug("getMdedicine 진입");
+		List<GoMedicine> list = goService.getMedicine();
+		JSONObject jsonObj = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.add(list);
+		jsonObj.put("jsonObj", jsonArray);
+		System.out.println("jsonObj:"+jsonObj);
+		String jsonStr = jsonObj.toString();
+		logger.debug("List<GoMedicine>:"+list);
+		return jsonStr;
+	}
+	
+	@RequestMapping(value = "/government/getMedicine", method = RequestMethod.GET)
+	public String getMedicine(){
+		System.out.println("getMedicine 진입");
+		Http http = new Http("http://localhost/project/government/getMedicineCode");
+		try {
+			String listStr = http.submit();
+			//listStr = URLEncoder.encode(listStr);
+			System.out.println("listStr:"+listStr);
+			JSONParser parser = new JSONParser();
+			JSONObject resultJson = new JSONObject();
+			resultJson = (JSONObject) parser.parse(listStr);
+			System.out.println("resultJson:"+resultJson);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
 	}
 }
