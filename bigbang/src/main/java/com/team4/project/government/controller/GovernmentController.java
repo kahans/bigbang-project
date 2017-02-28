@@ -1,7 +1,10 @@
 package com.team4.project.government.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team4.project.HomeController;
 import com.team4.project.government.dto.GoCitizen;
 import com.team4.project.government.dto.GoHospital;
+import com.team4.project.government.dto.GoMedicine;
 
 @Controller
 public class GovernmentController {
@@ -71,6 +76,7 @@ public class GovernmentController {
 		return "redirect:/government/";
 	}
 	
+	//로그아웃
 	@RequestMapping(value="/government/logout", method=RequestMethod.GET)
 	public String logout(HttpSession session){
 		session.invalidate();
@@ -78,4 +84,16 @@ public class GovernmentController {
 		return "redirect:/government/";
 	}
 	
+	//약코드 가져오기
+	@ResponseBody
+	@RequestMapping(value="/government/getMedicineCode")
+	public String getMdedicine(){
+		logger.debug("getMdedicine 진입");
+		List<GoMedicine> list = goService.getMedicine();
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.addAll(list);
+		String jsonStr = jsonArray.toString();
+		logger.debug("List<GoMedicine>:"+list);
+		return jsonStr;
+	}
 }

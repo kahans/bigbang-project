@@ -91,22 +91,20 @@
 		<property name="mapperLocations">
 			<list>
 				<!-- 사용할 Mapper.xml마다 등록해줘야함 -->
-			<!-- 	
-				정부
-				<value>classpath:com/team4/project/government/dto/GovernmentMapper.xml</value>
-				진단 & 처방
-				<value>classpath:com/team4/project/government/diagnosisPrescription/domain/GoDiagnosisPrescriptionMapper.xml</value>
-				입원 & 수술
-				<value>classpath:com/team4/project/government/hopitalizationSurgery/domain/GoHospitalizationSurgeryMapper.xml</value>
-				예약
-				<value>classpath:com/team4/project/government/reservation/domain/GoReservationMapper.xml</value>
-				검사
-				<value>classpath:com/team4/project/government/test/domain/GoTestMapper.xml</value>
-				진료 & 차트
-				<value>classpath:com/team4/project/government/treat/domain/GoTreatMapper.xml</value>
-				예방접종 & 건강검진
-				<value>classpath:com/team4/project/government/vaccinationCheckup/domain/GoVaccinationCheckupMapper.xml</value>
 				
+				<!-- 정부 -->
+				<value>classpath:com/team4/project/government/dto/GovernmentMapper.xml</value>
+				<!-- 진단 & 처방 -->
+				<value>classpath:com/team4/project/government/diagnosisPrescription/domain/GoDiagnosisPrescriptionMapper.xml</value>
+				<!-- 입원 & 수술 -->
+				<value>classpath:com/team4/project/government/hopitalizationSurgery/domain/GoHospitalizationSurgeryMapper.xml</value>
+				<!-- 검사 -->
+				<value>classpath:com/team4/project/government/test/domain/GoTestMapper.xml</value>
+				<!-- 진료 & 차트 -->
+				<value>classpath:com/team4/project/government/treat/domain/GoTreatMapper.xml</value>
+				<!-- 예방접종 & 건강검진 -->
+				<value>classpath:com/team4/project/government/vaccinationCheckup/domain/GoVaccinationCheckupMapper.xml</value>
+<!--
 				병원
 				<value>classpath:com/team4/project/hospital/dto/HospitalMapper.xml</value>
 				진단 & 처방

@@ -23,18 +23,18 @@ public class GoTreatController {
 	private static final Logger logger = LoggerFactory.getLogger(GoTreatController.class);
 	
 	@Autowired
-	private GoTreatService goTCS;
+	private GoTreatService goTCService;
 
 	//진료 상세보기
 	@RequestMapping(value="/government/treatView", method=RequestMethod.GET)
 	public String goSelectTreat(Model model,
 			@RequestParam(value="goTreatCode")String goTreatCode){
 		System.out.println("진료상세보기 진료코드 : "+goTreatCode);
-		model.addAttribute("Treat",goTCS.goSelectTreat(goTreatCode));
+		model.addAttribute("Treat",goTCService.goSelectTreat(goTreatCode));
 		return "/government/citizen/treat/goSelectTreat";
 	}
 	
-	//진료목록  검색
+	//진료목록 검색
 	@RequestMapping(value="/government/treatSearch", method=RequestMethod.POST)
 	public @ResponseBody List<GoSearchTreatSub> treatList(HttpSession session,
 			@RequestParam(value="firstDay", required=false)String firstDay,
@@ -63,7 +63,7 @@ public class GoTreatController {
 		returnMap.put("doctorSearch", doctorSearch);
 		returnMap.put("goCitizenId", goCitizenId); //로그인시 받아올 국민 주민번호
 		
-		List<GoSearchTreatSub> goTreatList = goTCS.goTreatList(returnMap);
+		List<GoSearchTreatSub> goTreatList = goTCService.goTreatList(returnMap);
 		
 		System.out.println("treatList : "+ goTreatList);
 		return goTreatList;
@@ -73,7 +73,7 @@ public class GoTreatController {
 	@RequestMapping(value="/government/treatList", method=RequestMethod.GET)
 	public String treatSearch(HttpSession session, Model model){
 		int goCitizenNo = (Integer) session.getAttribute("GOCITIZENNO");
-		List<GoSearchTreatSub> treatSubjectList = goTCS.goSelectOneTreatSubject(goCitizenNo);
+		List<GoSearchTreatSub> treatSubjectList = goTCService.goSelectOneTreatSubject(goCitizenNo);
 		model.addAttribute("treatSubjectList",treatSubjectList);
 		return "/government/citizen/treat/goTreatList";
 	}
