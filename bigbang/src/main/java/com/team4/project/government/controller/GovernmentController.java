@@ -1,12 +1,12 @@
 package com.team4.project.government.controller;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.team4.project.HomeController;
 import com.team4.project.government.dto.GoCitizen;
 import com.team4.project.government.dto.GoHospital;
 import com.team4.project.government.dto.GoMedicine;
-import com.team4.project.util.Http;
+import com.team4.project.util.HttpUrlCon;
 
 @Controller
 public class GovernmentController {
@@ -87,55 +88,106 @@ public class GovernmentController {
 		return "redirect:/government/";
 	}
 	
-	//약코드 가져오기
+	//약코드 가져오기 POST
 	@ResponseBody
 	@RequestMapping(value="/government/getMedicineCode", method=RequestMethod.POST,
 					produces = "text/json; charset=UTF-8")
-	public String getMdedicine(){
-		logger.debug("getMdedicine 진입");
+	public String getMdedicine(String id, String name){
+		logger.debug("getMdedicine POST 진입");
+		System.out.println("id:"+id);
+		System.out.println("name:"+name);
 		List<GoMedicine> list = goService.getMedicine();
-		JSONObject jsonObj = new JSONObject();
-		JSONArray jsonArray = new JSONArray();
-		jsonArray.add(list);
-		jsonObj.put("jsonObj", jsonArray);
-		String jsonStr = jsonObj.toString();
-		logger.debug("List<GoMedicine>:"+list);
+		Gson gson = new Gson();
+		String jsonStr = gson.toJson(list);
+		
+
+		//logger.debug("List<GoMedicine>:"+list);
 		return jsonStr;
 	}
 	
-	//약코드 가져오기
+	//약코드 가져오기 GET
 	@ResponseBody
 	@RequestMapping(value="/government/getMedicineCode", method=RequestMethod.GET,
 					produces = "text/json; charset=UTF-8")
-	public String getMdedicine(String a){
-		logger.debug("getMdedicine 진입");
+	public String getMdedicine(){
+		logger.debug("getMdedicine GET 진입");
+
 		List<GoMedicine> list = goService.getMedicine();
-		JSONObject jsonObj = new JSONObject();
-		JSONArray jsonArray = new JSONArray();
-		jsonArray.add(list);
-		jsonObj.put("jsonObj", jsonArray);
-		System.out.println("jsonObj:"+jsonObj);
-		String jsonStr = jsonObj.toString();
-		logger.debug("List<GoMedicine>:"+list);
+		Gson gson = new Gson();
+		String jsonStr = gson.toJson(list);
+		
 		return jsonStr;
 	}
 	
+	// 약코드가져오는 controller 호출하기
 	@RequestMapping(value = "/government/getMedicine", method = RequestMethod.GET)
 	public String getMedicine(){
 		System.out.println("getMedicine 진입");
-		Http http = new Http("http://localhost/project/government/getMedicineCode");
+		
+		HttpUrlCon huc = new HttpUrlCon("http://localhost/project/government/getMedicineCode");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", "11");
+		map.put("name", "똥꾸");
 		try {
-			String listStr = http.submit();
-			//listStr = URLEncoder.encode(listStr);
-			System.out.println("listStr:"+listStr);
-			JSONParser parser = new JSONParser();
-			JSONObject resultJson = new JSONObject();
-			resultJson = (JSONObject) parser.parse(listStr);
-			System.out.println("resultJson:"+resultJson);
+			String result = huc.HttpUrlPOST(map);
+			System.out.println("result:"+result);
+			Gson gson = new Gson();
+			
+			// json to list 방법1 
+			GoMedicine[] array = gson.fromJson(result, GoMedicine[].class);
+			List<GoMedicine> list = Arrays.asList(array);
+			for(int i=0; i<list.size();i++){
+				//GoMedicine goMedicine = gson.fromJson(list.get(i), GoMedicine.class);
+				System.out.println("코드:"+list.get(i).getGoMedicineCode()+
+						" 이름:"+list.get(i).getGoMedicineName());
+			}
+			
+			/*
+			// json to list 방법2
+			List<GoMedicine> list2 = gson.fromJson(result, new TypeToken<List<GoMedicine>>(){}.getType());
+			System.out.println("=======list 돌리기======");
+			for(int i=0; i<list2.size();i++){
+				//GoMedicine goMedicine = gson.fromJson(list.get(i), GoMedicine.class);
+				System.out.println("코드:"+list2.get(i).getGoMedicineCode()+
+						" 이름:"+list2.get(i).getGoMedicineName());
+			}
+			*/
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+/*		HttpURLConnection conn = null;
+		try {
+			URL url = new URL("http://localhost/project/government/getMedicineCode");
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET"); // 요청 방식을 설정 (default : GET)
+
+			conn.setDoInput(true); // input을 사용하도록 설정 (default : true)
+			conn.setDoOutput(true); // output을 사용하도록 설정 (default : false)
+
+			conn.setConnectTimeout(60); // 타임아웃 시간 설정 (default : 무한대기)
+			conn.connect();
+			InputStream in = conn.getInputStream();
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8")); // 캐릭터셋 설정
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				if (sb.length() > 0) {
+					sb.append("\n");
+				}
+				sb.append(line);
+			}
+			System.out.println("response:" + sb.toString());
+			
+
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+		
 		return "";
 	}
 }
