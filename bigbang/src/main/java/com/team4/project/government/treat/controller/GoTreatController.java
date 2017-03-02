@@ -1,8 +1,6 @@
 package com.team4.project.government.treat.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,70 +11,113 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.team4.project.government.treat.domain.GoSearchTreatSub;
+import com.team4.project.government.treat.domain.GoGetTreatSub;
+import com.team4.project.government.treat.domain.GoTreat;
 
 @Controller
 public class GoTreatController {
 	private static final Logger logger = LoggerFactory.getLogger(GoTreatController.class);
-	
+	Gson gson = new Gson();
 	@Autowired
 	private GoTreatService goTCService;
 
-	//진료 상세보기
+	// 한사람의 하나의 진료정보(test)
 	@ResponseBody
-	@RequestMapping(value="/government/treatView", method=RequestMethod.GET,
+	@RequestMapping(value="/government/getOneTreatByTreatCode", method=RequestMethod.GET,
 					produces = "text/json; charset=UTF-8")
-	public String goSelectTreat(String goTreatCode){
-		System.out.println("진료상세보기 진료코드 : "+goTreatCode);
+	public String getOneTreatByTreatCode(String treatCode, String test){
+		logger.debug("진료코드 : "+treatCode);
 		Gson gson = new Gson();
-		String goSearchTreatSub  = gson.toJson(goTCService.goSelectTreat(goTreatCode));
+		String goSearchTreatSub  = gson.toJson(goTCService.getOneTreat(treatCode));
+		logger.debug(goSearchTreatSub);
 		return goSearchTreatSub;
 	}
 	
-	//진료목록 검색
-	@RequestMapping(value="/government/treatSearch", method=RequestMethod.POST)
-	public @ResponseBody List<GoSearchTreatSub> treatList(HttpSession session,
-			@RequestParam(value="firstDay", required=false)String firstDay,
-			@RequestParam(value="secondDay", required=false)String secondDay,
-			@RequestParam(value="subjectSearch", required=false) String subjectSearch,
-			@RequestParam(value="hospitalSearch", required=false)String hospitalSearch,
-			@RequestParam(value="diseaseSearch", required=false) String diseaseSearch,
-			@RequestParam(value="doctorSearch", required=false)String doctorSearch) {
-		System.out.println("firstDay 값 : "+ firstDay);
-		System.out.println("secondDay 값 : "+ secondDay);
-		System.out.println("subjectSearch 값 : "+ subjectSearch);
-		System.out.println("hospitalSearch 값 : "+ hospitalSearch);
-		System.out.println("diseaseSearch 값 : "+ diseaseSearch);
-		System.out.println("doctorSearch 값 : "+ doctorSearch);
-		
-		//세션ID 받아서 이곳에 넣기		
-		String goCitizenId = (String) session.getAttribute("GOCITIZENID");
-		
-		//검색내용을 Map에 담아 보냄
-		Map<String, Object> returnMap = new HashMap<String, Object>();
-		returnMap.put("firstDay", firstDay);
-		returnMap.put("secondDay", secondDay);
-		returnMap.put("subjectSearch", subjectSearch);
-		returnMap.put("hospitalSearch", hospitalSearch);
-		returnMap.put("diseaseSearch", diseaseSearch);
-		returnMap.put("doctorSearch", doctorSearch);
-		returnMap.put("goCitizenId", goCitizenId); //로그인시 받아올 국민 주민번호
-		
-		List<GoSearchTreatSub> goTreatList = goTCService.goTreatList(returnMap);
-		
-		System.out.println("treatList : "+ goTreatList);
-		return goTreatList;
+	// 한사람의 하나의 진료정보
+	@ResponseBody
+	@RequestMapping(value="/government/getOneTreat", method=RequestMethod.POST,
+					produces = "text/json; charset=UTF-8")
+	public String getOneTreatByTreatCode(String treatCode){
+		logger.debug("진료코드 : "+treatCode);
+		String goSearchTreatSub  = gson.toJson(goTCService.getOneTreat(treatCode));
+		logger.debug(goSearchTreatSub);
+		return goSearchTreatSub;
 	}
+	
+	// 한사람의 진료리스트(test)
+	@ResponseBody 
+	@RequestMapping(value="/government/getListTreatByCitizenId", method=RequestMethod.GET,
+					produces = "text/json; charset=UTF-8")
+	public String getListTreatByCitizenId(String citizenId, String test) {
+		logger.debug("goCitizenI:"+ citizenId);
+		List<GoGetTreatSub> goTreatList = goTCService.getListTreatByCitizenId(citizenId);
+		String list = gson.toJson(goTreatList);
+		logger.debug("list : "+ list);
+		return list;
+	}
+	
+	// 한사람의 진료리스트
+	@ResponseBody 
+	@RequestMapping(value="/government/getListTreatByCitizenId", method=RequestMethod.POST,
+					produces = "text/json; charset=UTF-8")
+	public String getListTreatByCitizenId(String citizenId) {
+		logger.debug("goCitizenI:"+ citizenId);
+		List<GoGetTreatSub> goTreatList = goTCService.getListTreatByCitizenId(citizenId);
+		String goTreatListJson = gson.toJson(goTreatList);
+		logger.debug("listJson : "+ goTreatListJson);
+		return goTreatListJson;
+	}
+	
+
+	// 한명의 의사에게 진료받은 여러사람의 진료리스트(test)
+	@ResponseBody 
+	@RequestMapping(value="/government/getListTreatByDoctorId", method=RequestMethod.GET,
+					produces = "text/json; charset=UTF-8")
+	public String getListTreatByDoctorId(String doctorId, String test) {
+		logger.debug("doctorId:"+doctorId);
+		List<GoGetTreatSub> goTreatList = goTCService.getListTreatByDoctorId(doctorId);
+		String goTreatListJson = gson.toJson(goTreatList);
+		logger.debug("listJson : "+ goTreatListJson);
+		return goTreatListJson;
+	}
+	
+	// 한명의 의사에게 진료받은 여러사람의 진료리스트
+	@ResponseBody 
+	@RequestMapping(value="/government/getListTreatByDoctorId", method=RequestMethod.POST,
+					produces = "text/json; charset=UTF-8")
+	public String getListTreatByDoctorId(String doctorId) {
+		logger.debug("doctorId:"+doctorId);
+		List<GoGetTreatSub> goTreatList = goTCService.getListTreatByDoctorId(doctorId);
+		String goTreatListJson = gson.toJson(goTreatList);
+		logger.debug("listJson : "+ goTreatListJson);
+		return goTreatListJson;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//로그인된 국민의 진료본 과목 목록 출력하기
 	@RequestMapping(value="/government/treatList", method=RequestMethod.GET)
 	public String treatSearch(HttpSession session, Model model){
 		int goCitizenNo = (Integer) session.getAttribute("GOCITIZENNO");
-		List<GoSearchTreatSub> treatSubjectList = goTCService.goSelectOneTreatSubject(goCitizenNo);
+		List<GoGetTreatSub> treatSubjectList = goTCService.goSelectOneTreatSubject(goCitizenNo);
 		model.addAttribute("treatSubjectList",treatSubjectList);
 		return "/government/citizen/treat/goTreatList";
 	}

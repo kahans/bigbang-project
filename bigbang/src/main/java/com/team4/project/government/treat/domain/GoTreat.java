@@ -10,7 +10,7 @@ public class GoTreat {
 
 protected String goTreatCode;
 protected String goHospitalId;
-protected String goCitizenNo;
+protected String goCitizenId;
 protected String goDoctorId;
 protected String goTreatSubjectCode;
 protected String goChartCode;
@@ -38,12 +38,12 @@ public void setGoHospitalId(String goHospitalId) {
 	this.goHospitalId = goHospitalId;
 }
 
-public String getGoCitizenNo() {
-	return goCitizenNo;
+public String getgoCitizenId() {
+	return goCitizenId;
 }
 
-public void setGoCitizenNo(String goCitizenNo) {
-	this.goCitizenNo = goCitizenNo;
+public void setgoCitizenId(String goCitizenId) {
+	this.goCitizenId = goCitizenId;
 }
 
 public String getGoDoctorId() {
@@ -91,7 +91,7 @@ public void setGoTreatGoRegistrationDate(String goTreatGoRegistrationDate) {
 
 @Override
 public String toString() {
-	return "GoTreat [goTreatCode=" + goTreatCode + ", goHospitalId=" + goHospitalId + ", goCitizenNo=" + goCitizenNo
+	return "GoTreat [goTreatCode=" + goTreatCode + ", goHospitalId=" + goHospitalId + ", goCitizenId=" + goCitizenId
 			+ ", goDoctorId=" + goDoctorId + ", goTreatSubjectCode=" + goTreatSubjectCode + ", goChartCode="
 			+ goChartCode + ", goChartSeq=" + goChartSeq + ", goTreatContents=" + goTreatContents
 			+ ", goTreatRegistrationDate=" + goTreatRegistrationDate + ", goTreatGoRegistrationDate="
