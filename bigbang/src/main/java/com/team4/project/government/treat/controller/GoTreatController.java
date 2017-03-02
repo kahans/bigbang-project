@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.team4.project.government.treat.domain.GoSearchTreatSub;
 
 @Controller
@@ -26,12 +27,14 @@ public class GoTreatController {
 	private GoTreatService goTCService;
 
 	//진료 상세보기
-	@RequestMapping(value="/government/treatView", method=RequestMethod.GET)
-	public String goSelectTreat(Model model,
-			@RequestParam(value="goTreatCode")String goTreatCode){
+	@ResponseBody
+	@RequestMapping(value="/government/treatView", method=RequestMethod.GET,
+					produces = "text/json; charset=UTF-8")
+	public String goSelectTreat(String goTreatCode){
 		System.out.println("진료상세보기 진료코드 : "+goTreatCode);
-		model.addAttribute("Treat",goTCService.goSelectTreat(goTreatCode));
-		return "/government/citizen/treat/goSelectTreat";
+		Gson gson = new Gson();
+		String goSearchTreatSub  = gson.toJson(goTCService.goSelectTreat(goTreatCode));
+		return goSearchTreatSub;
 	}
 	
 	//진료목록 검색

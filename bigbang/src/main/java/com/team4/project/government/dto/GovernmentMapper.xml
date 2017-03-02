@@ -15,6 +15,12 @@
 		)
 	</insert>
 	
+	<select id="doctorIdCheck" parameterType="String" resultType="com.team4.project.government.dto.GoDoctor">
+		SELECT
+			go_doctor_id
+		FROM go_doctor
+		WHERE go_doctor_id = #{doctorId}
+	</select>
 	<!-- 국민로그인 체크 -->
 	<select id="citizenLoginCheck" 	parameterType="com.team4.project.government.dto.GoCitizen" 
 									resultType="com.team4.project.government.dto.GoCitizen">

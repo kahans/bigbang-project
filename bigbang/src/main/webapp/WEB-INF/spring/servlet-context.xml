@@ -1,87 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
+
 
 	<!-- 인터셉터 사용준비 -->
 <!-- 	<mvc:interceptors>
 		<mvc:interceptor>
-			여러개 컨트롤러 추가 가능
-			<mvc:mapping path="/admin_write"/> <mvc:mapping path="/admin_update"/> 
+			여러개 컨트롤러 추가 가능 <mvc:mapping path="/admin_write"/> <mvc:mapping path="/admin_update"/> 
 				<mvc:mapping path="/admin_delete"/> . . .
-			<mvc:mapping path="/government/*" />
 			
-			 해당 path는 인터셉트 하지않는다
-			 
-           <mvc:exclude-mapping path="/government/"/>
-           <mvc:exclude-mapping path="/government/login"/>
-           <mvc:exclude-mapping path="/government/loginCitizen"/>
-           <mvc:exclude-mapping path="/government/loginHospital"/>
-           <mvc:exclude-mapping path="/government/logout"/>
+			<mvc:mapping path="/government/*" />
+
+			해당 path는 인터셉트 하지않는다
+			
+			<mvc:exclude-mapping path="/government/login" />
+			<mvc:exclude-mapping path="/government/loginCitizen" />
+			<mvc:exclude-mapping path="/government/loginHospital" />
+			<mvc:exclude-mapping path="/government/logout" />
 			
 			로그인체크 인터셉터 클래스
 			<bean class="com.team4.project.government.interceptor.Interceptor" />
 		</mvc:interceptor>
-		<mvc:interceptor>
-			여러개 컨트롤러 추가 가능
-			<mvc:mapping path="/admin_write"/> <mvc:mapping path="/admin_update"/> 
-				<mvc:mapping path="/admin_delete"/> . . .
-			<mvc:mapping path="/hospital11/" />
-			
-			
-			로그인체크 인터셉터 클래스
-			<bean class="com.team4.project.hospital.interceptor.Interceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors> -->
-	
-	
-	
-	
-	
+	</mvc:interceptors>
+
+ -->
+
+
+
 	<!-- 트랜잭션 처리 -->
- 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
-    </bean>
-    <tx:annotation-driven />
- 	<!-- 인터페이스 없으면 자동으로 만들어줌 -->
- 	<tx:annotation-driven proxy-target-class="true"/>
-	
-	
-	
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:annotation-driven />
+	<!-- 인터페이스 없으면 자동으로 만들어줌 -->
+	<tx:annotation-driven proxy-target-class="true" />
+
+
+
 	<!-- dataSource 설정 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		
-		<property name="url" value="jdbc:mysql://loverman85.cafe24.com:3306/loverman85?useUnicode=true&amp;characterEncoding=utf-8" />
-		
-		<!--  
-		<property name="url" value="jdbc:mysql://localhost:3306/loverman85?useUnicode=true&amp;characterEncoding=utf-8" />
-		 -->
+
+		<property name="url"
+			value="jdbc:mysql://loverman85.cafe24.com:3306/loverman85?useUnicode=true&amp;characterEncoding=utf-8" />
+
+		<!-- <property name="url" value="jdbc:mysql://localhost:3306/loverman85?useUnicode=true&amp;characterEncoding=utf-8" 
+			/> -->
 		<property name="username" value="loverman85" />
 		<property name="password" value="java5963" />
 	</bean>
-	
+
 	<!-- mybatis 세션생성을 위한 팩토리 생성 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- mybatis 세션생성시 사용할 dataSource주입 -->
@@ -91,48 +83,45 @@
 		<property name="mapperLocations">
 			<list>
 				<!-- 사용할 Mapper.xml마다 등록해줘야함 -->
-				
+
 				<!-- 정부 -->
-				<value>classpath:com/team4/project/government/dto/GovernmentMapper.xml</value>
+				<value>classpath:com/team4/project/government/dto/GovernmentMapper.xml
+				</value>
 				<!-- 진단 & 처방 -->
-				<value>classpath:com/team4/project/government/diagnosisPrescription/domain/GoDiagnosisPrescriptionMapper.xml</value>
+				<value>classpath:com/team4/project/government/diagnosisPrescription/domain/GoDiagnosisPrescriptionMapper.xml
+				</value>
 				<!-- 입원 & 수술 -->
-				<value>classpath:com/team4/project/government/hopitalizationSurgery/domain/GoHospitalizationSurgeryMapper.xml</value>
+				<value>classpath:com/team4/project/government/hopitalizationSurgery/domain/GoHospitalizationSurgeryMapper.xml
+				</value>
 				<!-- 검사 -->
-				<value>classpath:com/team4/project/government/test/domain/GoTestMapper.xml</value>
+				<value>classpath:com/team4/project/government/test/domain/GoTestMapper.xml
+				</value>
 				<!-- 진료 & 차트 -->
-				<value>classpath:com/team4/project/government/treat/domain/GoTreatMapper.xml</value>
+				<value>classpath:com/team4/project/government/treat/domain/GoTreatMapper.xml
+				</value>
 				<!-- 예방접종 & 건강검진 -->
-				<value>classpath:com/team4/project/government/vaccinationCheckup/domain/GoVaccinationCheckupMapper.xml</value>
-<!--
-				병원
-				<value>classpath:com/team4/project/hospital/dto/HospitalMapper.xml</value>
-				진단 & 처방
-				<value>classpath:com/team4/project/hospital/diagnosisPrescription/domain/HoDiagnosisPrescriptionMapper.xml</value>
-				입원 & 수술				
-				<value>classpath:com/team4/project/hospital/hospitalizationOperation/domain/HoHospitalizationOperationMapper.xml</value>
-				접수 & 예약
-				<value>classpath:com/team4/project/hospital/receiveReservation/domain/HoReceiveReservationMapper.xml</value>
-				검사
-				<value>classpath:com/team4/project/hospital/test/domain/HoTestMapper.xml</value>
-				진료 & 차트
-				<value>classpath:com/team4/project/hospital/treatChart/domain/HoTreatChartMapper.xml</value>
-				예방접종 & 건강검진
-				<value>classpath:com/team4/project/hospital/vaccineCheckup/domain/HoVaccineCheckupMapper.xml</value>
- -->
+				<value>classpath:com/team4/project/government/vaccinationCheckup/domain/GoVaccinationCheckupMapper.xml
+				</value>
+				<!-- 병원 <value>classpath:com/team4/project/hospital/dto/HospitalMapper.xml</value> 
+					진단 & 처방 <value>classpath:com/team4/project/hospital/diagnosisPrescription/domain/HoDiagnosisPrescriptionMapper.xml</value> 
+					입원 & 수술 <value>classpath:com/team4/project/hospital/hospitalizationOperation/domain/HoHospitalizationOperationMapper.xml</value> 
+					접수 & 예약 <value>classpath:com/team4/project/hospital/receiveReservation/domain/HoReceiveReservationMapper.xml</value> 
+					검사 <value>classpath:com/team4/project/hospital/test/domain/HoTestMapper.xml</value> 
+					진료 & 차트 <value>classpath:com/team4/project/hospital/treatChart/domain/HoTreatChartMapper.xml</value> 
+					예방접종 & 건강검진 <value>classpath:com/team4/project/hospital/vaccineCheckup/domain/HoVaccineCheckupMapper.xml</value> -->
 			</list>
 		</property>
 	</bean>
-	
-	
-	
+
+
+
 	<!-- mybatis를 사용하여 db에접속하여 쿼리를 보내는 주체인 SqlSessionTemplate빈 생성 -->
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
-	
+
 	<context:component-scan base-package="com.team4.project" />
-	
-	
-	
+
+
+
 </beans>
