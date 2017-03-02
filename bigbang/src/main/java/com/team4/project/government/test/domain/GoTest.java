@@ -12,9 +12,29 @@ public class GoTest {
 	protected String goFirstDate;
 	protected String goSecondDate;
 	
+	
 
 	
 	
+	
+	public GoTest() {
+		super();
+	}
+
+	public GoTest(String goCitizenId, List<GoBloodTestTreatSub> goBloodTestTreatSub,
+			List<GoImageTestTreatSub> goImageTestTreatSub, int selectBloodTestCount, String goHospitalName,
+			String goDoctorName, String goFirstDate, String goSecondDate) {
+		super();
+		this.goCitizenId = goCitizenId;
+		this.goBloodTestTreatSub = goBloodTestTreatSub;
+		this.goImageTestTreatSub = goImageTestTreatSub;
+		this.selectBloodTestCount = selectBloodTestCount;
+		this.goHospitalName = goHospitalName;
+		this.goDoctorName = goDoctorName;
+		this.goFirstDate = goFirstDate;
+		this.goSecondDate = goSecondDate;
+	}
+
 	public String getGoHospitalName() {
 		return goHospitalName;
 	}

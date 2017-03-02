@@ -1,23 +1,20 @@
 package com.team4.project.government.test.controller;
 
-import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.http.client.methods.HttpPost;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.team4.project.government.test.domain.GoBloodTestTreatSub;
 import com.team4.project.government.test.domain.GoTest;
 import com.team4.project.util.Http;
 
@@ -107,7 +104,7 @@ public class GoTestController {
 	
 	//json타입으로 response test
 	@ResponseBody
-	@RequestMapping(value="/government/goJson", method=RequestMethod.POST , produces = "text/json; charset=UTF-8")
+	@RequestMapping(value="/government/goJson", method=RequestMethod.GET , produces = "text/json; charset=UTF-8")
 	public String goJson(Model model, GoTest goTest,HttpSession session){
 		/*
 		진료테이블의 모든 컬럼
@@ -159,16 +156,21 @@ public class GoTestController {
 			//모델에 list타입 객체를 담음
 			model.addAttribute("goTestBlood",goBloodTest);
 			
-			JSONArray array = new JSONArray();
-			 array.add(goBloodTest.getGoBloodTestTreatSub());
-			JSONObject jObject = new JSONObject();
-			jObject.put("bloodTest", goBloodTest);
-			jObject.put("bloodTestResult", array.toJSONString());
-			
-			String jsonStr = jObject.toJSONString();
-			System.out.println("json type으로 변환 한 값 : "+jsonStr);
+			//gson 타입객체로 바꾸는 중 에러나있는 곳
+			/*List<GoBloodTestTreatSub> bloodTestResultList = goBloodTest.getGoBloodTestTreatSub();
+			String CitizenId = goBloodTest.getGoCitizenId();
+			int count = goBloodTest.getSelectBloodTestCount();
+			String hospitalName = goBloodTest.getGoHospitalName();
+			String doctorName = goBloodTest.getGoDoctorName();
+			String firstDay = goBloodTest.getGoFirstDate();
+			String secondDay = goBloodTest.getGoSecondDate();
+			Gson gson = new Gson();
+			String bloodTestResult = gson.toJson(new GoTest(CitizenId,bloodTestResultList,null,count,hospitalName,doctorName,firstDay,secondDay));
+			System.out.println("혈액검사결과 확인 : "+bloodTestResult);
+		*/
+	
 			//view 페이지로 포워딩
-		return jsonStr;
+		return "";
 		
 	}
 	
@@ -179,10 +181,8 @@ public class GoTestController {
 		 try {
 			String jsonString = http.submit();
 			System.out.println("jsonString : "+jsonString);
-			JSONParser jParse = new JSONParser();
-			JSONObject jobject = new JSONObject();
-			jobject = (JSONObject) jParse.parse(jsonString);
-			System.out.println("json type object 확인 : "+jobject);
+			
+		
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
