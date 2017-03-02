@@ -17,14 +17,18 @@ public class HttpUrlCon {
 	
 	/**
 	 * @url 접속할url
-	 * @method 접속방식 GET or POST
 	*/
 	public HttpUrlCon(String url){
 		this.url = url;
 	}
 	
-	// GET방식으로 연결하기
+	// GET방식 encoding타입을 따로 지정해주지 않으면 default인 utf-8로 셋팅
 	public String HttpUrlGET() throws Exception{
+		return HttpUrlGET(DEFAULT_ENCODING);
+	}
+	
+	// GET방식으로 연결하기
+	public String HttpUrlGET(String resEncoding) throws Exception{
 		URL url = new URL(this.url);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET"); // 요청 방식을 설정 (default : GET)
@@ -35,7 +39,7 @@ public class HttpUrlCon {
 		
 		//응답결과 받아오기
 		InputStream in = conn.getInputStream();
-		BufferedReader br = new BufferedReader(new InputStreamReader(in, DEFAULT_ENCODING)); // 캐릭터셋 설정
+		BufferedReader br = new BufferedReader(new InputStreamReader(in, resEncoding)); // 캐릭터셋 설정
 		StringBuilder sb = new StringBuilder();
 		String line = null;
 		while ((line = br.readLine()) != null) {
@@ -46,8 +50,14 @@ public class HttpUrlCon {
 		}
 		return sb.toString();
 	}
-	// POST 방식으로 연결하기
+	
+	// POST방식 req, res encoding방식을 지정하지 않으면 default인 utf-8로 셋팅
 	public String HttpUrlPOST(Map<String, String> map) throws Exception{
+		return HttpUrlPOST(map, DEFAULT_ENCODING, DEFAULT_ENCODING);
+	}
+	
+	// POST 방식으로 연결하기
+	public String HttpUrlPOST(Map<String, String> map, String reqEncoding, String resEncoding) throws Exception{
 		URL url = new URL(this.url);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("POST"); // 요청 방식을 설정 (default : GET)
@@ -58,7 +68,7 @@ public class HttpUrlCon {
 		//OutputStream에 전달할 data 쓰기
 		OutputStream os = conn.getOutputStream();
 		
-		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, DEFAULT_ENCODING)); // 캐릭터셋 설정
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, reqEncoding)); // 캐릭터셋 설정
 		for( String key : map.keySet() ){
 			writer.write(key+"=" + map.get(key) + "&"); // 요청 파라미터를 입력
 		}
@@ -70,7 +80,7 @@ public class HttpUrlCon {
 		os.close();
 		//응답결과 받아오기
 		InputStream in = conn.getInputStream();
-		BufferedReader br = new BufferedReader(new InputStreamReader(in, DEFAULT_ENCODING)); // 캐릭터셋 설정
+		BufferedReader br = new BufferedReader(new InputStreamReader(in, resEncoding)); // 캐릭터셋 설정
 		StringBuilder sb = new StringBuilder();
 		String line = null;
 		while ((line = br.readLine()) != null) {
