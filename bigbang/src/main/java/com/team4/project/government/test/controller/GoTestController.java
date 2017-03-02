@@ -152,7 +152,7 @@ public class GoTestController {
 
 			logger.debug("주민번호 확인 : "+goTest.getGoCitizenId());
 			GoTest goBloodTest = goTS.selectBloodTest(goTest);
-			
+			System.out.println("goBloodTest:"+goBloodTest);
 			//모델에 list타입 객체를 담음
 			model.addAttribute("goTestBlood",goBloodTest);
 			
@@ -164,10 +164,11 @@ public class GoTestController {
 			String doctorName = goBloodTest.getGoDoctorName();
 			String firstDay = goBloodTest.getGoFirstDate();
 			String secondDay = goBloodTest.getGoSecondDate();
+					*/
 			Gson gson = new Gson();
-			String bloodTestResult = gson.toJson(new GoTest(CitizenId,bloodTestResultList,null,count,hospitalName,doctorName,firstDay,secondDay));
+			String bloodTestResult = gson.toJson(goBloodTest);
 			System.out.println("혈액검사결과 확인 : "+bloodTestResult);
-		*/
+
 	
 			//view 페이지로 포워딩
 		return "";

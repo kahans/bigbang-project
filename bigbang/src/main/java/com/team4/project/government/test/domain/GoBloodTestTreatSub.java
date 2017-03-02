@@ -16,7 +16,6 @@ public class GoBloodTestTreatSub extends GoTreat {
 	//병원명, 의사명 진료내용
 	protected String goHospitalName;
 	protected String goDoctorName;
-	protected String goTreatContents;
 	
 	
 	
