@@ -109,9 +109,9 @@ public class GovernmentController {
 	@ResponseBody
 	@RequestMapping(value="/government/getMedicineCode", method=RequestMethod.GET,
 					produces = "text/json; charset=UTF-8")
-	public String getMdedicine(){
+	public String getMdedicine(String id){
 		logger.debug("getMdedicine GET 진입");
-
+		System.out.println("id:"+id);
 		List<GoMedicine> list = goService.getMedicine();
 		Gson gson = new Gson();
 		String jsonStr = gson.toJson(list);
@@ -124,12 +124,12 @@ public class GovernmentController {
 	public String getMedicine(){
 		System.out.println("getMedicine 진입");
 		
-		HttpUrlCon huc = new HttpUrlCon("http://localhost/project/government/getMedicineCode");
+		HttpUrlCon huc = new HttpUrlCon("http://localhost/project/government/getMedicineCode?id=dd");
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", "11");
 		map.put("name", "똥꾸");
 		try {
-			String result = huc.HttpUrlPOST(map);
+			String result = huc.HttpUrlGET();
 			System.out.println("result:"+result);
 			Gson gson = new Gson();
 			
