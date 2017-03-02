@@ -1,24 +1,16 @@
 package com.team4.project.government.vaccinationCheckup.controller;
 
-import java.util.List;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.team4.project.government.vaccinationCheckup.domain.GoCheckupTreatSub;
-import com.team4.project.government.vaccinationCheckup.domain.GoVaccinationCheckup;
-import com.team4.project.government.vaccinationCheckup.domain.GoVaccinationResultTreatSub;
-import com.team4.project.util.Util;
 
 @Service
 public class GoVaccinationCheckupService {
 	private static final Logger logger = LoggerFactory.getLogger(GoVaccinationCheckupService.class);
 	@Autowired
 	private GoVaccinationCheckupDao goVCD;
-	
+	/*
 	public GoVaccinationCheckup vaccinationList(GoVaccinationCheckup govaccination){
 		
 		GoVaccinationCheckup goVaccinationResult= new GoVaccinationCheckup();
@@ -80,5 +72,5 @@ public class GoVaccinationCheckupService {
 		}
 		
 		return goCheckupResult;
-	}
+	}*/
 }

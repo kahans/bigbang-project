@@ -3,18 +3,13 @@ package com.team4.project.government.vaccinationCheckup.domain;
 
 
 public class GoCheckup {
-	protected String goCheckUpResultCode;
-	protected String goCheckUpResultFilePath;
-	protected String goCheckUpResultFileName;
-	protected String goCheckUpResultRegistrationDate;
-	protected String goCheckUpResultGoRegistrationDate;
-	
+	private String goCheckUpResultCode;
+	private String goTreatCode;
+	private String goCheckUpResultFilePath;
+	private String goCheckUpResultFileName;
+	private String goCheckUpResultRegistrationDate;
+	private String goCheckUpResultGoRegistrationDate;
 
-	
-	
-
-	
-	
 	public String getGoCheckUpResultCode() {
 		return goCheckUpResultCode;
 	}
@@ -45,6 +40,19 @@ public class GoCheckup {
 	}
 	public void setGoCheckUpResultGoRegistrationDate(String goCheckUpResultGoRegistrationDate) {
 		this.goCheckUpResultGoRegistrationDate = goCheckUpResultGoRegistrationDate;
+	}
+	public String getGoTreatCode() {
+		return goTreatCode;
+	}
+	public void setGoTreatCode(String goTreatCode) {
+		this.goTreatCode = goTreatCode;
+	}
+	@Override
+	public String toString() {
+		return "GoCheckup [goCheckUpResultCode=" + goCheckUpResultCode + ", goTreatCode=" + goTreatCode
+				+ ", goCheckUpResultFilePath=" + goCheckUpResultFilePath + ", goCheckUpResultFileName="
+				+ goCheckUpResultFileName + ", goCheckUpResultRegistrationDate=" + goCheckUpResultRegistrationDate
+				+ ", goCheckUpResultGoRegistrationDate=" + goCheckUpResultGoRegistrationDate + "]";
 	}
 	
 	

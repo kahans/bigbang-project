@@ -1,18 +1,10 @@
 package com.team4.project.government.vaccinationCheckup.controller;
 
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.google.gson.Gson;
-import com.team4.project.government.vaccinationCheckup.domain.GoVaccinationCheckup;
 
 @Controller
 public class GoVaccinationCheckupController {
@@ -22,7 +14,7 @@ public class GoVaccinationCheckupController {
 	
 	
 	
-	
+/*	
 	//예방접종 결과 요청 페이지
 	@RequestMapping(value="/government/vaccination", method=RequestMethod.GET)
 	public String vaccinationList(){
@@ -31,7 +23,7 @@ public class GoVaccinationCheckupController {
 	}
 	//예방접종 결과 목록 페이지
 	@RequestMapping(value="/government/vaccination", method=RequestMethod.POST)
-	public String vaccinationList(Model model, GoVaccinationCheckup govaccination, HttpSession session){
+	public String vaccinationList(Model model, HttpSession session){
 		
 		
 			if(session.getAttribute("GOCITIZENID").equals(null)){
@@ -87,5 +79,5 @@ public class GoVaccinationCheckupController {
 			return checkUpResult;	
 		
 		}
-	}
+	}*/
 }

@@ -1,5 +1,7 @@
 package com.team4.project.government.test.controller;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,15 +18,32 @@ public class GoTestDao {
 	private SqlSessionTemplate sqlSession;
 	
 	
-	//진료코드로 혈액검사결과를 조회한다.
-	public GoBloodTest selectBlood(String treatCode){
-		return sqlSession.selectOne("goTest.selectBloodTest", treatCode);
+	
+	//진료코드로 혈액검사결과 하나를 조회한다.
+	public GoBloodTest selectOneBloodTestResult(String treatCode){
+		logger.debug("혈액검사 Dao");
+		logger.debug("traetCode 받았는지 확인 : "+treatCode);
+		return sqlSession.selectOne("goTest.selectOneBloodTestResult", treatCode);
 	}
 	
+	//주민번호로 혈액검사결과리스트를 조회한다.
+		public List<GoBloodTest> selectListBloodTestResult(String citizenId){
+			return sqlSession.selectList("goTest.selectListBloodTestResult" , citizenId);
+		}
+		
 
-	//진료코드로 영상검사결과를 조회한다.
-	public GoImageTest selectImage(String treatCode){		
-		return sqlSession.selectOne("goTest.selectImageTest", treatCode);		
+	//진료코드로 영상검사결과 하나를 조회한다.
+	public GoImageTest selectOneImageTestResult(String treatCode){
+		logger.debug("영상검사 Dao");
+		logger.debug("traetCode 받았는지 확인 : "+treatCode);
+		return sqlSession.selectOne("goTest.selectOneImageTestResult", treatCode);		
+	}
+	
+	//주민번호로 영상검사결과 리스트를 조회한다.
+	public List<GoImageTest> selectListImageTestResult(String citizenId){
+		logger.debug("영상검사 Dao");
+		logger.debug("citizenId 받았는지 확인 : "+citizenId);
+		return sqlSession.selectList("goTest.selectListImageTestResult", citizenId);
 	}
 	
 }
