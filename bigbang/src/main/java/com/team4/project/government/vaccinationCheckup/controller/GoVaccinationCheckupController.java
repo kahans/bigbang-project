@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.google.gson.Gson;
 import com.team4.project.government.vaccinationCheckup.domain.GoVaccinationCheckup;
 
 @Controller
@@ -45,8 +46,10 @@ public class GoVaccinationCheckupController {
 				GoVaccinationCheckup vaccination = goVCS.vaccinationList(govaccination);
 				model.addAttribute("vaccination", vaccination);
 				logger.debug("vaccination 확인 :" + vaccination.toString());
-		
-				return "/government/citizen/testVaccinationCheckup/vaccinationResult";
+				Gson gson = new Gson();
+				String vaccinationResult = gson.toJson(vaccination);
+				logger.debug("vaccinationResult 확인 : "+vaccinationResult);
+				return vaccinationResult;
 			}
 	}
 	//건강검진 결과 목록 가져오기
@@ -75,8 +78,13 @@ public class GoVaccinationCheckupController {
 			String goCitizenId = (String) session.getAttribute("GOCITIZENID");
 			goCheckup.setGoCitizenId(goCitizenId);
 			GoVaccinationCheckup checkUp = goVCS.checkUpList(goCheckup);
-			model.addAttribute("checkUp", checkUp);
-			return "/government/citizen/testVaccinationCheckup/checkUpResult";	
+			
+			//checkUp 객체를 json type으로 바꿔준다.
+			Gson gson = new Gson();
+			String checkUpResult = gson.toJson(checkUp);
+			logger.debug("checkUp 확인 : "+checkUpResult);
+			
+			return checkUpResult;	
 		
 		}
 	}

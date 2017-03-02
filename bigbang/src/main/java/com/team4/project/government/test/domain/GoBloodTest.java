@@ -1,25 +1,27 @@
 package com.team4.project.government.test.domain;
 
-import java.sql.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class GoBloodTest {
 	
 	// 혈액검사
-	protected String goBloodTestCode;
-	protected int goBloodTestBloodSugar;
-	protected int goBloodTestPlatelet;
-	protected String goBloodTestFilePath;
-	protected String goBloodTestFileName;
-	protected String goBloodTestDate;
-	protected String goBloodTestGoRegistrationDate;
-	
+	private String goBloodTestCode;
+	private String goTreatCode;
+	private int goBloodTestBloodSugar;
+	private int goBloodTestPlatelet;
+	private String goBloodTestFilePath;
+	private String goBloodTestFileName;
+	private String goBloodTestDate;
+	private String goBloodTestGoRegistrationDate;
 	public String getGoBloodTestCode() {
 		return goBloodTestCode;
 	}
 	public void setGoBloodTestCode(String goBloodTestCode) {
 		this.goBloodTestCode = goBloodTestCode;
+	}
+	public String getGoTreatCode() {
+		return goTreatCode;
+	}
+	public void setGoTreatCode(String goTreatCode) {
+		this.goTreatCode = goTreatCode;
 	}
 	public int getGoBloodTestBloodSugar() {
 		return goBloodTestBloodSugar;
@@ -59,15 +61,13 @@ public class GoBloodTest {
 	}
 	@Override
 	public String toString() {
-		return "GoBloodTest [goBloodTestCode=" + goBloodTestCode + ", goBloodTestBloodSugar=" + goBloodTestBloodSugar
-				+ ", goBloodTestPlatelet=" + goBloodTestPlatelet + ", goBloodTestFilePath=" + goBloodTestFilePath
-				+ ", goBloodTestFileName=" + goBloodTestFileName + ", goBloodTestDate=" + goBloodTestDate
-				+ ", goBloodTestGoRegistrationDate=" + goBloodTestGoRegistrationDate + "]";
+		return "GoBloodTest [goBloodTestCode=" + goBloodTestCode + ", goTreatCode=" + goTreatCode
+				+ ", goBloodTestBloodSugar=" + goBloodTestBloodSugar + ", goBloodTestPlatelet=" + goBloodTestPlatelet
+				+ ", goBloodTestFilePath=" + goBloodTestFilePath + ", goBloodTestFileName=" + goBloodTestFileName
+				+ ", goBloodTestDate=" + goBloodTestDate + ", goBloodTestGoRegistrationDate="
+				+ goBloodTestGoRegistrationDate + "]";
 	}
-	
 
-	
-	
 	
 	
 	

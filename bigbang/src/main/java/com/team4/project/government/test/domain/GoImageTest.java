@@ -2,6 +2,7 @@ package com.team4.project.government.test.domain;
 
 public class GoImageTest {
 	protected String goImageTestCode;
+	private String goTreatCode;
 	protected String goImageTestFilePath;
 	protected String goImageTestFileName;
 	protected String goImageTestDate;
@@ -40,12 +41,20 @@ public class GoImageTest {
 	public void setGoImageTestGoRegistrationDate(String goImageTestGoRegistrationDate) {
 		this.goImageTestGoRegistrationDate = goImageTestGoRegistrationDate;
 	}
+	public String getGoTreatCode() {
+		return goTreatCode;
+	}
+	public void setGoTreatCode(String goTreatCode) {
+		this.goTreatCode = goTreatCode;
+	}
 	@Override
 	public String toString() {
-		return "GoImageTest [goImageTestCode=" + goImageTestCode + ", goImageTestFilePath=" + goImageTestFilePath
-				+ ", goImageTestFileName=" + goImageTestFileName + ", goImageTestDate=" + goImageTestDate
-				+ ", goImageTestGoRegistrationDate=" + goImageTestGoRegistrationDate + "]";
+		return "GoImageTest [goImageTestCode=" + goImageTestCode + ", goTreatCode=" + goTreatCode
+				+ ", goImageTestFilePath=" + goImageTestFilePath + ", goImageTestFileName=" + goImageTestFileName
+				+ ", goImageTestDate=" + goImageTestDate + ", goImageTestGoRegistrationDate="
+				+ goImageTestGoRegistrationDate + "]";
 	}
+
 	
 	
 }

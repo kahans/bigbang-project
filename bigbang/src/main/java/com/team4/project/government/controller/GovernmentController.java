@@ -21,7 +21,7 @@ import com.team4.project.HomeController;
 import com.team4.project.government.dto.GoCitizen;
 import com.team4.project.government.dto.GoHospital;
 import com.team4.project.government.dto.GoMedicine;
-import com.team4.project.government.test.domain.GoTest;
+
 import com.team4.project.util.HttpUrlCon;
 
 @Controller
@@ -196,26 +196,17 @@ public class GovernmentController {
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test(){
 		
-		GoTest goTest = new GoTest();
-		String goCitizenId = "900101-1000001";
-		goTest.setGoCitizenId(goCitizenId);
-		String FirstDate = "1990-01-01";
-		String SecondDate = "2017-02-28";
-		goTest.setGoFirstDate(FirstDate);
-		goTest.setGoSecondDate(SecondDate);
-		String space = "";
-		goTest.setGoDoctorName(space);
-		goTest.setGoHospitalName(space);
+	
 		
-		Gson gson = new Gson();
-		String jsonStr = gson.toJson(goTest);
+		/*Gson gson = new Gson();
+		String jsonStr = gson.toJson();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("imageTestSearch", jsonStr);
-		 
+		 */
 		HttpUrlCon huc = new HttpUrlCon("http://192.168.123.147/project/government/goImageTest");
 		try {
-			String result = huc.HttpUrlPOST(map);
-			System.out.println("result:"+result);
+			//String result = huc.HttpUrlPOST(map);
+			//System.out.println("result:"+result);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
