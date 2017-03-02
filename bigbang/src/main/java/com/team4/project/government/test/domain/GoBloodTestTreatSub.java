@@ -13,7 +13,7 @@ public class GoBloodTestTreatSub extends GoTreat {
 	protected String goBloodTestDate;
 	protected String goBloodTestGoRegistrationDate;
 	
-	//병원명, 의사명 진료내용
+	//병원명, 의사명
 	protected String goHospitalName;
 	protected String goDoctorName;
 	

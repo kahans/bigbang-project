@@ -155,23 +155,14 @@ public class GoTestController {
 			System.out.println("goBloodTest:"+goBloodTest);
 			//모델에 list타입 객체를 담음
 			model.addAttribute("goTestBlood",goBloodTest);
-			
-			//gson 타입객체로 바꾸는 중 에러나있는 곳
-			/*List<GoBloodTestTreatSub> bloodTestResultList = goBloodTest.getGoBloodTestTreatSub();
-			String CitizenId = goBloodTest.getGoCitizenId();
-			int count = goBloodTest.getSelectBloodTestCount();
-			String hospitalName = goBloodTest.getGoHospitalName();
-			String doctorName = goBloodTest.getGoDoctorName();
-			String firstDay = goBloodTest.getGoFirstDate();
-			String secondDay = goBloodTest.getGoSecondDate();
-					*/
+		
 			Gson gson = new Gson();
 			String bloodTestResult = gson.toJson(goBloodTest);
 			System.out.println("혈액검사결과 확인 : "+bloodTestResult);
 
 	
 			//view 페이지로 포워딩
-		return "";
+		return bloodTestResult;
 		
 	}
 	
