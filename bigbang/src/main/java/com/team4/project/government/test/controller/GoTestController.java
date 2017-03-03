@@ -1,21 +1,17 @@
 package com.team4.project.government.test.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.team4.project.government.test.domain.GoBloodTest;
 import com.team4.project.government.test.domain.GoImageTest;
-import com.team4.project.util.HttpUrlCon;
 
 @RestController
 public class GoTestController {
@@ -24,7 +20,8 @@ public class GoTestController {
 
 	@Autowired
 	private GoTestService goTS;
-
+	
+	
 	
 	//treatCode 사용하여 혈액검사결과 하나 조회
 	@RequestMapping(value="/government/getOneBloodTestByTreatCode", method=RequestMethod.POST , produces = "text/json; charset=UTF-8")

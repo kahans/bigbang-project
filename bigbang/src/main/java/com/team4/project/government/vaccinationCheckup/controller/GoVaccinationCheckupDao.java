@@ -14,14 +14,12 @@ public class GoVaccinationCheckupDao {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
-	private final String VACCINATIONCHECKUP_NS = "GoVaccinationCheckup.";
 	//예방접종 목록 가져오기
 	
 	public GoVaccinationResult selectVaccination(String treatCode){
 		logger.debug("Vaccination Dao");
 		logger.debug("treatCode 확인 : "+treatCode);
 		
-		return sqlSession.selectOne("",treatCode);
+		return sqlSession.selectOne("GoVaccinationCheckup.selectOneVaccination",treatCode);
 	}
 }

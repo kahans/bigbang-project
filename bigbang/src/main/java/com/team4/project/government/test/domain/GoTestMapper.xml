@@ -8,16 +8,26 @@
 	<select id="selectOneBloodTestResult" resultType="com.team4.project.government.test.domain.GoBloodTest" 
 	parameterType="String">
 	select 
-			Go_BLOOD_TEST_CODE,
-	 		GO_TREAT_CODE,
-	 		GO_BLOOD_TEST_BLOOD_SUGAR,
-	 		GO_BLOOD_TEST_PLATELET,
-	 		GO_BLOOD_TEST_FILE_PATH ,
-	 		GO_BLOOD_TEST_FILE_NAME ,
-	 		GO_BLOOD_TEST_DATE,
-	 		GO_BLOOD_TEST_GO_REGISTRATION_DATE 
+			go_test_blood_result.Go_BLOOD_TEST_CODE,
+	 		go_test_blood_result.GO_TREAT_CODE,
+	 		go_test_blood_result.GO_BLOOD_TEST_BLOOD_SUGAR,
+	 		go_test_blood_result.GO_BLOOD_TEST_PLATELET,
+	 		go_test_blood_result.GO_BLOOD_TEST_FILE_PATH ,
+	 		go_test_blood_result.GO_BLOOD_TEST_FILE_NAME ,
+	 		go_test_blood_result.GO_BLOOD_TEST_DATE,
+	 		go_test_blood_result.GO_BLOOD_TEST_GO_REGISTRATION_DATE ,
+	 		go_hospital.GO_HOSPITAL_NAME, 
+	 		go_hospital.GO_HOSPITAL_ADDRESS, 
+	 		go_citizen.GO_CITIZEN_NAME, 
+	 		go_doctor.GO_DOCTOR_NAME,
+	 		go_treat_subject.GO_TREAT_SUBJECT_NAME 
 	 from go_test_blood_result 
-	 where GO_TREAT_CODE = #{treatCode} 
+	 join go_treat on go_test_blood_result.GO_TREAT_CODE =  go_treat.GO_TREAT_CODE 
+	 join go_hospital on go_treat.GO_HOSPITAL_ID = go_hospital.GO_HOSPITAL_ID 
+	 join go_citizen on go_treat.GO_CITIZEN_ID = go_citizen.GO_CITIZEN_ID 
+	 join go_doctor on go_treat.GO_DOCTOR_ID = go_doctor.GO_DOCTOR_ID 
+	 join go_treat_subject on go_treat.GO_TREAT_SUBJECT_CODE = go_treat_subject.GO_TREAT_SUBJECT_CODE 
+	 where go_test_blood_result.GO_TREAT_CODE = #{treatCode} 
 	</select>
 	
 	<!-- 주민번호와 일치하는 혈액검사리스트 조회 -->
@@ -31,10 +41,18 @@
 	 		go_test_blood_result.GO_BLOOD_TEST_FILE_PATH ,
 	 		go_test_blood_result.GO_BLOOD_TEST_FILE_NAME ,
 	 		go_test_blood_result.GO_BLOOD_TEST_DATE,
-	 		go_test_blood_result.GO_BLOOD_TEST_GO_REGISTRATION_DATE 
+	 		go_test_blood_result.GO_BLOOD_TEST_GO_REGISTRATION_DATE ,
+	 		go_hospital.GO_HOSPITAL_NAME, 
+	 		go_hospital.GO_HOSPITAL_ADDRESS, 
+	 		go_citizen.GO_CITIZEN_NAME, 
+	 		go_doctor.GO_DOCTOR_NAME,
+	 		go_treat_subject.GO_TREAT_SUBJECT_NAME 
 	 from go_test_blood_result 
-	 join go_treat on go_test_blood_result.GO_TREAT_CODE = go_treat.GO_TREAT_CODE 
-	 join go_citizen on go_citizen.GO_CITIZEN_ID = go_treat.GO_CITIZEN_ID 
+	 join go_treat on go_test_blood_result.GO_TREAT_CODE =  go_treat.GO_TREAT_CODE 
+	 join go_hospital on go_treat.GO_HOSPITAL_ID = go_hospital.GO_HOSPITAL_ID 
+	 join go_citizen on go_treat.GO_CITIZEN_ID = go_citizen.GO_CITIZEN_ID 
+	 join go_doctor on go_treat.GO_DOCTOR_ID = go_doctor.GO_DOCTOR_ID 
+	 join go_treat_subject on go_treat.GO_TREAT_SUBJECT_CODE = go_treat_subject.GO_TREAT_SUBJECT_CODE 
 	 where go_citizen.GO_CITIZEN_ID = #{citizenId} 
 	 order by go_test_blood_result.GO_BLOOD_TEST_DATE asc
 
@@ -44,30 +62,48 @@
 	<!-- 진료코드와 일치하는 영상검사결과 하나 조회 -->
 	<select id="selectOneImageTestResult" resultType="com.team4.project.government.test.domain.GoImageTest" 
 	parameterType="String">
-	select
-			GO_IMAGE_TEST_CODE,
-			GO_TREAT_CODE,
-			GO_IMAGE_TEST_FILE_PATH,
-			GO_IMAGE_TEST_FILE_NAME,
-			GO_IMAGE_TEST_DATE,
-			GO_IMAGE_TEST_GO_REGISTRATION_DATE 
-	from go_test_image_result 
-	where GO_TREAT_CODE = #{treatCode}
-	</select>
-	
-	<!-- 주민번호와 일치하는 영상검사결과 리스트 조회 -->
-	<select id="selectListImageTestResult" resultType="com.team4.project.government.test.domain.GoImageTest" 
-	parameterType="String">
-	select
+		select
 			go_test_image_result.GO_IMAGE_TEST_CODE,
 			go_test_image_result.GO_TREAT_CODE,
 			go_test_image_result.GO_IMAGE_TEST_FILE_PATH,
 			go_test_image_result.GO_IMAGE_TEST_FILE_NAME,
 			go_test_image_result.GO_IMAGE_TEST_DATE,
-			go_test_image_result.GO_IMAGE_TEST_GO_REGISTRATION_DATE 
+			go_test_image_result.GO_IMAGE_TEST_GO_REGISTRATION_DATE,
+			go_hospital.GO_HOSPITAL_NAME, 
+	 		go_hospital.GO_HOSPITAL_ADDRESS, 
+	 		go_citizen.GO_CITIZEN_NAME, 
+	 		go_doctor.GO_DOCTOR_NAME,
+	 		go_treat_subject.GO_TREAT_SUBJECT_NAME  
 	from go_test_image_result 
-	join go_treat on go_test_image_result.GO_TREAT_CODE = go_treat.GO_TREAT_CODE 
+	join go_treat on go_test_image_result.GO_TREAT_CODE =  go_treat.GO_TREAT_CODE 
+	join go_hospital on go_treat.GO_HOSPITAL_ID = go_hospital.GO_HOSPITAL_ID 
 	join go_citizen on go_treat.GO_CITIZEN_ID = go_citizen.GO_CITIZEN_ID 
+	join go_doctor on go_treat.GO_DOCTOR_ID = go_doctor.GO_DOCTOR_ID 
+	join go_treat_subject on go_treat.GO_TREAT_SUBJECT_CODE = go_treat_subject.GO_TREAT_SUBJECT_CODE 
+	where go_test_image_result.GO_TREAT_CODE = #{treatCode}
+	</select>
+	
+	<!-- 주민번호와 일치하는 영상검사결과 리스트 조회 -->
+	<select id="selectListImageTestResult" resultType="com.team4.project.government.test.domain.GoImageTest" 
+	parameterType="String">
+		select
+			go_test_image_result.GO_IMAGE_TEST_CODE,
+			go_test_image_result.GO_TREAT_CODE,
+			go_test_image_result.GO_IMAGE_TEST_FILE_PATH,
+			go_test_image_result.GO_IMAGE_TEST_FILE_NAME,
+			go_test_image_result.GO_IMAGE_TEST_DATE,
+			go_test_image_result.GO_IMAGE_TEST_GO_REGISTRATION_DATE,
+			go_hospital.GO_HOSPITAL_NAME, 
+	 		go_hospital.GO_HOSPITAL_ADDRESS, 
+	 		go_citizen.GO_CITIZEN_NAME, 
+	 		go_doctor.GO_DOCTOR_NAME,
+	 		go_treat_subject.GO_TREAT_SUBJECT_NAME  
+	from go_test_image_result 
+	join go_treat on go_test_image_result.GO_TREAT_CODE =  go_treat.GO_TREAT_CODE 
+	join go_hospital on go_treat.GO_HOSPITAL_ID = go_hospital.GO_HOSPITAL_ID 
+	join go_citizen on go_treat.GO_CITIZEN_ID = go_citizen.GO_CITIZEN_ID 
+	join go_doctor on go_treat.GO_DOCTOR_ID = go_doctor.GO_DOCTOR_ID 
+	join go_treat_subject on go_treat.GO_TREAT_SUBJECT_CODE = go_treat_subject.GO_TREAT_SUBJECT_CODE 
 	where go_treat.GO_CITIZEN_ID = #{citizenId} 
 	order by go_test_image_result.GO_IMAGE_TEST_DATE asc
 	</select>

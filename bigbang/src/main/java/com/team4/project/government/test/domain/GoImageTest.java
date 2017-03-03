@@ -1,12 +1,14 @@
 package com.team4.project.government.test.domain;
 
-public class GoImageTest {
-	protected String goImageTestCode;
+import com.team4.project.government.dto.HangleInfo;
+
+public class GoImageTest extends HangleInfo{
+	private String goImageTestCode;
 	private String goTreatCode;
-	protected String goImageTestFilePath;
-	protected String goImageTestFileName;
-	protected String goImageTestDate;
-	protected String goImageTestGoRegistrationDate;
+	private String goImageTestFilePath;
+	private String goImageTestFileName;
+	private String goImageTestDate;
+	private String goImageTestGoRegistrationDate;
 
 	public GoImageTest() {
 		super();
@@ -52,9 +54,8 @@ public class GoImageTest {
 		return "GoImageTest [goImageTestCode=" + goImageTestCode + ", goTreatCode=" + goTreatCode
 				+ ", goImageTestFilePath=" + goImageTestFilePath + ", goImageTestFileName=" + goImageTestFileName
 				+ ", goImageTestDate=" + goImageTestDate + ", goImageTestGoRegistrationDate="
-				+ goImageTestGoRegistrationDate + "]";
+				+ goImageTestGoRegistrationDate + ", goHospitalName=" + goHospitalName + ", goHospitalAddress="
+				+ goHospitalAddress + ", goCitizenName=" + goCitizenName + ", goDoctorName=" + goDoctorName
+				+ ", goTreatSubjectName=" + goTreatSubjectName + "]";
 	}
-
-	
-	
 }

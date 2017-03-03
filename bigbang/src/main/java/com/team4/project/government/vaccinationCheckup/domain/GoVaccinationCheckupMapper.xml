@@ -5,7 +5,7 @@
 <mapper namespace="GoVaccinationCheckup">
 
  	<!-- treatCode를 사용하여 예방접종정보,예방접종명 조회 -->
- 	<select id="selectVaccination" parameterType="String" 
+ 	<select id="selectOneVaccination" parameterType="String" 
  	resultType="com.team4.project.government.vaccinationCheckup.domain.GoVaccinationResult">
  		select 
 			go_vaccination_result.GO_VACCINATION_RESULT_CODE,

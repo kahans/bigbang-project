@@ -1,6 +1,8 @@
 package com.team4.project.government.test.domain;
 
-public class GoBloodTest {
+import com.team4.project.government.dto.HangleInfo;
+
+public class GoBloodTest extends HangleInfo {
 	
 	// 혈액검사
 	private String goBloodTestCode;
@@ -11,6 +13,7 @@ public class GoBloodTest {
 	private String goBloodTestFileName;
 	private String goBloodTestDate;
 	private String goBloodTestGoRegistrationDate;
+	
 	public String getGoBloodTestCode() {
 		return goBloodTestCode;
 	}
@@ -65,10 +68,9 @@ public class GoBloodTest {
 				+ ", goBloodTestBloodSugar=" + goBloodTestBloodSugar + ", goBloodTestPlatelet=" + goBloodTestPlatelet
 				+ ", goBloodTestFilePath=" + goBloodTestFilePath + ", goBloodTestFileName=" + goBloodTestFileName
 				+ ", goBloodTestDate=" + goBloodTestDate + ", goBloodTestGoRegistrationDate="
-				+ goBloodTestGoRegistrationDate + "]";
+				+ goBloodTestGoRegistrationDate + ", goHospitalName=" + goHospitalName + ", goHospitalAddress="
+				+ goHospitalAddress + ", goCitizenName=" + goCitizenName + ", goDoctorName=" + goDoctorName
+				+ ", goTreatSubjectName=" + goTreatSubjectName + "]";
 	}
-
-	
-	
 	
 }

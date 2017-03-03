@@ -16,8 +16,7 @@ public class GoTestDao {
 	private static final Logger logger = LoggerFactory.getLogger(GoTestDao.class);
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
-	
+
 	
 	//진료코드로 혈액검사결과 하나를 조회한다.
 	public GoBloodTest selectOneBloodTestResult(String treatCode){

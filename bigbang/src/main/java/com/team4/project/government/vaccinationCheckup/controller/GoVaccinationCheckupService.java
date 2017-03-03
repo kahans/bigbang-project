@@ -5,11 +5,24 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.team4.project.government.vaccinationCheckup.domain.GoVaccinationResult;
+
 @Service
 public class GoVaccinationCheckupService {
 	private static final Logger logger = LoggerFactory.getLogger(GoVaccinationCheckupService.class);
 	@Autowired
 	private GoVaccinationCheckupDao goVCD;
+	
+	
+	
+	public GoVaccinationResult getOneVaccinationResult(String treatCode){
+			logger.debug("서비스 , 진료코드를 받아 하나의 예방접종결과 조회");
+			logger.debug("매개변수로 받은 treatCode 확인 : "+treatCode);
+		return goVCD.selectVaccination(treatCode);
+	}
+	
+	
+	
 	/*
 	public GoVaccinationCheckup vaccinationList(GoVaccinationCheckup govaccination){
 		
