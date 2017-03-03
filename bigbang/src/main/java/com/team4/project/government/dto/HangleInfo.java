@@ -1,13 +1,11 @@
-package com.team4.project.government.treat.domain;
+package com.team4.project.government.dto;
 
-public class GoGetTreatSub extends GoTreat{
-	
+public class HangleInfo {
 	private String goHospitalName;
 	private String goHospitalAddress;
 	private String goCitizenName;
 	private String goDoctorName;
 	private String goTreatSubjectName;
-	
 	
 	public String getGoHospitalName() {
 		return goHospitalName;
@@ -41,14 +39,9 @@ public class GoGetTreatSub extends GoTreat{
 	}
 	@Override
 	public String toString() {
-		return "GoGetTreatSub [goHospitalName=" + goHospitalName + ", goHospitalAddress=" + goHospitalAddress
+		return "HangleInfo [goHospitalName=" + goHospitalName + ", goHospitalAddress=" + goHospitalAddress
 				+ ", goCitizenName=" + goCitizenName + ", goDoctorName=" + goDoctorName + ", goTreatSubjectName="
-				+ goTreatSubjectName + ", goTreatCode=" + goTreatCode + ", goHospitalId=" + goHospitalId
-				+ ", goCitizenId=" + goCitizenId + ", goDoctorId=" + goDoctorId + ", goTreatSubjectCode="
-				+ goTreatSubjectCode + ", goChartCode=" + goChartCode + ", goChartSeq=" + goChartSeq
-				+ ", goTreatContents=" + goTreatContents + ", goTreatRegistrationDate=" + goTreatRegistrationDate
-				+ ", goTreatGoRegistrationDate=" + goTreatGoRegistrationDate + "]";
+				+ goTreatSubjectName + "]";
 	}
-
-
+	
 }

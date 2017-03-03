@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,16 +15,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
 import com.team4.project.government.hopitalizationSurgery.domain.GoHospitalization;
 import com.team4.project.government.hopitalizationSurgery.domain.GoSearchHospitalizationSub;
 import com.team4.project.government.hopitalizationSurgery.domain.GoSearchSurgerySub;
+import com.team4.project.government.treat.controller.GoTreatController;
 
-@Controller
+@RestController
 public class GoHospitalizationSurgeryController {
-
+	private static final Logger logger = LoggerFactory.getLogger(GoHospitalizationSurgeryController.class);
+	private Gson gson = new Gson();
+	
 	@Autowired
 	private GoHospitalizationSurgeryService goHSS;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//수술 뷰검색
 	@RequestMapping(value="/government/surgerySearch", method=RequestMethod.POST)
 	public @ResponseBody List<GoSearchSurgerySub> surgeryList(HttpSession session, Model model,
