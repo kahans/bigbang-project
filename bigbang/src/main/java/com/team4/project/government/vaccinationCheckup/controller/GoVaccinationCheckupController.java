@@ -1,86 +1,121 @@
 package com.team4.project.government.vaccinationCheckup.controller;
 
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.google.gson.Gson;
+import com.team4.project.government.vaccinationCheckup.domain.GoCheckup;
+import com.team4.project.government.vaccinationCheckup.domain.GoVaccinationResult;
 
 @RestController
 public class GoVaccinationCheckupController {
 	private static final Logger logger = LoggerFactory.getLogger(GoVaccinationCheckupController.class);
+	Gson gson = new Gson();
 	@Autowired
-	private GoVaccinationCheckupService goVCS;
+	private GoVaccinationCheckupService goVaccinationCheckupService;
 	
-	
-	
-	
-	
-/*	
-	//예방접종 결과 요청 페이지
-	@RequestMapping(value="/government/vaccination", method=RequestMethod.GET)
-	public String vaccinationList(){
+	//treatCode를 입력받아 하나의 예방접종결과를 가져옴
+	@RequestMapping(value="/government/getOneVaccinationResultByTreatCode", method=RequestMethod.POST, produces="text/json; charset=UTF-8")
+	public String getOneVaccinationResult(String treatCode){
+		logger.debug("treatCode를 입력받아 하나의 예방접종결과를 가져옴");
+		logger.debug("매개변수 treatCode 확인 : "+treatCode);
 		
-		return "/government/citizen/testVaccinationCheckup/vaccination";
-	}
-	//예방접종 결과 목록 페이지
-	@RequestMapping(value="/government/vaccination", method=RequestMethod.POST)
-	public String vaccinationList(Model model, HttpSession session){
+		GoVaccinationResult goVaccinationResult = goVaccinationCheckupService.getOneVaccinationResult(treatCode);
+		logger.debug("객체 제대로 받았는지 확인 :"+goVaccinationResult); 
+		String vaccinationResult = gson.toJson(goVaccinationResult);
 		
-		
-			if(session.getAttribute("GOCITIZENID").equals(null)){
-				System.out.println("세션확인 : "+session.getAttribute("citizenId"));
-				return "/governmnet/login";
-			}else{
-				
-				String goCitizenId = (String) session.getAttribute("GOCITIZENID");
-				govaccination.setGoCitizenId(goCitizenId);
-				//여기까지
-				logger.debug("백신확인 : "+govaccination.toString());
-				GoVaccinationCheckup vaccination = goVCS.vaccinationList(govaccination);
-				model.addAttribute("vaccination", vaccination);
-				logger.debug("vaccination 확인 :" + vaccination.toString());
-				Gson gson = new Gson();
-				String vaccinationResult = gson.toJson(vaccination);
-				logger.debug("vaccinationResult 확인 : "+vaccinationResult);
-				return vaccinationResult;
-			}
-	}
-	//건강검진 결과 목록 가져오기
-	@RequestMapping(value="/government/checkUp" , method=RequestMethod.GET)
-	public String checkUpList(){
-		
-		
-		return "/government/citizen/testVaccinationCheckup/checkUp";
-		
+		return vaccinationResult;
 	}
 	
-	
-	//건강검진 결과 목록 가져오기
-	@RequestMapping(value="/government/checkUp", method=RequestMethod.POST)
-	public String checkUpList(GoVaccinationCheckup goCheckup, Model model,HttpSession session){
-		logger.debug(goCheckup.toString());
-		//세션 임의로 만들어서 넣어줌
-		if(session.getAttribute("GOCITIZENID").equals(null)){
-			logger.debug("goCitizenId 이 null일때 :" +session.getAttribute("GOCITIZENID"));
-			
-			return "/governmnet/login";
-		}else{
-			//여기까지
-			System.out.println("세션확인 : "+session.getAttribute("GOCITIZENID"));
-			
-			String goCitizenId = (String) session.getAttribute("GOCITIZENID");
-			goCheckup.setGoCitizenId(goCitizenId);
-			GoVaccinationCheckup checkUp = goVCS.checkUpList(goCheckup);
-			
-			//checkUp 객체를 json type으로 바꿔준다.
-			Gson gson = new Gson();
-			String checkUpResult = gson.toJson(checkUp);
-			logger.debug("checkUp 확인 : "+checkUpResult);
-			
-			return checkUpResult;	
+	//treatCode를 입력받아 하나의 예방접종결과를 가져오는 테스트용 메소드
+	@RequestMapping(value="/government/getOneVaccinationResultByTreatCode", method=RequestMethod.GET, produces="text/json; charset=UTF-8")
+	public String getOneVaccinationResult(String treatCode, String test){
+		logger.debug("treatCode를 입력받아 하나의 예방접종결과를 가져옴");
+		logger.debug("매개변수 treatCode 확인 : "+treatCode);
 		
-		}
-	}*/
+		GoVaccinationResult goVaccinationResult = goVaccinationCheckupService.getOneVaccinationResult(treatCode);
+		logger.debug("객체 제대로 받았는지 확인 :"+goVaccinationResult); 
+		String vaccinationResult = gson.toJson(goVaccinationResult);
+		
+		return vaccinationResult;
+	}
+	
+	//citizenId를 입력받아 예방접종결과리스트를 가져옴
+	@RequestMapping(value="/government/getListVaccinationResultByCitizenId" , method=RequestMethod.POST , produces="text/json; charset=UTF-8")
+	public String getListVaccinationResult(String citizenId){
+		logger.debug("citizenId를 입력받아 예방접종결과리스트를 가져옴");
+		logger.debug("매개변수 citizenId 확인 : "+citizenId);
+		
+		List<GoVaccinationResult> goVaccinationResult = goVaccinationCheckupService.getListVaccinationResult(citizenId);
+		String vaccinationResult = gson.toJson(goVaccinationResult);
+		return vaccinationResult;
+	}
+	
+	//citizenId를 입력받아 예방접종결과리스트를 가져오는 테스트용 메소드
+	@RequestMapping(value="/government/getListVaccinationResultByCitizenId" , method=RequestMethod.GET , produces="text/json; charset=UTF-8")
+	public String getListVaccinationResult(String citizenId, String test){
+		logger.debug("citizenId를 입력받아 예방접종결과리스트를 가져옴");
+		logger.debug("매개변수 citizenId 확인 : "+citizenId);
+		
+		List<GoVaccinationResult> goVaccinationResult = goVaccinationCheckupService.getListVaccinationResult(citizenId);
+		String vaccinationResult = gson.toJson(goVaccinationResult);
+		return vaccinationResult;
+	}
+	
+	//treatCode를 입력받아 하나의 건강검진결과를 가져옴
+	@RequestMapping(value="/government/getOneCheckupResultByTreatCode", method=RequestMethod.POST, produces="text/json; charset=UTF-8")
+	public String getOneCheckupResult(String treatCode){
+		logger.debug("treatCode를 입력받아 하나의 건강검진결과를 가져옴");
+		logger.debug("매개변수 treatCode 확인 : "+treatCode);
+		
+		GoCheckup goVaccinationResult = goVaccinationCheckupService.getOneCheckupResult(treatCode);
+		logger.debug("객체 제대로 받았는지 확인 :"+goVaccinationResult); 
+		String CheckupResult = gson.toJson(goVaccinationResult);
+		
+		return CheckupResult;
+	}
+	
+	//treatCode를 입력받아 하나의 건강검진결과를 가져옴 테스트용
+	@RequestMapping(value="/government/getOneCheckupResultByTreatCode", method=RequestMethod.GET, produces="text/json; charset=UTF-8")
+	public String getOneCheckupResult(String treatCode, String test){
+		logger.debug("treatCode를 입력받아 하나의 건강검진결과를 가져옴");
+		logger.debug("매개변수 treatCode 확인 : "+treatCode);
+		
+		GoCheckup goCheckupResult = goVaccinationCheckupService.getOneCheckupResult(treatCode);
+		logger.debug("객체 제대로 받았는지 확인 :"+goCheckupResult); 
+		String CheckupResult = gson.toJson(goCheckupResult);
+		
+		return CheckupResult;
+	}
+	
+	//citizenId를 입력받아 건강검진결과리스트 가져옴
+	@RequestMapping(value="/government/getListCheckupResultByCitizenId", method=RequestMethod.POST, produces="text/json; charset=UTF-8")
+	public String getListCheckupResult(String citizenId){
+		logger.debug("treatCode를 입력받아 건강검진결과리스트를 가져옴");
+		logger.debug("매개변수 treatCode 확인 : "+citizenId);
+		
+		List<GoCheckup> goCheckupResult = goVaccinationCheckupService.getListCheckupResult(citizenId);
+		logger.debug("객체 제대로 받았는지 확인 :"+goCheckupResult); 
+		String CheckupResult = gson.toJson(goCheckupResult);
+		return CheckupResult;
+	}
+	
+	//citizenId를 입력받아 건강검진결과리스트 가져오는 테스트용 메소드
+	@RequestMapping(value="/government/getListCheckupResultByCitizenId", method=RequestMethod.GET, produces="text/json; charset=UTF-8")
+	public String getListCheckupResult(String citizenId, String test){
+		logger.debug("treatCode를 입력받아 건강검진결과리스트를 가져옴");
+		logger.debug("매개변수 treatCode 확인 : "+citizenId);
+		
+		List<GoCheckup> goCheckupResult = goVaccinationCheckupService.getListCheckupResult(citizenId);
+		logger.debug("객체 제대로 받았는지 확인 :"+goCheckupResult); 
+		String CheckupResult = gson.toJson(goCheckupResult);
+		return CheckupResult;
+	}
 }
