@@ -68,7 +68,8 @@
 	from go_test_image_result 
 	join go_treat on go_test_image_result.GO_TREAT_CODE = go_treat.GO_TREAT_CODE 
 	join go_citizen on go_treat.GO_CITIZEN_ID = go_citizen.GO_CITIZEN_ID 
-	where go_treat.GO_CITIZEN_ID = #{citizenId}
+	where go_treat.GO_CITIZEN_ID = #{citizenId} 
+	order by go_test_image_result.GO_IMAGE_TEST_DATE asc
 	</select>
 	
 	
