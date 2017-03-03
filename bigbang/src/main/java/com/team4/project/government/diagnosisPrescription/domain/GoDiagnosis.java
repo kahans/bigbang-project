@@ -1,6 +1,8 @@
 package com.team4.project.government.diagnosisPrescription.domain;
 
-public class GoDiagnosis {
+import com.team4.project.government.dto.HangleInfo;
+
+public class GoDiagnosis extends HangleInfo{
 
 	private String goDiagnosisCode;
 	private String goTreatCode;

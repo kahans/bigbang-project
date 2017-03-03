@@ -31,7 +31,7 @@ public class GoTreatController {
 					produces = "text/json; charset=UTF-8")
 	public String getOneTreatByTreatCode(String treatCode, String test){
 		logger.debug("진료코드 : "+treatCode);
-		Gson gson = new Gson();
+		logger.debug(goTCService.getOneTreat(treatCode).toString());
 		String goSearchTreatSub  = gson.toJson(goTCService.getOneTreat(treatCode));
 		logger.debug(goSearchTreatSub);
 		return goSearchTreatSub;
