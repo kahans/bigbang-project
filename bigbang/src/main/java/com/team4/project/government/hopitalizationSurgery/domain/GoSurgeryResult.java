@@ -2,7 +2,9 @@ package com.team4.project.government.hopitalizationSurgery.domain;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class GoSurgeryResult{
+import com.team4.project.government.dto.HangleInfo;
+
+public class GoSurgeryResult extends HangleInfo{
 	protected String goSurgeryResultCode;
 	protected String goTreatCode;
 	protected String goSurgeryCode;

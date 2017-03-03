@@ -1,7 +1,8 @@
 package com.team4.project.government.hopitalizationSurgery.domain;
 
+import com.team4.project.government.dto.HangleInfo;
 
-public class GoHospitalization{
+public class GoHospitalization extends HangleInfo{
 	protected String goHospitalizationCode;
 	protected String goTreatCode;
 	protected String goHospitalizationEnterDate;

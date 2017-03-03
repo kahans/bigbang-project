@@ -1,8 +1,8 @@
 package com.team4.project.government.vaccinationCheckup.domain;
 
+import com.team4.project.government.dto.HangleInfo;
 
-
-public class GoCheckup {
+public class GoCheckup extends HangleInfo{
 	private String goCheckUpResultCode;
 	private String goTreatCode;
 	private String goCheckUpResultFilePath;

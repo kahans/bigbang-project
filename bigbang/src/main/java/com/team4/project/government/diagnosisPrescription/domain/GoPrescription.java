@@ -1,5 +1,7 @@
 package com.team4.project.government.diagnosisPrescription.domain;
 
-public class GoPrescription {
+import com.team4.project.government.dto.HangleInfo;
+
+public class GoPrescription extends HangleInfo{
 
 }

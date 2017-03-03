@@ -4,7 +4,9 @@ import java.sql.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class GoTreat {
+import com.team4.project.government.dto.HangleInfo;
+
+public class GoTreat extends HangleInfo{
 
 	protected String goTreatCode;
 	protected String goHospitalId;
