@@ -27,7 +27,16 @@ public class GoTestDao {
 	
 	//주민번호로 혈액검사결과리스트를 조회한다.
 		public List<GoBloodTest> selectListBloodTestResult(String citizenId){
+			logger.debug("영상검사 Dao");
+			logger.debug("citizenId 받았는지 확인 : "+citizenId);
 			return sql.selectList("goTest.selectListBloodTestResult" , citizenId);
+		}
+		
+	//의사코드로 혈액검사결과리스트를 조회한다.
+		public List<GoBloodTest> selectListBloodTestResultByDoctorId(String doctorId){
+			logger.debug("영상검사 Dao");
+			logger.debug("doctorId 받았는지 확인 : "+doctorId);
+			return sql.selectList("goTest.selectListBloodTestResultByDoctorId",doctorId);
 		}
 		
 
@@ -45,4 +54,10 @@ public class GoTestDao {
 		return sql.selectList("goTest.selectListImageTestResult", citizenId);
 	}
 	
+	//의사코드로 영상검사결과 리스트를 조회한다.
+	public List<GoImageTest> selectListImageTestResultByDoctorId(String doctorId){
+		logger.debug("영상검사 Dao");
+		logger.debug("doctorId 받았는지 확인 : "+doctorId);
+		return sql.selectList("goTest.selectListImageTestResultByDoctorId", doctorId);
+	}
 }

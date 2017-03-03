@@ -30,6 +30,13 @@ public class GoVaccinationCheckupService {
 		return goVaccinationCheckupDao.selectListVaccinationResult(citizenId);
 	}
 	
+	//doctorId 받아 예방접종결과리스트 조회
+	public List<GoVaccinationResult> getListVaccinationResultByDoctorId(String doctorId){
+		logger.debug("서비스 , 진료코드를 받아예방접종결과리스트 조회");
+		logger.debug("매개변수로 받은 doctorId 확인 : "+doctorId);
+		return goVaccinationCheckupDao.selectListVaccinationResultByDoctorId(doctorId);
+	}
+	
 	//treatCode 받아 하나의 예방접종결과 조회
 	public GoCheckup getOneCheckupResult(String treatCode){
 			logger.debug("서비스 , 진료코드를 받아 하나의 예방접종결과 조회");
@@ -42,5 +49,12 @@ public class GoVaccinationCheckupService {
 		logger.debug("서비스 , 진료코드를 받아예방접종결과리스트 조회");
 		logger.debug("매개변수로 받은 citizenId 확인 : "+citizenId);
 		return goVaccinationCheckupDao.selectListCheckupResult(citizenId);
+	}
+	
+	//doctorId 받아 예방접종결과리스트 조회
+	public List<GoCheckup> getListCheckupResultByDoctorId(String doctorId){
+		logger.debug("서비스 , 진료코드를 받아예방접종결과리스트 조회");
+		logger.debug("매개변수로 받은 doctorId 확인 : "+doctorId);
+		return goVaccinationCheckupDao.selectListCheckupResultByDoctorId(doctorId);
 	}
 }

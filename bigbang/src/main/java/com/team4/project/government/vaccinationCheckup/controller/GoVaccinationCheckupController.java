@@ -69,6 +69,29 @@ public class GoVaccinationCheckupController {
 		return vaccinationResult;
 	}
 	
+	//doctorId를 입력받아 예방접종결과리스트를 가져오는 메소드
+	@RequestMapping(value="/government/getListVaccinationResultByDoctorId" , method=RequestMethod.POST , produces="text/json; charset=UTF-8")
+	public String getListVaccinationResultByDoctorId(String doctorId){
+		logger.debug("doctorId를 입력받아 예방접종결과리스트를 가져옴");
+		logger.debug("매개변수 doctorId 확인 : "+doctorId);
+		
+		List<GoVaccinationResult> goVaccinationResult = goVaccinationCheckupService.getListVaccinationResultByDoctorId(doctorId);
+		String vaccinationResult = gson.toJson(goVaccinationResult);
+		return vaccinationResult;
+	}
+	
+	//doctorId를 입력받아 예방접종결과리스트를 가져오는 테스트용 메소드
+		@RequestMapping(value="/government/getListVaccinationResultByDoctorId" , method=RequestMethod.GET , produces="text/json; charset=UTF-8")
+		public String getListVaccinationResultByDoctorId(String doctorId, String test){
+			logger.debug("doctorId를 입력받아 예방접종결과리스트를 가져옴");
+			logger.debug("매개변수 doctorId 확인 : "+doctorId);
+			
+			List<GoVaccinationResult> goVaccinationResult = goVaccinationCheckupService.getListVaccinationResultByDoctorId(doctorId);
+			String vaccinationResult = gson.toJson(goVaccinationResult);
+			return vaccinationResult;
+		}
+	
+	
 	//treatCode를 입력받아 하나의 건강검진결과를 가져옴
 	@RequestMapping(value="/government/getOneCheckupResultByTreatCode", method=RequestMethod.POST, produces="text/json; charset=UTF-8")
 	public String getOneCheckupResult(String treatCode){
@@ -118,4 +141,30 @@ public class GoVaccinationCheckupController {
 		String CheckupResult = gson.toJson(goCheckupResult);
 		return CheckupResult;
 	}
+	
+	
+	//doctorId를 입력받아 건강검진결과리스트 가져옴
+	@RequestMapping(value="/government/getListCheckupResultByDoctorId", method=RequestMethod.POST, produces="text/json; charset=UTF-8")
+	public String getListCheckupResultByDoctorId(String doctorId){
+		logger.debug("doctorId를 입력받아 건강검진결과리스트를 가져옴");
+		logger.debug("매개변수 doctorId 확인 : "+doctorId);
+		
+		List<GoCheckup> goCheckupResult = goVaccinationCheckupService.getListCheckupResultByDoctorId(doctorId);
+		logger.debug("객체 제대로 받았는지 확인 :"+goCheckupResult); 
+		String CheckupResult = gson.toJson(goCheckupResult);
+		return CheckupResult;
+	}
+	
+	//doctorId를 입력받아 건강검진결과리스트 가져옴 테스트용 메소드
+	@RequestMapping(value="/government/getListCheckupResultByDoctorId", method=RequestMethod.GET, produces="text/json; charset=UTF-8")
+	public String getListCheckupResultByDoctorId(String doctorId,String test){
+		logger.debug("doctorId를 입력받아 건강검진결과리스트를 가져옴");
+		logger.debug("매개변수 doctorId 확인 : "+doctorId);
+		
+		List<GoCheckup> goCheckupResult = goVaccinationCheckupService.getListCheckupResultByDoctorId(doctorId);
+		logger.debug("객체 제대로 받았는지 확인 :"+goCheckupResult); 
+		String CheckupResult = gson.toJson(goCheckupResult);
+		return CheckupResult;
+	}
+	
 }

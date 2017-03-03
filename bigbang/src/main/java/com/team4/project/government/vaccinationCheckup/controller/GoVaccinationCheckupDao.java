@@ -33,6 +33,14 @@ public class GoVaccinationCheckupDao {
 		return sql.selectList("GoVaccinationCheckup.selectListVaccinationResult",citizenId);
 	}
 	
+	//doctorId 입력받아 예방접종결과 리스트 조회
+	public List<GoVaccinationResult> selectListVaccinationResultByDoctorId(String doctorId){
+		logger.debug("Vaccination Dao");
+		logger.debug("doctorId 확인 : "+doctorId);
+		return sql.selectList("GoVaccinationCheckup.selectListVaccinationResultByDoctorId",doctorId);
+	}
+	
+	
 	//treatCode 입력받아 하나의 건강검진결과 조회
 	public GoCheckup selectOneCheckupResult(String treatCode){
 		logger.debug("checkup Dao");
@@ -46,5 +54,14 @@ public class GoVaccinationCheckupDao {
 		logger.debug("citizenId 확인 : "+citizenId);
 		return sql.selectList("GoVaccinationCheckup.selectListCheckupResult",citizenId);
 	}
+	
+	//doctorId 입력받아 예방접종결과 리스트 조회
+	public List<GoCheckup> selectListCheckupResultByDoctorId(String doctorId){
+		logger.debug("checkup Dao");
+		logger.debug("doctorId 확인 : "+doctorId);
+		return sql.selectList("GoVaccinationCheckup.selectListCheckupResultByDoctorId",doctorId);
+	}
+	
+	
 
 }
