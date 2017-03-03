@@ -1,11 +1,11 @@
 package com.team4.project.government.dto;
 
 public class HangleInfo {
-	private String goHospitalName;
-	private String goHospitalAddress;
-	private String goCitizenName;
-	private String goDoctorName;
-	private String goTreatSubjectName;
+	protected String goHospitalName;
+	protected String goHospitalAddress;
+	protected String goCitizenName;
+	protected String goDoctorName;
+	protected String goTreatSubjectName;
 	
 	public String getGoHospitalName() {
 		return goHospitalName;
