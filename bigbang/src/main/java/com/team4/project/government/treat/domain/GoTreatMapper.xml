@@ -6,7 +6,7 @@
 
 	<!-- 1. 한 사람의 진료내용 가져오기 -->
 	<select id="selectOneTreat" parameterType="String"
-		resultType="com.team4.project.government.treat.domain.GoGetTreatSub">
+		resultType="com.team4.project.government.treat.domain.GoTreat">
 		SELECT
 			go_treat.GO_TREAT_CODE,
 			go_treat.GO_HOSPITAL_ID,
@@ -32,7 +32,7 @@
 
 	<!-- 2. 한사람의 진료정보 리스트 -->
 	<select id="selectListTreatByCitizenId" parameterType="String"
-		resultType="com.team4.project.government.treat.domain.GoGetTreatSub">
+		resultType="com.team4.project.government.treat.domain.GoTreat">
 		SELECT
 			go_treat.GO_TREAT_CODE,
 			go_treat.GO_HOSPITAL_ID,
@@ -60,7 +60,7 @@
 
 	<!-- 3. 한명의 의사에게 진료받은 여러사람의 진료리스트 -->
 	<select id="selectListTreatByDoctorId" parameterType="String"
-		resultType="com.team4.project.government.treat.domain.GoGetTreatSub">
+		resultType="com.team4.project.government.treat.domain.GoTreat">
 		SELECT
 			go_treat.GO_TREAT_CODE,
 			go_treat.GO_HOSPITAL_ID,

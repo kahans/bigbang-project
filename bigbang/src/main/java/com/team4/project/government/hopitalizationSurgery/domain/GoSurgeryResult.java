@@ -8,7 +8,10 @@ public class GoSurgeryResult extends HangleInfo{
 	protected String goSurgeryResultCode;
 	protected String goTreatCode;
 	protected String goSurgeryCode;
+	protected String goSurgeryName;
 	//날짜
+	@DateTimeFormat(pattern="yyyy/MM/dd hh:mm:ss")
+	protected String goSurgeryResultRegistrationDate;
 	@DateTimeFormat(pattern="yyyy/MM/dd hh:mm:ss")
 	protected String goSurgeryResultGoRegistrationDate;
 	

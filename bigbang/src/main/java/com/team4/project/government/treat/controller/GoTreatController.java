@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-import com.team4.project.government.treat.domain.GoGetTreatSub;
 import com.team4.project.government.treat.domain.GoTreat;
 
 @RestController
@@ -52,7 +51,7 @@ public class GoTreatController {
 					produces = "text/json; charset=UTF-8")
 	public String getListTreatByCitizenId(String citizenId, String test) {
 		logger.debug("goCitizenI:"+ citizenId);
-		List<GoGetTreatSub> goTreatList = goTCService.getListTreatByCitizenId(citizenId);
+		List<GoTreat> goTreatList = goTCService.getListTreatByCitizenId(citizenId);
 		String list = gson.toJson(goTreatList);
 		logger.debug("list : "+ list);
 		return list;
@@ -63,7 +62,7 @@ public class GoTreatController {
 					produces = "text/json; charset=UTF-8")
 	public String getListTreatByCitizenId(String citizenId) {
 		logger.debug("goCitizenI:"+ citizenId);
-		List<GoGetTreatSub> goTreatList = goTCService.getListTreatByCitizenId(citizenId);
+		List<GoTreat> goTreatList = goTCService.getListTreatByCitizenId(citizenId);
 		String goTreatListJson = gson.toJson(goTreatList);
 		logger.debug("listJson : "+ goTreatListJson);
 		return goTreatListJson;
@@ -75,7 +74,7 @@ public class GoTreatController {
 					produces = "text/json; charset=UTF-8")
 	public String getListTreatByDoctorId(String doctorId, String test) {
 		logger.debug("doctorId:"+doctorId);
-		List<GoGetTreatSub> goTreatList = goTCService.getListTreatByDoctorId(doctorId);
+		List<GoTreat> goTreatList = goTCService.getListTreatByDoctorId(doctorId);
 		String goTreatListJson = gson.toJson(goTreatList);
 		logger.debug("listJson : "+ goTreatListJson);
 		return goTreatListJson;
@@ -86,7 +85,7 @@ public class GoTreatController {
 					produces = "text/json; charset=UTF-8")
 	public String getListTreatByDoctorId(String doctorId) {
 		logger.debug("doctorId:"+doctorId);
-		List<GoGetTreatSub> goTreatList = goTCService.getListTreatByDoctorId(doctorId);
+		List<GoTreat> goTreatList = goTCService.getListTreatByDoctorId(doctorId);
 		String goTreatListJson = gson.toJson(goTreatList);
 		logger.debug("listJson : "+ goTreatListJson);
 		return goTreatListJson;
@@ -107,17 +106,17 @@ public class GoTreatController {
 	
 	
 	
-	
+/*	
 	
 	//로그인된 국민의 진료본 과목 목록 출력하기
 	@RequestMapping(value="/government/treatList", method=RequestMethod.GET)
 	public String treatSearch(HttpSession session, Model model){
 		int goCitizenNo = (Integer) session.getAttribute("GOCITIZENNO");
-		List<GoGetTreatSub> treatSubjectList = goTCService.goSelectOneTreatSubject(goCitizenNo);
+		List<GoTreat> treatSubjectList = goTCService.goSelectOneTreatSubject(goCitizenNo);
 		model.addAttribute("treatSubjectList",treatSubjectList);
 		return "/government/citizen/treat/goTreatList";
 	}
-	
+	*/
 	
 	
 }

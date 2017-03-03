@@ -107,7 +107,9 @@ public class GoTreat extends HangleInfo{
 				+ ", goDoctorId=" + goDoctorId + ", goTreatSubjectCode=" + goTreatSubjectCode + ", goChartCode="
 				+ goChartCode + ", goChartSeq=" + goChartSeq + ", goTreatContents=" + goTreatContents
 				+ ", goTreatRegistrationDate=" + goTreatRegistrationDate + ", goTreatGoRegistrationDate="
-				+ goTreatGoRegistrationDate + "]";
+				+ goTreatGoRegistrationDate + ", goHospitalName=" + goHospitalName + ", goHospitalAddress="
+				+ goHospitalAddress + ", goCitizenName=" + goCitizenName + ", goDoctorName=" + goDoctorName
+				+ ", goTreatSubjectName=" + goTreatSubjectName + "]";
 	}
 
 }

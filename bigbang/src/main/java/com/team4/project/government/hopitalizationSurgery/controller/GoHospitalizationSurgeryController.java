@@ -29,7 +29,50 @@ public class GoHospitalizationSurgeryController {
 	private Gson gson = new Gson();
 	
 	@Autowired
-	private GoHospitalizationSurgeryService goHSS;
+	private GoHospitalizationSurgeryService goHSService;
+	
+	// 국민한명의 수술결과 리스트(test)
+	@RequestMapping(value="/government/getListSurgeryByCitizenId", method=RequestMethod.GET,
+					produces = "text/json; charset=UTF-8")
+	public String getListSurgeryByCitizenId(String citizenId, String test){
+		String surgeryList = gson.toJson(goHSService.getListSurgeryByCitizenId(citizenId));
+		return surgeryList;
+	}
+	
+	// 국민한명의 수술결과 리스트
+	@RequestMapping(value="/government/getListSurgeryByCitizenId", method=RequestMethod.POST,
+					produces = "text/json; charset=UTF-8")
+	public String getListSurgeryByCitizenId(String citizenId){
+		String surgeryList = gson.toJson(goHSService.getListSurgeryByCitizenId(citizenId));
+		return surgeryList;
+	}
+	
+	
+	// 국민한명의 입퇴원결과 리스트(test)
+	@RequestMapping(value="/government/getListHospitalizationByCitizenId", method=RequestMethod.GET,
+					produces = "text/json; charset=UTF-8")
+	public String getListHospitalizationByCitizenId(String citizenId, String test){
+		String hopitalizationList = gson.toJson(goHSService.getListHospitalizationByCitizenId(citizenId));
+		return hopitalizationList;
+	}
+	
+	// 국민한명의 입퇴원결과 리스트
+	@RequestMapping(value="/government/getListHospitalizationByCitizenId", method=RequestMethod.POST,
+					produces = "text/json; charset=UTF-8")
+	public String getListHospitalizationByCitizenId(String citizenId){
+		String hopitalizationList = gson.toJson(goHSService.getListHospitalizationByCitizenId(citizenId));
+		return hopitalizationList;
+	}
+	
+	
+	// 의사한명의 수술결과 리스트
+	@RequestMapping(value="/government/getListSurgeryByDoctorId", method=RequestMethod.GET,
+					produces = "text/json; charset=UTF-8")
+	public String getListSurgeryByDoctorId(String doctorId, String test){
+		String surgeryList = gson.toJson(goHSService.getListSurgeryByDoctorId(doctorId));
+		return surgeryList;
+	}
+	
 	
 	
 	
@@ -67,7 +110,7 @@ public class GoHospitalizationSurgeryController {
 		System.out.println("test : "+secondDate);
 		
 		
-		List<GoSearchSurgerySub> goSurgeryList = goHSS.goSurgeryList(returnMap);
+		List<GoSearchSurgerySub> goSurgeryList = goHSService.goSurgeryList(returnMap);
 		return goSurgeryList;
 	}
 	
@@ -77,7 +120,7 @@ public class GoHospitalizationSurgeryController {
 		
 		int citizen = (Integer) session.getAttribute("GOCITIZENNO");//로그인 세션에서 시민no를 가져온다.
 		System.out.println(citizen);
-		List<GoSearchSurgerySub> surgeryStatistics = goHSS.goSurgeryStatistics(citizen);//대입
+		List<GoSearchSurgerySub> surgeryStatistics = goHSService.goSurgeryStatistics(citizen);//대입
 		model.addAttribute("surgeryStatistics", surgeryStatistics);
 		
 		
@@ -105,7 +148,7 @@ public class GoHospitalizationSurgeryController {
 		
 		System.out.println("service : "+returnMap.put("searchContents", searchContents));
 		
-		List<GoSearchHospitalizationSub> goHospitalizationList = goHSS.goHospitalizationList(returnMap);
+		List<GoSearchHospitalizationSub> goHospitalizationList = goHSService.goHospitalizationList(returnMap);
 		return goHospitalizationList;
 	}
 	//입,퇴원 목록
@@ -114,7 +157,7 @@ public class GoHospitalizationSurgeryController {
 		
 		int citizen = (Integer) session.getAttribute("GOCITIZENNO");//로그인 세션에서 시민no를 가져온다.
 		System.out.println(citizen);
-		List<GoSearchHospitalizationSub> hospitalization = goHSS.hospitalizationStatistics(citizen);//대입
+		List<GoSearchHospitalizationSub> hospitalization = goHSService.hospitalizationStatistics(citizen);//대입
 		model.addAttribute("hospitalization", hospitalization);
 		
 		return "/government/citizen/hospitalizationSurgery/hospitalizationList";
