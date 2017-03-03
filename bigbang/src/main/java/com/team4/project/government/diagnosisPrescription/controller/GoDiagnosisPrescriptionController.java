@@ -37,7 +37,7 @@ public class GoDiagnosisPrescriptionController {
 	}
 	
 	
-	// 2.진료코드로 진단결과 가져오기(test)
+	// 2.진료코드로 처방(약)결과 가져오기(test)
 	@RequestMapping(value="/government/getListPrescriptionByTreatCode", method=RequestMethod.GET,
 			produces = "text/json; charset=UTF-8")
 	public String getListPrescriptionByTreatCode(String treatCode, String test){
@@ -46,7 +46,7 @@ public class GoDiagnosisPrescriptionController {
 		return prescriptionList;
 	}
 	
-	// 2.진료코드로 진단결과 가져오기(test)
+	// 2.진료코드로 처방(약)결과 가져오기(test)
 	@RequestMapping(value="/government/getListPrescriptionByTreatCode", method=RequestMethod.POST,
 			produces = "text/json; charset=UTF-8")
 	public String getListPrescriptionByTreatCode(String treatCode){
