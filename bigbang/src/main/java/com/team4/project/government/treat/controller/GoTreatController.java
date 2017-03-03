@@ -12,20 +12,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.team4.project.government.treat.domain.GoGetTreatSub;
 import com.team4.project.government.treat.domain.GoTreat;
 
-@Controller
+@RestController
 public class GoTreatController {
 	private static final Logger logger = LoggerFactory.getLogger(GoTreatController.class);
-	Gson gson = new Gson();
+	private Gson gson = new Gson();
+	
 	@Autowired
 	private GoTreatService goTCService;
 
 	// 한사람의 하나의 진료정보(test)
-	@ResponseBody
 	@RequestMapping(value="/government/getOneTreatByTreatCode", method=RequestMethod.GET,
 					produces = "text/json; charset=UTF-8")
 	public String getOneTreatByTreatCode(String treatCode, String test){
@@ -37,8 +38,7 @@ public class GoTreatController {
 	}
 	
 	// 한사람의 하나의 진료정보
-	@ResponseBody
-	@RequestMapping(value="/government/getOneTreat", method=RequestMethod.POST,
+	@RequestMapping(value="/government/getOneTreatByTreatCode", method=RequestMethod.POST,
 					produces = "text/json; charset=UTF-8")
 	public String getOneTreatByTreatCode(String treatCode){
 		logger.debug("진료코드 : "+treatCode);
@@ -48,7 +48,6 @@ public class GoTreatController {
 	}
 	
 	// 한사람의 진료리스트(test)
-	@ResponseBody 
 	@RequestMapping(value="/government/getListTreatByCitizenId", method=RequestMethod.GET,
 					produces = "text/json; charset=UTF-8")
 	public String getListTreatByCitizenId(String citizenId, String test) {
@@ -60,7 +59,6 @@ public class GoTreatController {
 	}
 	
 	// 한사람의 진료리스트
-	@ResponseBody 
 	@RequestMapping(value="/government/getListTreatByCitizenId", method=RequestMethod.POST,
 					produces = "text/json; charset=UTF-8")
 	public String getListTreatByCitizenId(String citizenId) {
@@ -73,7 +71,6 @@ public class GoTreatController {
 	
 
 	// 한명의 의사에게 진료받은 여러사람의 진료리스트(test)
-	@ResponseBody 
 	@RequestMapping(value="/government/getListTreatByDoctorId", method=RequestMethod.GET,
 					produces = "text/json; charset=UTF-8")
 	public String getListTreatByDoctorId(String doctorId, String test) {
@@ -85,7 +82,6 @@ public class GoTreatController {
 	}
 	
 	// 한명의 의사에게 진료받은 여러사람의 진료리스트
-	@ResponseBody 
 	@RequestMapping(value="/government/getListTreatByDoctorId", method=RequestMethod.POST,
 					produces = "text/json; charset=UTF-8")
 	public String getListTreatByDoctorId(String doctorId) {
