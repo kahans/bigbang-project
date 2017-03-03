@@ -19,6 +19,7 @@ public class GoTreat extends HangleInfo{
 	/* 날짜 포멧을 하여 원하는 형식으로 표기 */
 	@DateTimeFormat(pattern = "YY-MM-DD")
 	protected Date goTreatRegistrationDate;
+	@DateTimeFormat(pattern = "YY-MM-DD")
 	protected String goTreatGoRegistrationDate;
 
 	public String getGoTreatCode() {
