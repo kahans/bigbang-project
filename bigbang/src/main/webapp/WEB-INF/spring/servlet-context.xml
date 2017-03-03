@@ -102,6 +102,9 @@
 				<!-- 예방접종 & 건강검진 -->
 				<value>classpath:com/team4/project/government/vaccinationCheckup/domain/GoVaccinationCheckupMapper.xml
 				</value>
+				<!-- 정부DB 입력 -->
+				<value>classpath:com/team4/project/government/dbInsert/domain/DbInsertMapper.xml
+				</value>
 				<!-- 병원 <value>classpath:com/team4/project/hospital/dto/HospitalMapper.xml</value> 
 					진단 & 처방 <value>classpath:com/team4/project/hospital/diagnosisPrescription/domain/HoDiagnosisPrescriptionMapper.xml</value> 
 					입원 & 수술 <value>classpath:com/team4/project/hospital/hospitalizationOperation/domain/HoHospitalizationOperationMapper.xml</value> 
