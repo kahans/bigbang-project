@@ -31,44 +31,95 @@ public class GoHospitalizationSurgeryController {
 	@Autowired
 	private GoHospitalizationSurgeryService goHSService;
 	
-	// 국민한명의 수술결과 리스트(test)
+	// 1.한진료의 수술결과(test)
+	@RequestMapping(value="/government/getOneSurgeryByTreatCode", method=RequestMethod.GET,
+			produces = "text/json; charset=UTF-8")
+		public String getOneSurgeryByTreatCode(String treatCode, String test){
+		logger.debug("1.getOneSurgeryByTreatCode GET 진입");
+		String surgery = gson.toJson(goHSService.getOneSurgeryByTreatCode(treatCode));
+		return surgery;
+	}
+
+	// 1.한진료의 수술결과
+	@RequestMapping(value="/government/getOneSurgeryByTreatCode", method=RequestMethod.POST,
+			produces = "text/json; charset=UTF-8")
+		public String getOneSurgeryByTreatCode(String treatCode){
+		logger.debug("1.getOneSurgeryByTreatCode POST 진입");
+		String surgery = gson.toJson(goHSService.getOneSurgeryByTreatCode(treatCode));
+		return surgery;
+	}
+	
+	
+	// 2.한진료의 입퇴원결과(test)
+	@RequestMapping(value="/government/getOneHospitalizationByTreatCode", method=RequestMethod.GET,
+			produces = "text/json; charset=UTF-8")
+		public String getOneHospitalizationByTreatCode(String treatCode, String test){
+		logger.debug("2.getOneHospitalizationByTreatCode GET 진입");
+		String hopitalization = gson.toJson(goHSService.getOneHospitalizationByTreatCode(treatCode));
+		return hopitalization;
+	}
+	
+	// 2.한진료의 입퇴원결과
+	@RequestMapping(value="/government/getOneHospitalizationByTreatCode", method=RequestMethod.POST,
+			produces = "text/json; charset=UTF-8")
+		public String getOneHospitalizationByTreatCode(String treatCode){
+		logger.debug("2.getOneHospitalizationByTreatCode POST 진입");
+		String hopitalization = gson.toJson(goHSService.getOneHospitalizationByTreatCode(treatCode));
+		return hopitalization;
+	}
+	
+	// 3.국민한명의 수술결과 리스트(test)
 	@RequestMapping(value="/government/getListSurgeryByCitizenId", method=RequestMethod.GET,
 					produces = "text/json; charset=UTF-8")
 	public String getListSurgeryByCitizenId(String citizenId, String test){
+		logger.debug("3.getListSurgeryByCitizenId GET 진입");
 		String surgeryList = gson.toJson(goHSService.getListSurgeryByCitizenId(citizenId));
 		return surgeryList;
 	}
 	
-	// 국민한명의 수술결과 리스트
+	// 3.국민한명의 수술결과 리스트
 	@RequestMapping(value="/government/getListSurgeryByCitizenId", method=RequestMethod.POST,
 					produces = "text/json; charset=UTF-8")
 	public String getListSurgeryByCitizenId(String citizenId){
+		logger.debug("3.getListSurgeryByCitizenId POST 진입");
 		String surgeryList = gson.toJson(goHSService.getListSurgeryByCitizenId(citizenId));
 		return surgeryList;
 	}
 	
 	
-	// 국민한명의 입퇴원결과 리스트(test)
+	// 4.국민한명의 입퇴원결과 리스트(test)
 	@RequestMapping(value="/government/getListHospitalizationByCitizenId", method=RequestMethod.GET,
 					produces = "text/json; charset=UTF-8")
 	public String getListHospitalizationByCitizenId(String citizenId, String test){
+		logger.debug("4.getListHospitalizationByCitizenId GET 진입");
 		String hopitalizationList = gson.toJson(goHSService.getListHospitalizationByCitizenId(citizenId));
 		return hopitalizationList;
 	}
 	
-	// 국민한명의 입퇴원결과 리스트
+	// 4.국민한명의 입퇴원결과 리스트
 	@RequestMapping(value="/government/getListHospitalizationByCitizenId", method=RequestMethod.POST,
 					produces = "text/json; charset=UTF-8")
 	public String getListHospitalizationByCitizenId(String citizenId){
+		logger.debug("4.getListHospitalizationByCitizenId POST 진입");
 		String hopitalizationList = gson.toJson(goHSService.getListHospitalizationByCitizenId(citizenId));
 		return hopitalizationList;
 	}
 	
 	
-	// 의사한명의 수술결과 리스트
+	// 5.의사한명의 수술결과 리스트(test)
 	@RequestMapping(value="/government/getListSurgeryByDoctorId", method=RequestMethod.GET,
 					produces = "text/json; charset=UTF-8")
 	public String getListSurgeryByDoctorId(String doctorId, String test){
+		logger.debug("5.getListSurgeryByDoctorId GET 진입");
+		String surgeryList = gson.toJson(goHSService.getListSurgeryByDoctorId(doctorId));
+		return surgeryList;
+	}
+	
+	// 5.의사한명의 수술결과 리스트
+	@RequestMapping(value="/government/getListSurgeryByDoctorId", method=RequestMethod.POST,
+					produces = "text/json; charset=UTF-8")
+	public String getListSurgeryByDoctorId(String doctorId){
+		logger.debug("5.getListSurgeryByDoctorId POST 진입");
 		String surgeryList = gson.toJson(goHSService.getListSurgeryByDoctorId(doctorId));
 		return surgeryList;
 	}

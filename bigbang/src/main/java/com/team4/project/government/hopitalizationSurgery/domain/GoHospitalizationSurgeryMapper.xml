@@ -4,6 +4,70 @@
  
 <mapper namespace="GoHospitalizationSurgery">
 
+
+	<!-- 한진료의 수술정보 -->
+	<select id="getOneSurgeryByTreatCode" parameterType="String"
+			resultType="com.team4.project.government.hopitalizationSurgery.domain.GoSurgeryResult">
+		SELECT
+			go_surgery_result.GO_SURGERY_RESULT_CODE,
+			go_surgery_result.GO_TREAT_CODE,
+			go_surgery_result.GO_SURGERY_CODE,
+			go_surgery.GO_SURGERY_NAME,
+			go_surgery_result.GO_SURGERY_RESULT_REGISTRATION_DATE,
+			go_surgery_result.GO_SURGERY_RESULT_GO_REGISTRATION_DATE,
+			go_hospital.GO_HOSPITAL_NAME,
+			go_hospital.GO_HOSPITAL_ADDRESS,
+			go_citizen.GO_CITIZEN_NAME,
+			go_doctor.GO_DOCTOR_NAME,
+			go_treat_subject.GO_TREAT_SUBJECT_NAME
+		FROM go_surgery_result
+		JOIN go_surgery
+			ON go_surgery_result.GO_SURGERY_CODE = go_surgery.GO_SURGERY_CODE
+		JOIN go_treat
+			ON go_surgery_result.GO_TREAT_CODE = go_treat.GO_TREAT_CODE
+		JOIN go_hospital
+			ON go_treat.GO_HOSPITAL_ID = go_hospital.GO_HOSPITAL_ID
+		JOIN go_doctor
+			ON go_treat.GO_DOCTOR_ID = go_doctor.GO_DOCTOR_ID	
+		JOIN go_citizen
+			ON go_treat.GO_CITIZEN_id = go_citizen.GO_CITIZEN_id
+		JOIN go_treat_subject
+			ON go_doctor.GO_TREAT_SUBJECT_CODE = go_treat_subject.GO_TREAT_SUBJECT_CODE
+		WHERE go_surgery_result.GO_TREAT_CODE = #{treatCode}
+	</select>
+
+
+	<!-- 한진료의 입퇴원결과 -->
+	<select id="getOneHospitalizationByTreatCode" parameterType="String"
+			resultType="com.team4.project.government.hopitalizationSurgery.domain.GoHospitalization">
+		SELECT
+			go_hospitalization.GO_HOSPITALIZATION_CODE,
+			go_hospitalization.GO_TREAT_CODE,
+			go_hospitalization.GO_HOSPITALIZATION_ENTER_DATE,
+			go_hospitalization.GO_HOSPITALIZATION_EXIT_DATE,
+			go_hospitalization.GO_HOSPITALIZATION_GO_REGISTRATION_DATE,
+			go_hospital.GO_HOSPITAL_NAME,
+			go_hospital.GO_HOSPITAL_ADDRESS,
+			go_citizen.GO_CITIZEN_NAME,
+			go_doctor.GO_DOCTOR_NAME,
+			go_treat_subject.GO_TREAT_SUBJECT_NAME
+		FROM go_hospitalization
+		JOIN go_treat
+			ON go_hospitalization.GO_TREAT_CODE = go_treat.GO_TREAT_CODE
+		JOIN go_hospital
+			ON go_treat.GO_HOSPITAL_ID = go_hospital.GO_HOSPITAL_ID
+		JOIN go_doctor
+			ON go_treat.GO_DOCTOR_ID = go_doctor.GO_DOCTOR_ID	
+		JOIN go_citizen
+			ON go_treat.GO_CITIZEN_id = go_citizen.GO_CITIZEN_id
+		JOIN go_treat_subject
+			ON go_doctor.GO_TREAT_SUBJECT_CODE = go_treat_subject.GO_TREAT_SUBJECT_CODE
+		WHERE go_hospitalization.GO_TREAT_CODE = #{treatCode}
+	</select>
+
+
+
+
 	<!-- 한사람의 수술리스트 -->
 	<select id="getListSurgeryByCitizenId" parameterType="String"
 			resultType="com.team4.project.government.hopitalizationSurgery.domain.GoSurgeryResult">
@@ -70,6 +134,13 @@
 		WHERE go_citizen.GO_CITIZEN_ID = #{citizenId}
 		ORDER BY go_hospitalization.GO_HOSPITALIZATION_ENTER_DATE DESC
 	</select>
+
+
+
+
+
+
+
 
 
 	<!-- 한명의의사가 수술한 수술리스트 -->

@@ -19,6 +19,16 @@ public class GoHospitalizationSurgeryDao {
 	@Autowired
 	private SqlSessionTemplate sql;
 	
+	// 한진료의 수술결과
+	public GoSurgeryResult selectOneSurgeryByTreatCode(String treatCode){
+		return sql.selectOne("GoHospitalizationSurgery.getOneSurgeryByTreatCode", treatCode);
+	}
+	
+	// 한진료의 수술결과
+	public GoHospitalization selectOneHospitalizationByTreatCode(String treatCode){
+		return sql.selectOne("GoHospitalizationSurgery.getOneHospitalizationByTreatCode", treatCode);
+	}
+	
 	// 국민한명의 수술결과 리스트
 	public List<GoSurgeryResult> selectListSurgeryByCitizenId(String citizenId){
 		return sql.selectList("GoHospitalizationSurgery.getListSurgeryByCitizenId", citizenId);

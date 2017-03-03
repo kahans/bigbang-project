@@ -20,6 +20,16 @@ public class GoHospitalizationSurgeryService {
 	private GoHospitalizationSurgeryDao goHSDao;
 
 	
+	// 한진료의 수술결과
+	public GoSurgeryResult getOneSurgeryByTreatCode(String treatCode){
+		return goHSDao.selectOneSurgeryByTreatCode(treatCode);
+	}
+	
+	// 한진료의 수술결과
+	public GoHospitalization getOneHospitalizationByTreatCode(String treatCode){
+		return goHSDao.selectOneHospitalizationByTreatCode(treatCode);
+	}
+	
 	// 국민한명의 수술결과 리스트
 	public List<GoSurgeryResult> getListSurgeryByCitizenId(String citizenId){
 		return goHSDao.selectListSurgeryByCitizenId(citizenId);
