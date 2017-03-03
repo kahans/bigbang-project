@@ -15,20 +15,19 @@ import com.team4.project.government.test.domain.GoImageTest;
 public class GoTestDao {
 	private static final Logger logger = LoggerFactory.getLogger(GoTestDao.class);
 	@Autowired
-	private SqlSessionTemplate sqlSession;
-	
-	
+	private SqlSessionTemplate sql;
+
 	
 	//진료코드로 혈액검사결과 하나를 조회한다.
 	public GoBloodTest selectOneBloodTestResult(String treatCode){
 		logger.debug("혈액검사 Dao");
 		logger.debug("traetCode 받았는지 확인 : "+treatCode);
-		return sqlSession.selectOne("goTest.selectOneBloodTestResult", treatCode);
+		return sql.selectOne("goTest.selectOneBloodTestResult", treatCode);
 	}
 	
 	//주민번호로 혈액검사결과리스트를 조회한다.
 		public List<GoBloodTest> selectListBloodTestResult(String citizenId){
-			return sqlSession.selectList("goTest.selectListBloodTestResult" , citizenId);
+			return sql.selectList("goTest.selectListBloodTestResult" , citizenId);
 		}
 		
 
@@ -36,14 +35,14 @@ public class GoTestDao {
 	public GoImageTest selectOneImageTestResult(String treatCode){
 		logger.debug("영상검사 Dao");
 		logger.debug("traetCode 받았는지 확인 : "+treatCode);
-		return sqlSession.selectOne("goTest.selectOneImageTestResult", treatCode);		
+		return sql.selectOne("goTest.selectOneImageTestResult", treatCode);		
 	}
 	
 	//주민번호로 영상검사결과 리스트를 조회한다.
 	public List<GoImageTest> selectListImageTestResult(String citizenId){
 		logger.debug("영상검사 Dao");
 		logger.debug("citizenId 받았는지 확인 : "+citizenId);
-		return sqlSession.selectList("goTest.selectListImageTestResult", citizenId);
+		return sql.selectList("goTest.selectListImageTestResult", citizenId);
 	}
 	
 }

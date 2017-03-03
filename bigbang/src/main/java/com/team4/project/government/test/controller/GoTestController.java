@@ -1,21 +1,17 @@
 package com.team4.project.government.test.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.team4.project.government.test.domain.GoBloodTest;
 import com.team4.project.government.test.domain.GoImageTest;
-import com.team4.project.util.HttpUrlCon;
 
 @RestController
 public class GoTestController {
@@ -23,67 +19,34 @@ public class GoTestController {
 	private static final Logger logger = LoggerFactory.getLogger(GoTestController.class);
 
 	@Autowired
-	private GoTestService goTS;
-
+	private GoTestService goTestService;
 	
 	//treatCode 사용하여 혈액검사결과 하나 조회
 	@RequestMapping(value="/government/getOneBloodTestByTreatCode", method=RequestMethod.POST , produces = "text/json; charset=UTF-8")
 	public String getOneBloodTestResult(String treatCode){
-		/**
-		/government/goBloodTest 주소값으로 요청시 
-		혈액검사결과 테이블의 모든 컬럼
-		 String goBloodTestCode
-		 int goBloodTestBloodSugar
-		 int goBloodTestPlatelet
-		 String goBloodTestFilePath
-		 String goBloodTestFileName
-		 String goBloodTestDate
-		 String goBloodTestGoRegistrationDate
-		*/
-		
+	
 		logger.debug("controller 에 매개변수로 받은 treatCode 확인 :"+treatCode);
-		
-		
 		//treatCode를 사용하여 혈액검사결과 조회
-		GoBloodTest goBloodTest = goTS.getOneBloodTestResult(treatCode);
+		GoBloodTest goBloodTest = goTestService.getOneBloodTestResult(treatCode);
 		logger.debug("goBloodTest 확인 : "+goBloodTest);
-		
 		//혈액검사결과를 json타입으로 바꿔줌
-		
 		String bloodTestResult = gson.toJson(goBloodTest);
 		System.out.println("혈액검사결과 확인 : "+bloodTestResult);
-		
 		//String 타입의 json 객체를 리턴시킴
 		return bloodTestResult;
-		
 	}
 	
 	//혈액검사결과를 하나 받아오는 test용 메소드(GET방식으로 값을 직접 넣어줘 확인)
 	@RequestMapping(value="/government/getOneBloodTestByTreatCode", method=RequestMethod.GET , produces = "text/json; charset=UTF-8")
 	public String getOneBloodTestResult(String treatCode, String test){
-		/**
-		/government/goBloodTest 주소값으로 요청시 
-		혈액검사결과 테이블의 모든 컬럼
-		 String goBloodTestCode
-		 int goBloodTestBloodSugar
-		 int goBloodTestPlatelet
-		 String goBloodTestFilePath
-		 String goBloodTestFileName
-		 String goBloodTestDate
-		 String goBloodTestGoRegistrationDate
-		*/
 		
 		logger.debug("controller 에 매개변수로 받은 treatCode 확인 :"+treatCode);
-		
 		//treatCode를 사용하여 혈액검사결과 조회
-		GoBloodTest goBloodTest = goTS.getOneBloodTestResult(treatCode);
+		GoBloodTest goBloodTest = goTestService.getOneBloodTestResult(treatCode);
 		logger.debug("goBloodTest 확인 : "+goBloodTest);
-		
 		//혈액검사결과를 json타입으로 바꿔줌
-		
 		String bloodTestResult = gson.toJson(goBloodTest);
 		System.out.println("혈액검사결과 확인 : "+bloodTestResult);
-		
 		//String 타입의 json 객체를 리턴시킴
 		return bloodTestResult;
 		
@@ -94,35 +57,27 @@ public class GoTestController {
 	public String getListBloodTestResult(String citizenId){
 		
 		logger.debug("controller 에 매개변수로 받은 citizenId 확인 :"+citizenId);
-		
 		//citizenId를 사용하여 혈액검사결과 조회
-		List<GoBloodTest> getListBloodTestResult = goTS.getListBloodTestResult(citizenId);
+		List<GoBloodTest> getListBloodTestResult = goTestService.getListBloodTestResult(citizenId);
 		logger.debug("goBloodTest 확인 : "+getListBloodTestResult);
-		
 		//혈액검사결과리스트를 json타입으로 바꿔줌
-		
 		String bloodTestResult = gson.toJson(getListBloodTestResult);
 		System.out.println("혈액검사결과 확인 : "+bloodTestResult);
-		
 		//String 타입의 json 객체를 리턴시킴
 		return bloodTestResult;
 	}
 	
 	//citizenId로 혈액검사리스트를 조회하는 테스트용 메소드 (GET방식으로 값을 직접 넣어줘 확인)
-	@RequestMapping(value="/government/	" , method=RequestMethod.GET,  produces = "text/json; charset=UTF-8")
+	@RequestMapping(value="/government/getListBloodTestResultByCitizenId" , method=RequestMethod.GET,  produces = "text/json; charset=UTF-8")
 	public String getListBloodTestResult(String citizenId , String test){
 		
 		logger.debug("controller 에 매개변수로 받은 citizenId 확인 :"+citizenId);
-	
 		//citizenId를 사용하여 혈액검사결과 조회
-		List<GoBloodTest> getListBloodTestResult = goTS.getListBloodTestResult(citizenId);
+		List<GoBloodTest> getListBloodTestResult = goTestService.getListBloodTestResult(citizenId);
 		logger.debug("goBloodTest 확인 : "+getListBloodTestResult);
-		
 		//혈액검사결과리스트를 json타입으로 바꿔줌
-		
 		String bloodTestResult = gson.toJson(getListBloodTestResult);
 		System.out.println("혈액검사결과 확인 : "+bloodTestResult);
-		
 		//String 타입의 json 객체를 리턴시킴
 		return bloodTestResult;
 	}
@@ -150,15 +105,12 @@ public class GoTestController {
 	public String getOneImageTestResult(String treatCode){
 		
 		logger.debug("controller 에 매개변수로 받은 treatCode 확인 :"+treatCode);
-		
 		//treatCode를 사용하여 영상검사결과를 받아옴
-		GoImageTest goImageTestResult = goTS.getOneImageTestResult(treatCode);
+		GoImageTest goImageTestResult = goTestService.getOneImageTestResult(treatCode);
 		logger.debug("goImageTestResult 확인 : "+goImageTestResult);
-		//영상검사결과를 json타입으로 변형
-		
+		//영상검사결과를 json타입으로 변형		
 		String imageTestResult =gson.toJson(goImageTestResult);
-		logger.debug("imageTestResult 확인 : "+imageTestResult);
-			
+		logger.debug("imageTestResult 확인 : "+imageTestResult);			
 	return imageTestResult;
 		
 	}
@@ -167,16 +119,13 @@ public class GoTestController {
 		@RequestMapping(value="/government/getOneImageTestResultByTreatCode" , method=RequestMethod.GET, produces="text/json; charset=UTF-8")
 		public String getOneImageTestResult(String treatCode, String test){
 			
-			logger.debug("controller 에 매개변수로 받은 treatCode 확인 :"+treatCode);
-			
+			logger.debug("controller 에 매개변수로 받은 treatCode 확인 :"+treatCode);			
 			//treatCode를 사용하여 영상검사결과를 받아옴
-			GoImageTest goImageTestResult = goTS.getOneImageTestResult(treatCode);
+			GoImageTest goImageTestResult = goTestService.getOneImageTestResult(treatCode);
 			logger.debug("goImageTestResult 확인 : "+goImageTestResult);
-			//영상검사결과를 json타입으로 변형
-			
+			//영상검사결과를 json타입으로 변형			
 			String imageTestResult =gson.toJson(goImageTestResult);
-			logger.debug("imageTestResult 확인 : "+imageTestResult);
-				
+			logger.debug("imageTestResult 확인 : "+imageTestResult);				
 		return imageTestResult;
 			
 		}
@@ -184,40 +133,33 @@ public class GoTestController {
 	
 	
 	//citizenId를 사용하여 영상검사결과리스트 조회
-	@RequestMapping(value="/government/getListImageTestResultByCitizenId" , method=RequestMethod.POST)
+	@RequestMapping(value="/government/getListImageTestResultByCitizenId" , method=RequestMethod.POST, produces="text/json; charset=UTF-8")
 	public String getListImageTestResult(String citizenId){
 		
 		logger.debug("controller 에 매개변수로 받은 treatCode 확인 :"+citizenId);
-		
-		
-		//treatCode를 사용하여 영상검사결과를 받아옴
-		List<GoImageTest> goImageTestResult = goTS.getListImageTestResult(citizenId);
+		//citizenId를 사용하여 영상검사결과를 받아옴
+		List<GoImageTest> goImageTestResult = goTestService.getListImageTestResult(citizenId);
 		logger.debug("goImageTestResult 확인 : "+goImageTestResult);
-		//영상검사결과를 json타입으로 변형
-		
+		//영상검사결과를 json타입으로 변형		
 		String imageTestResult =gson.toJson(goImageTestResult);
-		logger.debug("imageTestResult 확인 : "+imageTestResult);
-			
+		logger.debug("imageTestResult 확인 : "+imageTestResult);			
 	return imageTestResult;
 		
 	}
 	
 	//citizenId를 사용하여 영상검사결과리스트 조회(테스트용)
-		@RequestMapping(value="/government/getListImageTestResultByCitizenId" , method=RequestMethod.GET)
+		@RequestMapping(value="/government/getListImageTestResultByCitizenId" , method=RequestMethod.GET , produces="text/json; charset=UTF-8")
 		public String getListImageTestResult(String citizenId, String test){
 			
 			logger.debug("controller 에 매개변수로 받은 treatCode 확인 :"+citizenId);
-			//test로 세팅된 treatCode 확인
+			//test로 세팅된 citizenId 확인
 			logger.debug("test citizenId : "+citizenId);
-			
-			//treatCode를 사용하여 영상검사결과를 받아옴
-			List<GoImageTest> goImageTestResult = goTS.getListImageTestResult(citizenId);
+			//citizenId를 사용하여 영상검사결과리스트를 받아옴
+			List<GoImageTest> goImageTestResult = goTestService.getListImageTestResult(citizenId);
 			logger.debug("goImageTestResult 확인 : "+goImageTestResult);
-			//영상검사결과를 json타입으로 변형
-			
+			//영상검사결과리스트를 json타입으로 변형			
 			String imageTestResult =gson.toJson(goImageTestResult);
-			logger.debug("imageTestResult 확인 : "+imageTestResult);
-				
+			logger.debug("imageTestResult 확인 : "+imageTestResult);				
 		return imageTestResult;
 			
 		}
