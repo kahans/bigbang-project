@@ -9,6 +9,14 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
+	<context-param>
+		<param-name>test</param-name>
+		<param-value>호호힣</param-value>
+	</context-param>
+	<context-param>
+		<param-name>test1</param-name>
+		<param-value>테스트1입니다.</param-value>
+	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
@@ -32,7 +40,7 @@
 	</servlet-mapping>
 
 	<!-- 한글필터 추가 -->
-	   <filter>
+   <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
@@ -44,5 +52,5 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-	
+
 </web-app>
