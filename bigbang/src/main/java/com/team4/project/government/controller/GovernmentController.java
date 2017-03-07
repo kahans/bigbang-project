@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -31,6 +32,16 @@ public class GovernmentController {
 	@Autowired
 	private GovernmentService goService;
 	private Gson gson = new Gson();
+	
+	@RequestMapping(value = "/getFile", method = RequestMethod.POST)
+	public String getURL(String id, String name, MultipartFile file, MultipartFile file2) {
+		System.out.println("/getFile 들어옴!");
+		System.out.println("id:"+id);
+		System.out.println("name:"+name);
+		System.out.println("file:"+file);
+		System.out.println("file2:"+file2);
+		return "";
+	}
 	
 	
 	// 병원에서 보내주는 데이터 받기
