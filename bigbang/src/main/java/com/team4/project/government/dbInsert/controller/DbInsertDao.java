@@ -24,5 +24,6 @@ public class DbInsertDao {
 		return 0;
 	}
 	
+	//
 	
 }
