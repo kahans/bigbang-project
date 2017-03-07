@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.team4.project.HomeController;
 import com.team4.project.government.dto.GoCitizen;
 import com.team4.project.government.dto.GoHospital;
@@ -26,11 +27,23 @@ import com.team4.project.util.HttpUrlCon;
 
 @Controller
 public class GovernmentController {
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(GovernmentController.class);
 	@Autowired
 	private GovernmentService goService;
+	private Gson gson = new Gson();
 	
-	//httpUrlConnection Test
+	
+	// 병원에서 보내주는 데이터 받기
+	@RequestMapping(value="/government/getHospitalInfo", method=RequestMethod.POST)
+	public String getHospitalInfo(String hospitalInfo, String test){
+		logger.debug("test:"+test);
+		logger.debug("hospitalInfo:"+hospitalInfo);
+		Map<String, Object> hospitalInfoMap = gson.fromJson(hospitalInfo, new TypeToken<Map<String, Object>>(){}.getType());
+		logger.debug("hospitalInfoMap:"+hospitalInfoMap);
+		return "home";
+	}
+	
+	// httpUrlConnection Test
 	@RequestMapping(value="/government/getData", method=RequestMethod.POST)
 	public String getData(String id, String name, Model model){
 		goService.addData(id, name);
@@ -45,7 +58,6 @@ public class GovernmentController {
 		logger.debug("index 메서드 호출");
 		return "/government/index";
 	}
-	
 	
 	//로그인 화면 보여주기
 	@RequestMapping(value="/government/login", method=RequestMethod.GET )
