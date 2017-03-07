@@ -1,8 +1,37 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="xxx.xxx.xxx">
-  
+  <mapper namespace="dbInsert" >
+  	
+  	<!-- 진료입력  -->
+  	<insert id="insertTreat" parameterType="com.team4.project.government.treat.domain.GoTreat">
+	  		insert into go_treat(
+	  			GO_TREAT_CODE,
+	  			GO_HOSPITAL_ID,
+	  			GO_CITIZEN_ID,
+	  			GO_DOCTOR_ID,
+	  			GO_TREAT_SUBJECT_CODE,
+	  			GO_CHART_CODE,
+	  			GO_CHART_SEQ,
+	  			GO_TREAT_CONTENTS,
+	  			GO_TREAT_REGISTRATION_DATE,
+	  			GO_TREAT_GO_REGISTRATION_DATE
+	  			) 	
+	  		values(
+		  		concat(#{hospitalCode},#{goTreatCode}),
+		  		#{goHospitalId},
+		  		#{goCitizenId},
+		  		#{goDoctorId},
+		  		#{goTreatSubjectCode},
+		  		#{goChartCode},
+		  		#{goChartSeq},
+		  		#{goTreatContents},
+		  		#{goTreatRegistrationDate},
+		  		#{goTreatGoRegistrationDate}
+	  			)
+
+  	
+  	</insert>
   
   
   
