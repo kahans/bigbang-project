@@ -35,7 +35,8 @@ public class GovernmentController {
 	
 	// 병원에서 보내주는 데이터 받기
 	@RequestMapping(value="/government/getHospitalInfo", method=RequestMethod.POST)
-	public String getHospitalInfo(String hospitalInfo, String test){
+	public String getHospitalInfo(String hospitalInfo, String test, String id){
+		logger.debug("id:"+id);
 		logger.debug("test:"+test);
 		logger.debug("hospitalInfo:"+hospitalInfo);
 		Map<String, Object> hospitalInfoMap = gson.fromJson(hospitalInfo, new TypeToken<Map<String, Object>>(){}.getType());
