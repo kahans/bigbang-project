@@ -3,8 +3,191 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="dbInsert" >
   	
+  	<!-- 처방입력 -->
+  <!-- 	<insert id="insertPrescription" parameterType="">
+  		insert into go_prescription(
+  			GO_PRESCRIPTION_RESULT_CODE,
+  			GO_TREAT_CODE,
+  			GO_MEDICINE_CODE,
+  			GO_PRESCRIPTION_RESULT_INJECTION_NUMBER,
+  			GO_PRESCRIPTION_RESULT_DOSAGE,
+  			GO_PRESCRIPTION_RESULT_TOTAL_DATE,
+  			GO_PRESCRIPTION_RESULT_USAGE,
+  			GO_PRESCRIPTION_RESULT_WRITE_DATE,
+  			GO_PRESCRIPTION_RESULT_GO_REGISTRATION_DATE
+  			) 
+  		values(
+  			concat(#{goHospitalId},'_',#{goPrescriptionResultCode}),
+  			#{goTreatCode},
+  			#{goMedicineCode},
+  			#{goPrescriptionResultInjectionNumber},
+  			#{goPrescriptionResultDosage},
+  			#{goPrescriptionResultTotalDate},
+  			#{goPrescriptionResultUsage},
+  			#{goPrescriptionResultWriteDate},
+  			#{goPrescriptionResultGoRegistrationDate}
+  			)
+  	</insert> -->
+  	
+  	
+  	<!-- 수술 입력  -->
+  	<!-- <insert id="insertSurgery" parameterType="">
+  		insert into go_surgery_result(
+  			GO_SURGERY_RESULT_CODE,
+  			GO_TREAT_CODE,
+  			GO_SURGERY_CODE,
+  			GO_SURGERY_RESULT_REGISTRATION_DATE,
+  			GO_SURGERY_RESULT_GO_REGISTRATION_DATE
+  			) 
+  		values(
+  			concat(#{goHospitalId},'_',#{goSurgeryResultCode}),
+  			#{goTreatCode},
+  			#{goSurgeryCode},
+  			#{goSurgeryResultRegistrationDate},
+  			#{goSurgeryResultGoRegistrationDate}
+  			)
+  	</insert> -->
+  	
+  	
+  	<!-- 입/퇴원 입력 -->
+  <!-- 	<insert id="insertHospitalization" parameterType="" >
+  		insert into go_hospitalization(
+  			GO_HOSPITALIZATION_CODE,
+  			GO_TREAT_CODE,
+  			GO_HOSPITALIZATION_ENTER_DATE,
+  			GO_HOSPITALIZATION_EXIT_DATE,
+  			GO_HOSPITALIZATION_GO_REGISTRATION_DATE
+  			) 
+  		values(
+  			concat(#{goHospitalId},'_',#{goHospitalizationCode}),
+  			#{goTreatCode},
+  			#{goHospitalizationEnterDate},
+  			#{goHospitalizationExitDate},
+  			#{goHospitalizationGoRegistrationDate}
+  			)
+  	</insert> -->
+  	
+  	<!-- 진단 입력 -->
+  <!-- 	<insert id="insertDiagnosis" parameterType="">
+  		insert into go_diagnosis(
+  			GO_DIAGNOSIS_CODE,
+  			GO_TREAT_CODE,
+  			GO_DISEASE_CODE,
+  			GO_TREATMENT_WRITE_DATE,
+  			GO_DIAGNOSIS_GO_REGISTRATION_DATE
+  			)
+  		values(
+  			concat(#{goHospitalId},'_',#{goDiagnosisCode}),
+  			#{goTreatCode},
+  			#{goDiseaseCode},
+  			#{goTreatmentWriteDate},
+  			#{goDiagnosisGoRegistrationDate}
+  			)
+  	</insert> -->
+  	
+  	<!-- 예방접종 입력 -->
+  	<!-- <insert id="insertVaccination" parameterType="">
+  		insert into go_vaccination_result(
+  			GO_VACCINATION_RESULT_CODE,
+  			GO_TREAT_CODE,
+  			GO_VACCINATION_CODE,
+  			GO_VACCINATION_RESULT_DEGREE,
+  			GO_VACCINATION_RESULT_REGISTRATION_DATE,
+  			GO_VACCINATION_RESULT_GO_REGISTRATION_DATE
+  			) 
+  		values(
+  			concat(#{goHospitalId},'_'#{goVaccinationResultCode}),
+  			#{goTreatCode},
+  			#{goVaccinationCode},
+  			#{goVaccinationResultDegree},
+  			#{goVaccinationResultRegistrationDate},
+  			#{goVaccinationResultGoRegistrationDate}
+  			)
+  	</insert> -->
+
+  	<!-- 영상검사 입력 -->
+ <!--  	<insert id="insertImageTest" parameterType="">
+  		insert into go_test_image_result(
+  			GO_IMAGE_TEST_CODE,
+  			GO_TREAT_CODE,
+  			GO_IMAGE_TEST_FILE_PATH,
+  			GO_IMAGE_TEST_FILE_NAME,
+  			GO_IMAGE_TEST_DATE,
+  			GO_IMAGE_TEST_GO_REGISTRATION_DATE
+  			) 
+  		values(
+  			concat(#{goHospitalId},'_',#{goImageTestCode}),
+  			#{goTreatCode},
+  			#{goImageTestFilePath},
+  			#{goImageTestFileName},
+  			#{goImageTestDate},
+  			#{goImageTestGoRegistrationDate}
+  			) 
+  	</insert> -->
+
+  	<!-- 건강검진 입력 -->
+  	<!-- <insert id="insertCheckup" parameterType="">
+  		insert into go_test_checkup_result(
+  			GO_CHECKUP_RESULT_CODE,
+  			GO_TREAT_CODE,
+  			GO_CHECKUP_RESULT_FILE_PATH,
+  			GO_CHECKUP_RESULT_FILE_NAME,
+  			GO_CHECKUP_RESULT_REGISTRATION_DATE,
+  			GO_CHECKUP_RESULT_GO_REGISTRATION_DATE
+  			) 
+  		values(
+  			concat(#{goHospitalId},'_',#{goCheckukpResultCode}),
+  			#{goTreatCode},
+  			#{goCheckupResultFilePath},
+  			#{goCheckupResultFileName},
+  			#{goCheckupResultRegistrationDate},
+  			#{goCheckupResultGoRegistrationDate}
+  			)
+  	</insert> -->
+
+  	<!-- 차트 입력 -->
+  <!-- 	<insert id="insertChart1" parameterType="">
+  		insert into go_chart(
+  			GO_CHART_CODE,
+  			GO_CITIZEN_ID,
+  			GO_HOSPITAL_ID,
+  			GO_CHART_REGISTRATION_DATE,
+  			GO_CHART_GO_REGISTRATION_DATE
+  			) 
+  		values(
+  			concat(#{goHospitalId},'_',#{goCitizenId}),
+  			#{goCitizenId},
+  			#{goHospitalId},
+  			#{goChartRegistrationDate},
+  			#{goChartGoRegistrationDate}
+  			)
+  	</insert> -->
+  	
+  	<!-- 혈액검사결과 입력 -->
+  	<!-- <insert id="insertBloodTest" parameterType="">
+  		insert into go_test_blood_result(
+  			GO_BLOOD_TEST_CODE,
+  			GO_TREAT_CODE,
+  			GO_BLOOD_TEST_BLOOD_SUGAR,
+  			GO_BLOOD_TEST_PLATELET,
+  			GO_BLOOD_TEST_FILE_PATH,
+  			GO_BLOOD_TEST_FILE_NAME,
+  			GO_BLOOD_TEST_DATE,
+  			GO_BLOOD_TEST_GO_REGISTRATION_DATE
+  			) 
+  		values(
+  			concat(#{goHospitalId},'_',#{goBloodTestCode}),
+  			#{goTreatCode},
+  			#{goBloodTestBloodSugar},
+  			#{goBloodTestPlatelet},
+  			#{goBloodTestFilePath},
+  			#{goBloodTestDate},
+  			#{goBloodTestGoRegistrationDate}
+  			)
+  	</insert> -->
+  	
   	<!-- 진료입력  -->
-  	<insert id="insertTreat" parameterType="com.team4.project.government.treat.domain.GoTreat">
+  	<!-- <insert id="insertTreat" parameterType="">
 	  		insert into go_treat(
 	  			GO_TREAT_CODE,
 	  			GO_HOSPITAL_ID,
@@ -18,7 +201,7 @@
 	  			GO_TREAT_GO_REGISTRATION_DATE
 	  			) 	
 	  		values(
-		  		concat(#{hospitalCode},#{goTreatCode}),
+		  		concat(#{goHospitalId},'_',#{goTreatCode}),
 		  		#{goHospitalId},
 		  		#{goCitizenId},
 		  		#{goDoctorId},
@@ -29,11 +212,9 @@
 		  		#{goTreatRegistrationDate},
 		  		#{goTreatGoRegistrationDate}
 	  			)
-
-  	
-  	</insert>
+  	</insert> -->
   
   
-  
+  		
   
   </mapper>

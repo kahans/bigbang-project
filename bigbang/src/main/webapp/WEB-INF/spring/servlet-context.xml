@@ -61,11 +61,11 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
+
 	<tx:annotation-driven />
 	<!-- 인터페이스 없으면 자동으로 만들어줌 -->
 	<tx:annotation-driven proxy-target-class="true" />
-
-
 
 	<!-- dataSource 설정 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
