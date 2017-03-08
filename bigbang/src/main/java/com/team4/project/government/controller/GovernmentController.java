@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
@@ -26,13 +27,42 @@ import com.team4.project.government.dto.GoMedicine;
 
 import com.team4.project.util.HttpUrlCon;
 
-@Controller
+@RestController
 public class GovernmentController {
 	private static final Logger logger = LoggerFactory.getLogger(GovernmentController.class);
 	@Autowired
 	private GovernmentService goService;
 	private Gson gson = new Gson();
 	
+	
+	// 주민번호 있는지 확인후 true or false리턴(test)
+	@RequestMapping(value = "/government/checkCitizenId", method = RequestMethod.GET,
+					produces = "text/json; charset=UTF-8")
+	public String checkCitizenId(String citizenId, String test){
+		if(goService.citizenIdChekc(citizenId)!=null){
+			logger.debug("사용할수 있는 주민번호입니다.");
+			return "true";
+		}else{
+			logger.debug("없는 주민번호 잆니다.");
+			return "false";
+		}
+	}
+	
+	// 주민번호 있는지 확인후 true or false리턴(test)
+	@RequestMapping(value = "/government/checkCitizenId", method = RequestMethod.POST,
+					produces = "text/json; charset=UTF-8")
+	public String checkCitizenId(String citizenId){
+		if(goService.citizenIdChekc(citizenId)!=null){
+			logger.debug("사용할수 있는 주민번호입니다.");
+			return "true";
+		}else{
+			logger.debug("없는 주민번호 잆니다.");
+			return "false";
+		}
+	}
+	
+	
+	// 파일업로드 테스트
 	@RequestMapping(value = "/getFile", method = RequestMethod.POST)
 	public String getURL(String id, String name, MultipartFile file, MultipartFile file2) {
 		System.out.println("/getFile 들어옴!");
@@ -43,75 +73,6 @@ public class GovernmentController {
 		return "";
 	}
 	
-	
-	/*// 병원에서 보내주는 데이터 받기
-	@RequestMapping(value="/government/getHospitalInfo", method=RequestMethod.POST)
-	public String getHospitalInfo(String hospitalInfo, String test, String id){
-		logger.debug("id:"+id);
-		logger.debug("test:"+test);
-		logger.debug("hospitalInfo:"+hospitalInfo);
-		Map<String, Object> hospitalInfoMap = gson.fromJson(hospitalInfo, new TypeToken<Map<String, Object>>(){}.getType());
-		logger.debug("hospitalInfoMap:"+hospitalInfoMap);
-		return "home";
-	}*/
-	
-	// httpUrlConnection Test
-	@RequestMapping(value="/government/getData", method=RequestMethod.POST)
-	public String getData(String id, String name, Model model){
-		goService.addData(id, name);
-		model.addAttribute("id", id);
-		model.addAttribute("name", name);
-		return "home";
-	}
-	
-	//초기화면 보여주기
-	@RequestMapping(value="/government/", method=RequestMethod.GET)
-	public String index(HttpSession session, Model model){
-		logger.debug("index 메서드 호출");
-		return "/government/index";
-	}
-	
-	//로그인 화면 보여주기
-	@RequestMapping(value="/government/login", method=RequestMethod.GET )
-	public String login(){
-		return "/government/login";
-	}
-	
-	//국민 로그인
-	@RequestMapping(value="/government/loginCitizen", method=RequestMethod.POST )
-	public String login(GoCitizen goCitizen, String birthDate, String serialNo, HttpSession session){
-		logger.debug("GoLoginCitizenSub_goLoginCitizen:"+goCitizen);
-		goCitizen.setGoCitizenId(birthDate+"-"+serialNo);
-		goCitizen = goService.loginCheck(goCitizen);
-		logger.debug("goCitizen:"+goCitizen);
-		//session.invalidate();
-		session.setAttribute("FLAG", "citizen");
-		session.setAttribute("GOCITIZENNO", goCitizen.getGoCitizenNo());
-		session.setAttribute("GOCITIZENID", goCitizen.getGoCitizenId());
-		session.setAttribute("GOCITIZENNAME", goCitizen.getGoCitizenName());
-		return "redirect:/government/";
-	}
-	
-	//병원 로그인
-	@RequestMapping(value="/government/loginHospital", method=RequestMethod.POST )
-	public String login(GoHospital goHospital, HttpSession session){
-		logger.debug("GoHospital_goLoginInfo:"+goHospital);
-		goHospital = goService.loginCheck(goHospital);
-		logger.debug("goHospital:"+goHospital);
-		//session.invalidate();
-		session.setAttribute("FLAG", "hospital");
-		session.setAttribute("GOHOSPITALID", goHospital.getGoHospitalId());
-		session.setAttribute("GOHOSPITALNAME", goHospital.getGoHospitalName());
-		return "redirect:/government/";
-	}
-	
-	//로그아웃
-	@RequestMapping(value="/government/logout", method=RequestMethod.GET)
-	public String logout(HttpSession session){
-		session.invalidate();
-		logger.debug("session invalidate!!");
-		return "redirect:/government/";
-	}
 	
 	//약코드 가져오기 POST
 	@ResponseBody
@@ -219,9 +180,6 @@ public class GovernmentController {
 	// 유민이꺼 혈액검사 검색조건 보내주기 테스트
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test(){
-		
-	
-		
 		/*Gson gson = new Gson();
 		String jsonStr = gson.toJson();
 		Map<String, String> map = new HashMap<String, String>();

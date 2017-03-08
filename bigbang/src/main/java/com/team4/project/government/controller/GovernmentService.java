@@ -16,11 +16,17 @@ public class GovernmentService {
 	@Autowired
 	private GovernmentDao goDao;
 	
+	// 테스트
 	public void addData(String id, String name){
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("name", name);
 		goDao.insertData(map);
+	}
+	
+	// 주민번호 확인
+	public GoCitizen citizenIdChekc(String citizenId){
+		return goDao.citizenIdCheck(citizenId);
 	}
 	
 	//국민 로그인체크

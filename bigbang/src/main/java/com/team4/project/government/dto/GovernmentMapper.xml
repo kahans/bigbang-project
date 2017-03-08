@@ -15,6 +15,16 @@
 		)
 	</insert>
 	
+	<!-- 주민번호 조회 -->
+	<select id="citizenIdCheck" parameterType="String" resultType="com.team4.project.government.dto.GoCitizen">
+		SELECT
+			go_citizen.GO_CITIZEN_ID
+		FROM
+			go_citizen
+		WHERE
+			go_citizen.GO_CITIZEN_ID=#{citizenId}
+	</select>
+	
 	<select id="doctorIdCheck" parameterType="String" resultType="com.team4.project.government.dto.GoDoctor">
 		SELECT
 			go_doctor_id

@@ -15,9 +15,14 @@ import com.team4.project.government.dto.GoMedicine;
 public class GovernmentDao {
 	@Autowired
 	private SqlSessionTemplate sql;
-	
+	// 테스트
 	public void insertData(Map<String, String> map){
 		sql.insert("government.hucTest", map);
+	}
+	
+	//주민번호 확인
+	public GoCitizen citizenIdCheck(String citizenId){
+		return sql.selectOne("government.citizenIdCheck", citizenId);
 	}
 	
 	//국민 로그인체크
