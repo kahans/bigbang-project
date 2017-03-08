@@ -181,6 +181,7 @@
   			#{goBloodTestBloodSugar},
   			#{goBloodTestPlatelet},
   			#{goBloodTestFilePath},
+  			#{goBloodTestFileName},
   			#{goBloodTestDate},
   			#{goBloodTestGoRegistrationDate}
   			)

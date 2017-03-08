@@ -5,12 +5,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.team4.project.government.dto.HangleInfo;
 
 public class GoPrescription extends HangleInfo{
-	private String goPrescriptionResultCode;
-	private String goTreatCode;
-	private String goMedicineCode;
-	private String goPrescriptionResultInjectionNumber;
-	private String goPrescriptionResultDosage;
-	private String goPrescriptionResultUsage;
+	protected String goPrescriptionResultCode;
+	protected String goTreatCode;
+	protected String goMedicineCode;
+	protected String goPrescriptionResultInjectionNumber;
+	protected String goPrescriptionResultDosage;
+	protected String goPrescriptionResultUsage;
 	/* 날짜 포멧을 하여 원하는 형식으로 표기 */
 	@DateTimeFormat(pattern = "YY-MM-DD")
 	private String goPrescriptionResultWriteDate;

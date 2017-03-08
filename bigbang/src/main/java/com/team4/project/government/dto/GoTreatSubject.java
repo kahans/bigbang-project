@@ -1,8 +1,8 @@
 package com.team4.project.government.dto;
 
 public class GoTreatSubject {
-	private String goTreatSubjectCode;
-	private String goTreatSubjectName;
+	protected String goTreatSubjectCode;
+	protected String goTreatSubjectName;
 	
 	
 	public String getGoTreatSubjectCode() {

@@ -4,13 +4,13 @@ import com.team4.project.government.dto.HangleInfo;
 
 public class GoVaccinationResult extends HangleInfo{
 	
-	private String goVaccinationResultCode;
-	private String goTreatCode;
-	private String goVaccinationCode;
-	private String goVaccinationResultDegree; //예방접종 몇차까지 접종 받았는지의 결과
-	private String goVaccinationResultRegistrationDate; //병원결과등록일
-	private String goVaccinationResultGoRegistrationDate; //정부DB등록일
-	private String goVaccinationName; //예방접종명
+	protected String goVaccinationResultCode;
+	protected String goTreatCode;
+	protected String goVaccinationCode;
+	protected String goVaccinationResultDegree; //예방접종 몇차까지 접종 받았는지의 결과
+	protected String goVaccinationResultRegistrationDate; //병원결과등록일
+	protected String goVaccinationResultGoRegistrationDate; //정부DB등록일
+	protected String goVaccinationName; //예방접종명
 	public String getGoVaccinationResultCode() {
 		return goVaccinationResultCode;
 	}

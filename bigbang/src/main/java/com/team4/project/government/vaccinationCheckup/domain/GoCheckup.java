@@ -3,12 +3,12 @@ package com.team4.project.government.vaccinationCheckup.domain;
 import com.team4.project.government.dto.HangleInfo;
 
 public class GoCheckup extends HangleInfo{
-	private String goCheckUpResultCode;
-	private String goTreatCode;
-	private String goCheckUpResultFilePath;
-	private String goCheckUpResultFileName;
-	private String goCheckUpResultRegistrationDate;
-	private String goCheckUpResultGoRegistrationDate;
+	protected String goCheckUpResultCode;
+	protected String goTreatCode;
+	protected String goCheckUpResultFilePath;
+	protected String goCheckUpResultFileName;
+	protected String goCheckUpResultRegistrationDate;
+	protected String goCheckUpResultGoRegistrationDate;
 
 	public String getGoCheckUpResultCode() {
 		return goCheckUpResultCode;

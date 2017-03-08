@@ -1,12 +1,12 @@
 package com.team4.project.government.dto;
 
 public class GoDoctor {
-	private String goDoctorId;
-	private int goTreatSubjectCode;
-	private String goHospitalId;
-	private String goDoctorName;
-	private String goDoctorLicense;
-	private String goDoctorPhone;
+	protected String goDoctorId;
+	protected int goTreatSubjectCode;
+	protected String goHospitalId;
+	protected String goDoctorName;
+	protected String goDoctorLicense;
+	protected String goDoctorPhone;
 	
 	public String getGoDoctorId() {
 		return goDoctorId;

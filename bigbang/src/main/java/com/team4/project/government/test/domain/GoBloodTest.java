@@ -5,14 +5,14 @@ import com.team4.project.government.dto.HangleInfo;
 public class GoBloodTest extends HangleInfo {
 	
 	// 혈액검사
-	private String goBloodTestCode;
-	private String goTreatCode;
-	private int goBloodTestBloodSugar;
-	private int goBloodTestPlatelet;
-	private String goBloodTestFilePath;
-	private String goBloodTestFileName;
-	private String goBloodTestDate;
-	private String goBloodTestGoRegistrationDate;
+	protected String goBloodTestCode;
+	protected String goTreatCode;
+	protected int goBloodTestBloodSugar;
+	protected int goBloodTestPlatelet;
+	protected String goBloodTestFilePath;
+	protected String goBloodTestFileName;
+	protected String goBloodTestDate;
+	protected String goBloodTestGoRegistrationDate;
 	
 	public String getGoBloodTestCode() {
 		return goBloodTestCode;

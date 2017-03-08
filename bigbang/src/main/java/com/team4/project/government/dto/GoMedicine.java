@@ -1,8 +1,8 @@
 package com.team4.project.government.dto;
 
 public class GoMedicine {
-	private String goMedicineCode;
-	private String goMedicineName;
+	protected String goMedicineCode;
+	protected String goMedicineName;
 	public String getGoMedicineCode() {
 		return goMedicineCode;
 	}
