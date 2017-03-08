@@ -167,8 +167,9 @@ public class DbInsertService {
 		}catch(Exception e){
 			System.out.println("예외발생");
 			e.printStackTrace();
+			return "fail";
 		}
-		return "";
+		return "true";
 	}
 	
 }

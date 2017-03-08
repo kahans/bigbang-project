@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import com.google.gson.Gson;
+
+@RestController
 public class DbInsertController {
 	private static final Logger logger = LoggerFactory.getLogger(DbInsertController.class);
 	
@@ -18,8 +21,10 @@ public class DbInsertController {
 	public String getHospitalInfo(String hospitalCode, String hospitalInfo){
 		logger.debug("hospitalCode 확인 controller : "+hospitalCode);
 		logger.debug("hospitalInfo 확인 controller : "+hospitalInfo);
-		dbInsertService.DbAddInformation(hospitalCode, hospitalInfo );
-		return "";
+		String result = dbInsertService.DbAddInformation(hospitalCode, hospitalInfo);
+		Gson gson = new Gson();
+		String insertResult = gson.toJson(result);
+		return insertResult;
 	}
 	
 }
