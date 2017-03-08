@@ -18,7 +18,7 @@
   			) 
   		values(
   			concat(#{hospitalCode},'_',#{goPrescriptionResultCode}),
-  			#{goTreatCode},
+  			concat(#{hospitalCode},'_',#{goTreatCode}),
   			#{goMedicineCode},
   			#{goPrescriptionResultInjectionNumber},
   			#{goPrescriptionResultDosage},
@@ -41,7 +41,7 @@
   			) 
   		values(
   			concat(#{hospitalCode},'_',#{goSurgeryResultCode}),
-  			#{goTreatCode},
+  			concat(#{hospitalCode},'_',#{goTreatCode}),
   			#{goSurgeryCode},
   			#{goSurgeryResultRegistrationDate},
   			now()
@@ -60,7 +60,7 @@
   			) 
   		values(
   			concat(#{hospitalCode},'_',#{goHospitalizationCode}),
-  			#{goTreatCode},
+  			concat(#{hospitalCode},'_',#{goTreatCode}),
   			#{goHospitalizationEnterDate},
   			#{goHospitalizationExitDate},
   			now()
@@ -78,7 +78,7 @@
   			)
   		values(
   			concat(#{hospitalCode},'_',#{goDiagnosisCode}),
-  			#{goTreatCode},
+  			concat(#{hospitalCode},'_',#{goTreatCode}),
   			#{goDiseaseCode},
   			#{goTreatmentWriteDate},
   			now()
@@ -97,7 +97,7 @@
   			) 
   		values(
   			concat(#{hospitalCode},'_',#{goVaccinationResultCode}),
-  			#{goTreatCode},
+  			concat(#{hospitalCode},'_',#{goTreatCode}),
   			#{goVaccinationCode},
   			#{goVaccinationResultDegree},
   			#{goVaccinationResultRegistrationDate},
@@ -117,7 +117,7 @@
   			) 
   		values(
   			concat(#{hospitalCode},'_',#{goImageTestCode}),
-  			#{goTreatCode},
+  			concat(#{hospitalCode},'_',#{goTreatCode}),
   			#{goImageTestFilePath},
   			#{goImageTestFileName},
   			#{goImageTestDate},
@@ -138,7 +138,7 @@
   			) 
   		values(
   			concat(#{hospitalCode},'_',#{goCheckupResultCode}),
-  			#{goTreatCode},
+  			concat(#{hospitalCode},'_',#{goTreatCode}),
   			#{goCheckupResultFilePath},
   			#{goCheckupResultFileName},
   			#{goCheckupResultCheckupDate},
@@ -179,7 +179,7 @@
   			) 
   		values(
   			concat(#{hospitalCode},'_',#{goBloodTestCode}),
-  			#{goTreatCode},
+  			concat(#{hospitalCode},'_',#{goTreatCode}),
   			#{goBloodTestBloodSugar},
   			#{goBloodTestPlatelet},
   			#{goBloodTestFilePath},
@@ -214,8 +214,5 @@
 		  		now()
 	  			)
   	</insert>
-  
-  
-  		
-  
+
   </mapper>
