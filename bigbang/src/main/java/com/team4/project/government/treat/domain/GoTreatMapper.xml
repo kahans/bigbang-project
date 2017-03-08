@@ -18,7 +18,6 @@
 			go_treat.GO_TREAT_SUBJECT_CODE,
 			go_treat_subject.GO_TREAT_SUBJECT_NAME,
 			go_treat.GO_CHART_CODE,
-			go_treat.GO_CHART_SEQ,
 			go_treat.GO_TREAT_CONTENTS,
 			go_treat.GO_TREAT_REGISTRATION_DATE
 		FROM go_treat
@@ -44,7 +43,6 @@
 			go_treat.GO_TREAT_SUBJECT_CODE,
 			go_treat_subject.GO_TREAT_SUBJECT_NAME,
 			go_treat.GO_CHART_CODE,
-			go_treat.GO_CHART_SEQ,
 			go_treat.GO_TREAT_CONTENTS,
 			go_treat.GO_TREAT_REGISTRATION_DATE
 		FROM go_treat
@@ -72,7 +70,6 @@
 			go_treat.GO_TREAT_SUBJECT_CODE,
 			go_treat_subject.GO_TREAT_SUBJECT_NAME,
 			go_treat.GO_CHART_CODE,
-			go_treat.GO_CHART_SEQ,
 			go_treat.GO_TREAT_CONTENTS,
 			go_treat.GO_TREAT_REGISTRATION_DATE
 		FROM go_treat
