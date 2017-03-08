@@ -16,7 +16,7 @@
 	</insert>
 	
 	<!-- 주민번호 조회 -->
-	<select id="citizenIdCheck" parameterType="String" resultType="com.team4.project.government.dto.GoCitizen">
+	<select id="checkCitizenId" parameterType="String" resultType="com.team4.project.government.dto.GoCitizen">
 		SELECT
 			go_citizen.GO_CITIZEN_ID
 		FROM

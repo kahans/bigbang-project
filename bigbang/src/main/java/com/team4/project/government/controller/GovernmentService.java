@@ -25,8 +25,8 @@ public class GovernmentService {
 	}
 	
 	// 주민번호 확인
-	public GoCitizen citizenIdChekc(String citizenId){
-		return goDao.citizenIdCheck(citizenId);
+	public GoCitizen checkCitizenId(String citizenId){
+		return goDao.checkCitizenId(citizenId);
 	}
 	
 	//국민 로그인체크

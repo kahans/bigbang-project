@@ -39,7 +39,7 @@ public class GovernmentController {
 	@RequestMapping(value = "/government/checkCitizenId", method = RequestMethod.GET,
 					produces = "text/json; charset=UTF-8")
 	public String checkCitizenId(String citizenId, String test){
-		if(goService.citizenIdChekc(citizenId)!=null){
+		if(goService.checkCitizenId(citizenId)!=null){
 			logger.debug("사용할수 있는 주민번호입니다.");
 			return "true";
 		}else{
@@ -52,7 +52,7 @@ public class GovernmentController {
 	@RequestMapping(value = "/government/checkCitizenId", method = RequestMethod.POST,
 					produces = "text/json; charset=UTF-8")
 	public String checkCitizenId(String citizenId){
-		if(goService.citizenIdChekc(citizenId)!=null){
+		if(goService.checkCitizenId(citizenId)!=null){
 			logger.debug("사용할수 있는 주민번호입니다.");
 			return "true";
 		}else{

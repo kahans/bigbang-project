@@ -21,8 +21,8 @@ public class GovernmentDao {
 	}
 	
 	//주민번호 확인
-	public GoCitizen citizenIdCheck(String citizenId){
-		return sql.selectOne("government.citizenIdCheck", citizenId);
+	public GoCitizen checkCitizenId(String citizenId){
+		return sql.selectOne("government.checkCitizenId", citizenId);
 	}
 	
 	//국민 로그인체크
