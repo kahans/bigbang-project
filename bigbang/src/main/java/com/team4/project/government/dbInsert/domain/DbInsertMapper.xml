@@ -4,7 +4,7 @@
   <mapper namespace="dbInsert" >
   	
   	<!-- 처방입력 -->
-  <!-- 	<insert id="insertPrescription" parameterType="">
+	<insert id="insertPrescription" parameterType="Map">
   		insert into go_prescription(
   			GO_PRESCRIPTION_RESULT_CODE,
   			GO_TREAT_CODE,
@@ -17,7 +17,7 @@
   			GO_PRESCRIPTION_RESULT_GO_REGISTRATION_DATE
   			) 
   		values(
-  			concat(#{goHospitalId},'_',#{goPrescriptionResultCode}),
+  			concat(#{hospitalCode},'_',#{goPrescriptionResultCode}),
   			#{goTreatCode},
   			#{goMedicineCode},
   			#{goPrescriptionResultInjectionNumber},
@@ -25,13 +25,13 @@
   			#{goPrescriptionResultTotalDate},
   			#{goPrescriptionResultUsage},
   			#{goPrescriptionResultWriteDate},
-  			#{goPrescriptionResultGoRegistrationDate}
+  			now()
   			)
-  	</insert> -->
+  	</insert> 
   	
   	
   	<!-- 수술 입력  -->
-  	<!-- <insert id="insertSurgery" parameterType="">
+ 	 <insert id="insertSurgery" parameterType="Map">
   		insert into go_surgery_result(
   			GO_SURGERY_RESULT_CODE,
   			GO_TREAT_CODE,
@@ -40,17 +40,17 @@
   			GO_SURGERY_RESULT_GO_REGISTRATION_DATE
   			) 
   		values(
-  			concat(#{goHospitalId},'_',#{goSurgeryResultCode}),
+  			concat(#{hospitalCode},'_',#{goSurgeryResultCode}),
   			#{goTreatCode},
   			#{goSurgeryCode},
   			#{goSurgeryResultRegistrationDate},
-  			#{goSurgeryResultGoRegistrationDate}
+  			now()
   			)
-  	</insert> -->
+  	</insert> 
   	
   	
   	<!-- 입/퇴원 입력 -->
-  <!-- 	<insert id="insertHospitalization" parameterType="" >
+ 	<insert id="insertHospitalization" parameterType="Map">
   		insert into go_hospitalization(
   			GO_HOSPITALIZATION_CODE,
   			GO_TREAT_CODE,
@@ -59,16 +59,16 @@
   			GO_HOSPITALIZATION_GO_REGISTRATION_DATE
   			) 
   		values(
-  			concat(#{goHospitalId},'_',#{goHospitalizationCode}),
+  			concat(#{hospitalCode},'_',#{goHospitalizationCode}),
   			#{goTreatCode},
   			#{goHospitalizationEnterDate},
   			#{goHospitalizationExitDate},
-  			#{goHospitalizationGoRegistrationDate}
+  			now()
   			)
-  	</insert> -->
+  	</insert> 
   	
   	<!-- 진단 입력 -->
-  <!-- 	<insert id="insertDiagnosis" parameterType="">
+  	<insert id="insertDiagnosis" parameterType="Map">
   		insert into go_diagnosis(
   			GO_DIAGNOSIS_CODE,
   			GO_TREAT_CODE,
@@ -77,16 +77,16 @@
   			GO_DIAGNOSIS_GO_REGISTRATION_DATE
   			)
   		values(
-  			concat(#{goHospitalId},'_',#{goDiagnosisCode}),
+  			concat(#{hospitalCode},'_',#{goDiagnosisCode}),
   			#{goTreatCode},
   			#{goDiseaseCode},
   			#{goTreatmentWriteDate},
-  			#{goDiagnosisGoRegistrationDate}
+  			now()
   			)
-  	</insert> -->
+  	</insert>
   	
   	<!-- 예방접종 입력 -->
-  	<!-- <insert id="insertVaccination" parameterType="">
+   	<insert id="insertVaccine" parameterType="Map">
   		insert into go_vaccination_result(
   			GO_VACCINATION_RESULT_CODE,
   			GO_TREAT_CODE,
@@ -96,17 +96,17 @@
   			GO_VACCINATION_RESULT_GO_REGISTRATION_DATE
   			) 
   		values(
-  			concat(#{goHospitalId},'_'#{goVaccinationResultCode}),
+  			concat(#{hospitalCode},'_',#{goVaccinationResultCode}),
   			#{goTreatCode},
   			#{goVaccinationCode},
   			#{goVaccinationResultDegree},
   			#{goVaccinationResultRegistrationDate},
-  			#{goVaccinationResultGoRegistrationDate}
+  			now()
   			)
-  	</insert> -->
+  	</insert>
 
   	<!-- 영상검사 입력 -->
- <!--  	<insert id="insertImageTest" parameterType="">
+ 	<insert id="insertImageTest" parameterType="Map">
   		insert into go_test_image_result(
   			GO_IMAGE_TEST_CODE,
   			GO_TREAT_CODE,
@@ -116,37 +116,39 @@
   			GO_IMAGE_TEST_GO_REGISTRATION_DATE
   			) 
   		values(
-  			concat(#{goHospitalId},'_',#{goImageTestCode}),
+  			concat(#{hospitalCode},'_',#{goImageTestCode}),
   			#{goTreatCode},
   			#{goImageTestFilePath},
   			#{goImageTestFileName},
   			#{goImageTestDate},
-  			#{goImageTestGoRegistrationDate}
+  			now()
   			) 
-  	</insert> -->
+  	</insert> 
 
   	<!-- 건강검진 입력 -->
-  	<!-- <insert id="insertCheckup" parameterType="">
+ 	<insert id="insertCheckup" parameterType="Map">
   		insert into go_test_checkup_result(
   			GO_CHECKUP_RESULT_CODE,
   			GO_TREAT_CODE,
   			GO_CHECKUP_RESULT_FILE_PATH,
   			GO_CHECKUP_RESULT_FILE_NAME,
+  			GO_CHECKUP_RESULT_CHECKUP_DATE,
   			GO_CHECKUP_RESULT_REGISTRATION_DATE,
   			GO_CHECKUP_RESULT_GO_REGISTRATION_DATE
   			) 
   		values(
-  			concat(#{goHospitalId},'_',#{goCheckukpResultCode}),
+  			concat(#{hospitalCode},'_',#{goCheckupResultCode}),
   			#{goTreatCode},
   			#{goCheckupResultFilePath},
   			#{goCheckupResultFileName},
+  			#{goCheckupResultCheckupDate},
   			#{goCheckupResultRegistrationDate},
-  			#{goCheckupResultGoRegistrationDate}
+  			now()
   			)
-  	</insert> -->
+  	</insert> 
 
   	<!-- 차트 입력 -->
-  <!-- 	<insert id="insertChart1" parameterType="">
+  	<insert id="insertChart" parameterType="Map">
   		insert into go_chart(
   			GO_CHART_CODE,
   			GO_CITIZEN_ID,
@@ -155,16 +157,16 @@
   			GO_CHART_GO_REGISTRATION_DATE
   			) 
   		values(
-  			concat(#{goHospitalId},'_',#{goCitizenId}),
+  			concat(#{hospitalCode},'_',#{goCitizenId}),
   			#{goCitizenId},
   			#{goHospitalId},
   			#{goChartRegistrationDate},
-  			#{goChartGoRegistrationDate}
+  			now()
   			)
-  	</insert> -->
+  	</insert>
   	
   	<!-- 혈액검사결과 입력 -->
-  	<!-- <insert id="insertBloodTest" parameterType="">
+ 	<insert id="insertBloodTest" parameterType="Map">
   		insert into go_test_blood_result(
   			GO_BLOOD_TEST_CODE,
   			GO_TREAT_CODE,
@@ -176,19 +178,19 @@
   			GO_BLOOD_TEST_GO_REGISTRATION_DATE
   			) 
   		values(
-  			concat(#{goHospitalId},'_',#{goBloodTestCode}),
+  			concat(#{hospitalCode},'_',#{goBloodTestCode}),
   			#{goTreatCode},
   			#{goBloodTestBloodSugar},
   			#{goBloodTestPlatelet},
   			#{goBloodTestFilePath},
   			#{goBloodTestFileName},
   			#{goBloodTestDate},
-  			#{goBloodTestGoRegistrationDate}
+  			now()
   			)
-  	</insert> -->
+  	</insert> 
   	
   	<!-- 진료입력  -->
-  	<!-- <insert id="insertTreat" parameterType="">
+  	<insert id="insertTreat" parameterType="Map">
 	  		insert into go_treat(
 	  			GO_TREAT_CODE,
 	  			GO_HOSPITAL_ID,
@@ -196,24 +198,22 @@
 	  			GO_DOCTOR_ID,
 	  			GO_TREAT_SUBJECT_CODE,
 	  			GO_CHART_CODE,
-	  			GO_CHART_SEQ,
 	  			GO_TREAT_CONTENTS,
 	  			GO_TREAT_REGISTRATION_DATE,
 	  			GO_TREAT_GO_REGISTRATION_DATE
 	  			) 	
 	  		values(
-		  		concat(#{goHospitalId},'_',#{goTreatCode}),
+		  		concat(#{hospitalCode},'_',#{goTreatCode}),
 		  		#{goHospitalId},
 		  		#{goCitizenId},
 		  		#{goDoctorId},
 		  		#{goTreatSubjectCode},
 		  		#{goChartCode},
-		  		#{goChartSeq},
 		  		#{goTreatContents},
 		  		#{goTreatRegistrationDate},
-		  		#{goTreatGoRegistrationDate}
+		  		now()
 	  			)
-  	</insert> -->
+  	</insert>
   
   
   		
