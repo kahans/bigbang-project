@@ -208,7 +208,7 @@
 		  		#{goCitizenId},
 		  		#{goDoctorId},
 		  		#{goTreatSubjectCode},
-		  		#{goChartCode},
+		  		concat(#{hospitalCode},'_',#{goCitizenId}),
 		  		#{goTreatContents},
 		  		#{goTreatRegistrationDate},
 		  		now()
