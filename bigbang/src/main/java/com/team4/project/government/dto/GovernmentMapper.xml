@@ -31,6 +31,7 @@
 		FROM go_doctor
 		WHERE go_doctor_id = #{doctorId}
 	</select>
+	
 	<!-- 국민로그인 체크 -->
 	<select id="citizenLoginCheck" 	parameterType="com.team4.project.government.dto.GoCitizen" 
 									resultType="com.team4.project.government.dto.GoCitizen">
@@ -53,19 +54,45 @@
 	</select>
 	
 	<!-- 약정보 가져오기 -->
- 	<select id="selectMedicineList" resultType="com.team4.project.government.dto.GoMedicine">
+ 	<select id="selectMedicineList" resultType="Map">
  		select
  			GO_MEDICINE_CODE as goMedicineCode,
 			GO_MEDICINE_NAME as goMedicineName
 		from go_medicine
  	</select>
  	
+	<!-- 질병코드 가져오기 -->
+ 	<select id="selectDiseaseList" resultType="Map">
+		SELECT
+			go_disease.GO_DISEASE_CODE as goDiseaseCode,
+			go_disease.GO_DISEASE_KOR as goDiseaseKor,
+			go_disease.GO_DISEASE_ENG as goDiseaseEng
+		FROM go_disease
+ 	</select>
+ 	
  	<!-- 진료과목 가져오기 -->
- 	<select id="selectTreatSubject" resultType="com.team4.project.government.dto.GoTreatSubject">
+ 	<select id="selectTreatSubjectList" resultType="Map">
  		SELECT 
  			GO_TREAT_SUBJECT_CODE as goTreatSubjectCode,
  			GO_TREAT_SUBJECT_NAME as goTreatSubjectName 
  		FROM go_treat_subject
+ 	</select>
+ 	
+ 	<!-- 수술코드 가져오기 -->
+ 	<select id="selectSurgeryList" resultType="Map">
+ 		SELECT 
+ 			go_surgery.GO_SURGERY_CODE as goSurgeryCode,
+ 			go_surgery.GO_SURGERY_NAME as goSurgeryName 
+ 		FROM go_surgery
+ 	</select>
+ 	
+ 	<!-- 예방접종코드 가져오기 -->
+ 	<select id="selectVaccinationList" resultType="Map">
+ 		SELECT 
+ 			go_vaccination.GO_VACCINATION_CODE as goVaccinationCode,
+ 			go_vaccination.GO_VACCINATION_NAME as goVaccinationName,
+ 			go_vaccination.GO_VACCINATION_DEGREE as goVaccinationDegree
+ 		FROM go_vaccination
  	</select>
  	
  	

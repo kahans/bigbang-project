@@ -42,8 +42,30 @@ public class GovernmentService {
 		return goDao.loginCheck(goHospital);
 	}
 	
-	//약 코드가져오기
-	public List<GoMedicine> getMedicine(){
-		return goDao.selectMedicine();
+	// 약코드 가져오기
+	public List<Map> getMedicineList(){
+		return goDao.selectMedicineList();
 	}
+	
+	//약코드 가져오기
+	public List<Map> getDiseaseList(){
+		return goDao.selectDiseaseList();
+	}
+	
+	//진료과목코드 가져오기
+	public List<Map> getTreatSubjectList(){
+		return goDao.selectTreatSubjectList();
+	}
+	
+	//수술코드 가져오기
+	public List<Map> getSurgeryList(){
+		return goDao.selectSurgeryList();
+	}
+	
+	//예방접종코드 가져오기
+	public List<Map> getVaccinationList(){
+		return goDao.selectVaccinationList();
+	}
+	
+	
 }

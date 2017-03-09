@@ -35,7 +35,27 @@ public class GovernmentDao {
 	}
 	
 	//약코드 가져오기
-	public List<GoMedicine> selectMedicine(){
+	public List<Map> selectMedicineList(){
 		return sql.selectList("government.selectMedicineList");
+	}
+	
+	//질병코드 가져오기
+	public List<Map> selectDiseaseList(){
+		return sql.selectList("government.selectDiseaseList");
+	}
+	
+	//진료과목코드 가져오기
+	public List<Map> selectTreatSubjectList(){
+		return sql.selectList("government.selectTreatSubjectList");
+	}
+	
+	//수술코드 가져오기
+	public List<Map> selectSurgeryList(){
+		return sql.selectList("government.selectSurgeryList");
+	}
+	
+	//예방접종코드 가져오기
+	public List<Map> selectVaccinationList(){
+		return sql.selectList("government.selectVaccinationList");
 	}
 }

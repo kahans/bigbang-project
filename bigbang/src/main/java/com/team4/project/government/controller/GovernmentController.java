@@ -34,8 +34,6 @@ public class GovernmentController {
 	private GovernmentService goService;
 	private Gson gson = new Gson();
 	
-	
-	
 	// 주민번호 있는지 확인후 true or false리턴(test)
 	@RequestMapping(value = "/government/checkCitizenId", method = RequestMethod.GET,
 					produces = "text/json; charset=UTF-8")
@@ -75,14 +73,12 @@ public class GovernmentController {
 	}
 	
 	
-	//약코드 가져오기 POST
+	// 1약코드 가져오기 POST
 	@RequestMapping(value="/government/getMedicineCode", method=RequestMethod.POST,
 					produces = "text/json; charset=UTF-8")
-	public String getMdedicine(String id, String name){
-		logger.debug("getMdedicine POST 진입");
-		System.out.println("id:"+id);
-		System.out.println("name:"+name);
-		List<GoMedicine> list = goService.getMedicine();
+	public String getMedicineCode(){
+		logger.debug("getMedicineCode POST 진입");
+		List<Map> list = goService.getMedicineList();
 		Gson gson = new Gson();
 		String jsonStr = gson.toJson(list);
 		
@@ -91,22 +87,113 @@ public class GovernmentController {
 		return jsonStr;
 	}
 	
-	//약코드 가져오기 GET
+	// 1약코드 가져오기 GET
 	@RequestMapping(value="/government/getMedicineCode", method=RequestMethod.GET,
 					produces = "text/json; charset=UTF-8")
-	public String getMdedicine(String id){
-		logger.debug("getMdedicine GET 진입");
-		System.out.println("id:"+id);
-		List<GoMedicine> list = goService.getMedicine();
+	public String getMedicineCode(String test){
+		logger.debug("getMedicineCode GET 진입");
+		List<Map> list = goService.getMedicineList();
 		Gson gson = new Gson();
 		String jsonStr = gson.toJson(list);
-		
 		return jsonStr;
 	}
 	
+	// 2질병코드 가져오기 POST
+	@RequestMapping(value="/government/getDiseaseCode", method=RequestMethod.POST,
+					produces = "text/json; charset=UTF-8")
+	public String getDiseaseCode(){
+		logger.debug("getDiseaseCode GET 진입");
+		List<Map> list = goService.getDiseaseList();
+		Gson gson = new Gson();
+		String jsonStr = gson.toJson(list);
+		return jsonStr;
+	}
+	
+	// 2질병코드 가져오기 GET
+	@RequestMapping(value="/government/getDiseaseCode", method=RequestMethod.GET,
+					produces = "text/json; charset=UTF-8")
+	public String getDiseaseCode(String test){
+		logger.debug("getDiseaseCode GET 진입");
+		List<Map> list = goService.getDiseaseList();
+		Gson gson = new Gson();
+		String jsonStr = gson.toJson(list);
+		return jsonStr;
+	}
+	
+	// 3진료과목코드 가져오기 POST
+	@RequestMapping(value="/government/getTreatSubjectCode", method=RequestMethod.POST,
+					produces = "text/json; charset=UTF-8")
+	public String getTreatSubjectCode(){
+		logger.debug("getTreatSubjectCode POST 진입");
+		List<Map> list = goService.getTreatSubjectList();
+		Gson gson = new Gson();
+		String jsonStr = gson.toJson(list);
+		return jsonStr;
+	}
+	
+	// 3진료과목코드 가져오기 GET
+	@RequestMapping(value="/government/getTreatSubjectCode", method=RequestMethod.GET,
+					produces = "text/json; charset=UTF-8")
+	public String getTreatSubjectCode(String test){
+		logger.debug("getTreatSubjectCode GET 진입");
+		List<Map> list = goService.getTreatSubjectList();
+		Gson gson = new Gson();
+		String jsonStr = gson.toJson(list);
+		return jsonStr;
+	}
+	
+	// 4수술코드 가져오기 POST
+	@RequestMapping(value="/government/getSurgeryCode", method=RequestMethod.POST,
+					produces = "text/json; charset=UTF-8")
+	public String getSurgeryCode(){
+		logger.debug("getTreatSubjectCode POST 진입");
+		List<Map> list = goService.getSurgeryList();
+		Gson gson = new Gson();
+		String jsonStr = gson.toJson(list);
+		return jsonStr;
+	}
+	
+	// 4수술코드 가져오기 GET
+	@RequestMapping(value="/government/getSurgeryCode", method=RequestMethod.GET,
+					produces = "text/json; charset=UTF-8")
+	public String getSurgeryCode(String test){
+		logger.debug("getTreatSubjectCode GET 진입");
+		List<Map> list = goService.getSurgeryList();
+		Gson gson = new Gson();
+		String jsonStr = gson.toJson(list);
+		return jsonStr;
+	}
+	
+	// 5예방접종코드 가져오기 POST
+	@RequestMapping(value="/government/getVaccinationCode", method=RequestMethod.POST,
+					produces = "text/json; charset=UTF-8")
+	public String getVaccinationCode(){
+		logger.debug("getTreatSubjectCode POST 진입");
+		List<Map> list = goService.getVaccinationList();
+		Gson gson = new Gson();
+		String jsonStr = gson.toJson(list);
+		return jsonStr;
+	}
+	
+	// 5예방접종코드 가져오기 GET
+	@RequestMapping(value="/government/getVaccinationCode", method=RequestMethod.GET,
+					produces = "text/json; charset=UTF-8")
+	public String getVaccinationCode(String test){
+		logger.debug("getTreatSubjectCode GET 진입");
+		List<Map> list = goService.getVaccinationList();
+		Gson gson = new Gson();
+		String jsonStr = gson.toJson(list);
+		return jsonStr;
+	}
+	
+	
+	
+	
+	
+	
 	// 약코드가져오는 controller 호출하기
 	@RequestMapping(value = "/government/getMedicine", method = RequestMethod.GET)
-	public String getMedicine(){
+	public String getMedicineHochul(){
 		System.out.println("getMedicine 진입");
 		
 		HttpUrlCon huc = new HttpUrlCon("http://localhost/project/government/getMedicineCode?id=dd");
