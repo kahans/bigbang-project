@@ -46,7 +46,7 @@ public class GoDiagnosisPrescriptionController {
 		return prescriptionList;
 	}
 	
-	// 2.진료코드로 처방(약)결과 가져오기(test)
+	// 2.진료코드로 처방(약)결과 가져오기
 	@RequestMapping(value="/government/getListPrescriptionByTreatCode", method=RequestMethod.POST,
 			produces = "text/json; charset=UTF-8")
 	public String getListPrescriptionByTreatCode(String treatCode){
@@ -55,4 +55,39 @@ public class GoDiagnosisPrescriptionController {
 		return prescriptionList;
 	}
 	
+	// 3.주민번호로 진단결과 가져오기(test)
+	@RequestMapping(value="/government/getListDiagnosisByCitizenId", method=RequestMethod.GET,
+			produces = "text/json; charset=UTF-8")
+	public String getListDiagnosisByCitizenId(String citizenId, String test){
+		logger.debug("getListDiagnosisByCitizenId GET 진입");
+		String diagnosisList = gson.toJson(goDPService.getListDiagnosisByCitizenId(citizenId));
+		return diagnosisList;
+	}
+	
+	// 3.주민번호로 진단결과 가져오기
+	@RequestMapping(value="/government/getListDiagnosisByCitizenId", method=RequestMethod.POST,
+			produces = "text/json; charset=UTF-8")
+	public String getListDiagnosisByCitizenId(String citizenId){
+		logger.debug("getListDiagnosisByCitizenId GET 진입");
+		String diagnosisList = gson.toJson(goDPService.getListDiagnosisByCitizenId(citizenId));
+		return diagnosisList;
+	}
+	
+	// 4.진료코드로 처방(약)결과 가져오기(test)
+	@RequestMapping(value="/government/getListPrescriptionByCitizenId", method=RequestMethod.GET,
+			produces = "text/json; charset=UTF-8")
+	public String getListPrescriptionByCitizenId(String citizenId, String test){
+		logger.debug("getListPrescriptionByCitizenId GET 진입");
+		String prescriptionList = gson.toJson(goDPService.getListPrescriptionByCitizenId(citizenId));
+		return prescriptionList;
+	}
+	
+	// 4.진료코드로 처방(약)결과 가져오기
+	@RequestMapping(value="/government/getListPrescriptionByCitizenId", method=RequestMethod.POST,
+			produces = "text/json; charset=UTF-8")
+	public String getListPrescriptionByCitizenId(String citizenId){
+		logger.debug("getListPrescriptionByCitizenId GET 진입");
+		String prescriptionList = gson.toJson(goDPService.getListPrescriptionByCitizenId(citizenId));
+		return prescriptionList;
+	}
 }
