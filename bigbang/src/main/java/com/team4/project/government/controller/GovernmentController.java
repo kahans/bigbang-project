@@ -143,7 +143,7 @@ public class GovernmentController {
 	}
 	
 	// 4수술코드 가져오기 POST
-	@RequestMapping(value="/government/ ", method=RequestMethod.POST,
+	@RequestMapping(value="/government/getSurgeryCode", method=RequestMethod.POST,
 					produces = "text/json; charset=UTF-8")
 	public String getSurgeryCode(){
 		logger.debug("getTreatSubjectCode POST 진입");
