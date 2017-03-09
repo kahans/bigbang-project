@@ -35,6 +35,7 @@ public class GovernmentController {
 	private Gson gson = new Gson();
 	
 	
+	
 	// 주민번호 있는지 확인후 true or false리턴(test)
 	@RequestMapping(value = "/government/checkCitizenId", method = RequestMethod.GET,
 					produces = "text/json; charset=UTF-8")
@@ -75,7 +76,6 @@ public class GovernmentController {
 	
 	
 	//약코드 가져오기 POST
-	@ResponseBody
 	@RequestMapping(value="/government/getMedicineCode", method=RequestMethod.POST,
 					produces = "text/json; charset=UTF-8")
 	public String getMdedicine(String id, String name){
@@ -92,7 +92,6 @@ public class GovernmentController {
 	}
 	
 	//약코드 가져오기 GET
-	@ResponseBody
 	@RequestMapping(value="/government/getMedicineCode", method=RequestMethod.GET,
 					produces = "text/json; charset=UTF-8")
 	public String getMdedicine(String id){

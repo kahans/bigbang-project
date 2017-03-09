@@ -169,7 +169,7 @@ public class DbInsertService {
 			e.printStackTrace();
 			return "fail";
 		}
-		return "true";
+		return "success";
 	}
 	
 }
