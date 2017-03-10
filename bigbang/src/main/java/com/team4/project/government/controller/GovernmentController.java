@@ -37,20 +37,31 @@ public class GovernmentController {
 	// 주민번호 있는지 확인후 true or false리턴(test)
 	@RequestMapping(value = "/government/checkCitizenId", method = RequestMethod.GET,
 					produces = "text/json; charset=UTF-8")
-	public String checkCitizenId(String citizenId, String test){
-		if(goService.checkCitizenId(citizenId)!=null){
-			logger.debug("사용할수 있는 주민번호입니다.");
-			return "true";
+	public String checkCitizenId(String citizenId, String citizenName, String test){
+		GoCitizen gc = goService.checkCitizenId(citizenId);
+		// gc가 널이아니면(조회결과가 있으면 = 주민번호가 맞으면)
+		if(gc!=null){
+			logger.debug("주민번호는 맞음");
+			// 주민번호는 맞으나 이름이 틀리면
+			if(!gc.getGoCitizenName().equals(citizenName)){
+				logger.debug("주민번호는 맞으나 이름이 틀렸습니다.");
+				return "nameIncorrect";
+			// 주민번호도 맞고 이름도 맞으면
+			}else{
+				logger.debug("주민번호, 이름 모두일치");
+				return "allCorrect";
+			}
+		// gc가 널이면(주민번호가 없으면 = 조회결과가 없으면)
 		}else{
-			logger.debug("없는 주민번호 잆니다.");
-			return "false";
+			logger.debug("없는 주민번호 입니다.");
+			return "idIncorrect";
 		}
 	}
 	
 	// 주민번호 있는지 확인후 true or false리턴(test)
 	@RequestMapping(value = "/government/checkCitizenId", method = RequestMethod.POST,
 					produces = "text/json; charset=UTF-8")
-	public String checkCitizenId(String citizenId){
+	public String checkCitizenId(String citizenId, String citizenName){
 		if(goService.checkCitizenId(citizenId)!=null){
 			logger.debug("사용할수 있는 주민번호입니다.");
 			return "true";
