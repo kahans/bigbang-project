@@ -11,7 +11,7 @@
 			go_diagnosis.GO_DIAGNOSIS_CODE,
 			go_diagnosis.GO_TREAT_CODE,
 			go_diagnosis.GO_DISEASE_CODE,
-			go_diagnosis.GO_TREATMENT_WRITE_DATE,
+			go_diagnosis.GO_DIAGNOSIS_WRITE_DATE,
 			go_diagnosis.GO_DIAGNOSIS_GO_REGISTRATION_DATE,
 			go_disease.GO_DISEASE_KOR,
 			go_hospital.GO_HOSPITAL_NAME,
@@ -43,7 +43,7 @@
 			go_diagnosis.GO_DIAGNOSIS_CODE,
 			go_diagnosis.GO_TREAT_CODE,
 			go_diagnosis.GO_DISEASE_CODE,
-			go_diagnosis.GO_TREATMENT_WRITE_DATE,
+			go_diagnosis.GO_DIAGNOSIS_WRITE_DATE,
 			go_diagnosis.GO_DIAGNOSIS_GO_REGISTRATION_DATE,
 			go_disease.GO_DISEASE_KOR,
 			go_hospital.GO_HOSPITAL_NAME,
@@ -66,7 +66,7 @@
 		JOIN go_disease
 			ON go_diagnosis.GO_DISEASE_CODE = go_disease.GO_DISEASE_CODE
 		WHERE go_citizen.GO_CITIZEN_ID=#{citizenId}
-		ORDER BY go_diagnosis.GO_TREATMENT_WRITE_DATE DESC
+		ORDER BY go_diagnosis.GO_DIAGNOSIS_WRITE_DATE DESC
 	</select>
 	
 	<!-- 진료코드로 처방리스트 -->
