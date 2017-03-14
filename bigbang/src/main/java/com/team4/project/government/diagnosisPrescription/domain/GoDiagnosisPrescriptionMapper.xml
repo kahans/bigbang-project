@@ -288,4 +288,42 @@
 		WHERE go_hospital.GO_HOSPITAL_ID=#{hospitalId}
 		ORDER BY go_prescription.GO_PRESCRIPTION_RESULT_WRITE_DATE DESC
 	</select>
+	
+	
+	<!-- 
+	진단
+SELECT
+	go_disease.GO_DISEASE_KOR,
+	go_diagnosis.GO_DIAGNOSIS_WRITE_DATE,
+	COUNT(go_diagnosis.GO_DISEASE_CODE) AS count
+FROM go_diagnosis
+
+JOIN go_disease
+	ON go_diagnosis.GO_DISEASE_CODE=go_disease.GO_DISEASE_CODE
+
+WHERE go_diagnosis.GO_DIAGNOSIS_WRITE_DATE > DATE_ADD(NOW(), INTERVAL -7 DAY)
+GROUP BY go_diagnosis.GO_DISEASE_CODE
+
+ORDER BY COUNT(go_diagnosis.GO_DIAGNOSIS_CODE) DESC,
+			go_diagnosis.GO_DIAGNOSIS_WRITE_DATE DESC
+LIMIT 10
+
+
+	처방
+SELECT
+	go_medicine.GO_MEDICINE_NAME,
+	go_prescription.GO_PRESCRIPTION_RESULT_WRITE_DATE,
+	COUNT(go_prescription.GO_MEDICINE_CODE) AS count
+FROM go_prescription
+
+JOIN go_medicine
+	ON go_medicine.GO_MEDICINE_CODE=go_prescription.GO_MEDICINE_CODE
+
+WHERE go_prescription.GO_PRESCRIPTION_RESULT_WRITE_DATE > DATE_ADD(NOW(), INTERVAL -7 DAY)
+GROUP BY go_prescription.GO_MEDICINE_CODE
+
+ORDER BY COUNT(go_prescription.GO_MEDICINE_CODE) DESC,
+			go_prescription.GO_PRESCRIPTION_RESULT_WRITE_DATE DESC
+LIMIT 10
+	 -->
 </mapper>
