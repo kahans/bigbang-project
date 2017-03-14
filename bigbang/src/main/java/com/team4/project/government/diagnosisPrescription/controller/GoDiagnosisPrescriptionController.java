@@ -90,4 +90,43 @@ public class GoDiagnosisPrescriptionController {
 		String prescriptionList = gson.toJson(goDPService.getListPrescriptionByCitizenId(citizenId));
 		return prescriptionList;
 	}
+	
+	
+	// 5.의사아이디로 처방(약)결과 가져오기(test)
+	@RequestMapping(value="/government/getListPrescriptionByDoctorId", method=RequestMethod.GET,
+			produces = "text/json; charset=UTF-8")
+	public String getListPrescriptionByDoctorId(String doctorId, String test){
+		logger.debug("getListPrescriptionByDoctorId GET 진입");
+		String prescriptionList = gson.toJson(goDPService.getListPrescriptionByDoctorId(doctorId));
+		return prescriptionList;
+	}
+	
+	// 5.의사아이디로 처방(약)결과 가져오기
+	@RequestMapping(value="/government/getListPrescriptionByDoctorId", method=RequestMethod.POST,
+			produces = "text/json; charset=UTF-8")
+	public String getListPrescriptionByDoctorId(String doctorId){
+		logger.debug("getListPrescriptionByDoctorId GET 진입");
+		String prescriptionList = gson.toJson(goDPService.getListPrescriptionByDoctorId(doctorId));
+		return prescriptionList;
+	}
+	
+	
+	// 6.주민번호로 진단결과 가져오기(test)
+	@RequestMapping(value="/government/getListDiagnosisByDoctorId", method=RequestMethod.GET,
+			produces = "text/json; charset=UTF-8")
+	public String getListDiagnosisByDoctorId(String doctorId, String test){
+		logger.debug("getListDiagnosisByDoctorId GET 진입");
+		String diagnosisList = gson.toJson(goDPService.getListDiagnosisByDoctorId(doctorId));
+		return diagnosisList;
+	}
+	
+	
+	// 6.주민번호로 진단결과 가져오기
+	@RequestMapping(value="/government/getListDiagnosisByDoctorId", method=RequestMethod.POST,
+			produces = "text/json; charset=UTF-8")
+	public String getListDiagnosisByDoctorId(String doctorId){
+		logger.debug("getListDiagnosisByDoctorId GET 진입");
+		String diagnosisList = gson.toJson(goDPService.getListDiagnosisByDoctorId(doctorId));
+		return diagnosisList;
+	}
 }
