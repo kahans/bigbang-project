@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team4.project.government.diagnosisPrescription.domain.GoDiagnosis;
+import com.team4.project.government.dto.GoHospital;
 import com.team4.project.government.treat.domain.GoTreat;
 import com.team4.project.util.Util;
 
@@ -31,7 +32,11 @@ public class GoTreatService {
 		return goTCDao.selectListTreatByDoctorId(doctorId);
 	}
 	
-	
+	// 하나의 병원에 여러사람의 진료리스트
+	public List<GoTreat> getListTreatByHospitalId(String hospitalId){
+		return goTCDao.selectListTreatByHospitalId(hospitalId);
+	}
+		
 	
 	
 	

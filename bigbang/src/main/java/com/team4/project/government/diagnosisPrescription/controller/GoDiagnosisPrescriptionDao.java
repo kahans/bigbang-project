@@ -15,6 +15,8 @@ public class GoDiagnosisPrescriptionDao {
 	@Autowired
 	private SqlSessionTemplate sql;
 	
+	///// 진단
+	
 	// 진료코드로 진단결과 가져오기
 	public List<GoDiagnosis> selectListDiagnosisByTreatCode(String treatCode){
 		return sql.selectList("goDiagnosisPrescription.selectListDiagnosisByTreatCode", treatCode);
@@ -30,6 +32,15 @@ public class GoDiagnosisPrescriptionDao {
 		return sql.selectList("goDiagnosisPrescription.selectListDiagnosisByDoctorId", doctorId);
 	}
 	
+	
+	// 병원아이디로 진단결과 가져오기
+	public List<GoDiagnosis> selectListDiagnosisByHospitalId(String hospitalId){
+		return sql.selectList("goDiagnosisPrescription.selectListDiagnosisByHospitalId", hospitalId);
+	}
+	
+	
+	/////// 처방
+	
 	// 진료코드로 처방결과 가져오기
 	public List<GoPrescription> selectListPrescriptionByTreatCode(String treatCode){
 		return sql.selectList("goDiagnosisPrescription.selectListPrescriptionByTreatCode", treatCode);
@@ -43,5 +54,10 @@ public class GoDiagnosisPrescriptionDao {
 	// 의사아이디로 처방결과 가져오기
 	public List<GoPrescription> selectListPrescriptionByDoctorId(String doctorId){
 		return sql.selectList("goDiagnosisPrescription.selectListPrescriptionByDoctorId", doctorId);
+	}
+	
+	// 병원아이디로 처방결과 가져오기
+	public List<GoPrescription> selectListPrescriptionByHospitalId(String hospitalId){
+		return sql.selectList("goDiagnosisPrescription.selectListPrescriptionByHospitalId", hospitalId);
 	}
 }

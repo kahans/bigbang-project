@@ -14,6 +14,8 @@ public class GoDiagnosisPrescriptionService {
 	@Autowired
 	private GoDiagnosisPrescriptionDao goDPDao;
 
+	//// 진단
+	
 	// 진료코드로 진단결과 가져오기
 	public List<GoDiagnosis> getListDiagnosisByTreatCode(String treatCode){
 		return goDPDao.selectListDiagnosisByTreatCode(treatCode);
@@ -29,6 +31,15 @@ public class GoDiagnosisPrescriptionService {
 		return goDPDao.selectListDiagnosisByDoctorId(doctorId);
 	}
 	
+	// 병원아이디로 진단결과 가져오기
+	public List<GoDiagnosis> getListDiagnosisByHospitalId(String hospitalId){
+		return goDPDao.selectListDiagnosisByHospitalId(hospitalId);
+	}
+	
+	
+	
+	//// 처방 
+	
 	// 진료코드로 처방결과 가져오기
 	public List<GoPrescription> getListPrescriptionByTreatCode(String treatCode){
 		return goDPDao.selectListPrescriptionByTreatCode(treatCode);
@@ -42,5 +53,10 @@ public class GoDiagnosisPrescriptionService {
 	// 의사아이디로 처방결과 가져오기
 	public List<GoPrescription> getListPrescriptionByDoctorId(String doctorId){
 		return goDPDao.selectListPrescriptionByDoctorId(doctorId);
+	}
+	
+	// 병원아이디로 처방결과 가져오기
+	public List<GoPrescription> getListPrescriptionByHospitalId(String hospitalId){
+		return goDPDao.selectListPrescriptionByHospitalId(hospitalId);
 	}
 }

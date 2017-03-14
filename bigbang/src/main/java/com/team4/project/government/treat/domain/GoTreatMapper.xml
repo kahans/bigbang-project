@@ -84,6 +84,31 @@
 
 
 
+	<!-- 4. 하나의 병원에서 진료받은 여러사람의 진료리스트 -->
+	<select id="selectListTreatByHospitalId" parameterType="String"
+		resultType="com.team4.project.government.treat.domain.GoTreat">
+		SELECT
+			go_treat.GO_TREAT_CODE,
+			go_treat.GO_HOSPITAL_ID,
+			go_hospital.GO_HOSPITAL_NAME,
+			go_treat.GO_CITIZEN_ID,
+			go_citizen.GO_CITIZEN_NAME,
+			go_treat.GO_DOCTOR_ID,
+			go_doctor.GO_DOCTOR_NAME,
+			go_treat.GO_TREAT_SUBJECT_CODE,
+			go_treat_subject.GO_TREAT_SUBJECT_NAME,
+			go_treat.GO_CHART_CODE,
+			go_treat.GO_TREAT_CONTENTS,
+			go_treat.GO_TREAT_REGISTRATION_DATE,
+			go_treat.GO_TREAT_GO_REGISTRATION_DATE
+		FROM go_treat
+		JOIN go_hospital ON go_treat.GO_HOSPITAL_ID=go_hospital.GO_HOSPITAL_ID
+		JOIN go_citizen on go_treat.GO_CITIZEN_ID=go_citizen.GO_CITIZEN_ID
+		JOIN go_doctor on go_treat.GO_DOCTOR_ID=go_doctor.GO_DOCTOR_ID
+		JOIN go_treat_subject on go_treat.GO_TREAT_SUBJECT_CODE=go_treat_subject.GO_TREAT_SUBJECT_CODE
+		WHERE go_treat.GO_HOSPITAL_ID='hospital_1'
+		ORDER BY go_treat.GO_TREAT_REGISTRATION_DATE DESC
+	</select>
 
 
 

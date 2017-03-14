@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
+import com.team4.project.government.dto.GoHospital;
 import com.team4.project.government.treat.domain.GoTreat;
 
 @RestController
@@ -91,11 +92,29 @@ public class GoTreatController {
 		return goTreatListJson;
 	}
 	
+
+	// 하나의 병원에서 진료받은 여러사람의 진료리스트(test)
+	@RequestMapping(value="/government/getListTreatByHospitalId", method=RequestMethod.GET,
+					produces = "text/json; charset=UTF-8")
+	public String getListTreatByHospitalId(String hospitalId, String test) {
+		logger.debug("hospitalId:"+hospitalId);
+		List<GoTreat> goTreatList = goTCService.getListTreatByHospitalId(hospitalId);
+		String goTreatListJson = gson.toJson(goTreatList);
+		logger.debug("listJson : "+ goTreatListJson);
+		return goTreatListJson;
+	}
 	
-	
-	
-	
-	
+
+	// 하나의 병원에서 진료받은 여러사람의 진료리스트
+	@RequestMapping(value="/government/getListTreatByHospitalId", method=RequestMethod.POST,
+					produces = "text/json; charset=UTF-8")
+	public String getListTreatByHospitalId(String hospitalId) {
+		logger.debug("hospitalId:"+hospitalId);
+		List<GoTreat> goTreatList = goTCService.getListTreatByHospitalId(hospitalId);
+		String goTreatListJson = gson.toJson(goTreatList);
+		logger.debug("listJson : "+ goTreatListJson);
+		return goTreatListJson;
+	}
 	
 	
 	

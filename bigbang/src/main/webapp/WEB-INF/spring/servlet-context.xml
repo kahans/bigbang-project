@@ -43,11 +43,10 @@
 			<!-- 해당 path는 인터셉트 하지않는다 -->
 			
 			<mvc:exclude-mapping path="/government/getHospitalInfo" />
-			<!-- 
-			<mvc:exclude-mapping path="/government/loginCitizen" />
-			<mvc:exclude-mapping path="/government/loginHospital" />
-			<mvc:exclude-mapping path="/government/logout" />
-			 -->
+			<mvc:exclude-mapping path="/government/getListTreatByHospitalId" />
+			<mvc:exclude-mapping path="/government/getListDiagnosisByHospitalId" />
+			<mvc:exclude-mapping path="/government/getListPrescriptionByHospitalId" />
+			
 			<!-- 로그인체크 인터셉터 클래스 -->
 			<bean class="com.team4.project.government.interceptor.Interceptor" />
 		</mvc:interceptor>

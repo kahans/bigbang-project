@@ -73,7 +73,7 @@ public class GoDiagnosisPrescriptionController {
 		return diagnosisList;
 	}
 	
-	// 4.진료코드로 처방(약)결과 가져오기(test)
+	// 4.주민번호로 처방(약)결과 가져오기(test)
 	@RequestMapping(value="/government/getListPrescriptionByCitizenId", method=RequestMethod.GET,
 			produces = "text/json; charset=UTF-8")
 	public String getListPrescriptionByCitizenId(String citizenId, String test){
@@ -82,7 +82,7 @@ public class GoDiagnosisPrescriptionController {
 		return prescriptionList;
 	}
 	
-	// 4.진료코드로 처방(약)결과 가져오기
+	// 4.주민번호로 처방(약)결과 가져오기
 	@RequestMapping(value="/government/getListPrescriptionByCitizenId", method=RequestMethod.POST,
 			produces = "text/json; charset=UTF-8")
 	public String getListPrescriptionByCitizenId(String citizenId){
@@ -111,7 +111,7 @@ public class GoDiagnosisPrescriptionController {
 	}
 	
 	
-	// 6.주민번호로 진단결과 가져오기(test)
+	// 6.의사아이디로 진단결과 가져오기(test)
 	@RequestMapping(value="/government/getListDiagnosisByDoctorId", method=RequestMethod.GET,
 			produces = "text/json; charset=UTF-8")
 	public String getListDiagnosisByDoctorId(String doctorId, String test){
@@ -121,7 +121,7 @@ public class GoDiagnosisPrescriptionController {
 	}
 	
 	
-	// 6.주민번호로 진단결과 가져오기
+	// 6.의사아이디로 진단결과 가져오기
 	@RequestMapping(value="/government/getListDiagnosisByDoctorId", method=RequestMethod.POST,
 			produces = "text/json; charset=UTF-8")
 	public String getListDiagnosisByDoctorId(String doctorId){
@@ -129,4 +129,43 @@ public class GoDiagnosisPrescriptionController {
 		String diagnosisList = gson.toJson(goDPService.getListDiagnosisByDoctorId(doctorId));
 		return diagnosisList;
 	}
+	
+	// 7.병원아이디로 진단결과 가져오기(test)
+	@RequestMapping(value="/government/getListDiagnosisByHospitalId", method=RequestMethod.GET,
+			produces = "text/json; charset=UTF-8")
+	public String getListDiagnosisByHospitalId(String hospitalId, String test){
+		logger.debug("getListDiagnosisByDoctorId GET 진입");
+		String diagnosisList = gson.toJson(goDPService.getListDiagnosisByHospitalId(hospitalId));
+		return diagnosisList;
+	}
+	
+	// 7.병원아이디로 진단결과 가져오기
+	@RequestMapping(value="/government/getListDiagnosisByHospitalId", method=RequestMethod.POST,
+			produces = "text/json; charset=UTF-8")
+	public String getListDiagnosisByHospitalId(String hospitalId){
+		logger.debug("getListDiagnosisByDoctorId GET 진입");
+		String diagnosisList = gson.toJson(goDPService.getListDiagnosisByHospitalId(hospitalId));
+		return diagnosisList;
+	}
+	
+	
+	// 8.병원아이디로 처방(약)결과 가져오기(test)
+	@RequestMapping(value="/government/getListPrescriptionByHospitalId", method=RequestMethod.GET,
+			produces = "text/json; charset=UTF-8")
+	public String getListPrescriptionByHospitalId(String hospitalId, String test){
+		logger.debug("getListPrescriptionByDoctorId GET 진입");
+		String prescriptionList = gson.toJson(goDPService.getListPrescriptionByHospitalId(hospitalId));
+		return prescriptionList;
+	}
+	
+	
+	// 8.병원아이디로 처방(약)결과 가져오기
+	@RequestMapping(value="/government/getListPrescriptionByHospitalId", method=RequestMethod.POST,
+			produces = "text/json; charset=UTF-8")
+	public String getListPrescriptionByHospitalId(String hospitalId){
+		logger.debug("getListPrescriptionByDoctorId GET 진입");
+		String prescriptionList = gson.toJson(goDPService.getListPrescriptionByHospitalId(hospitalId));
+		return prescriptionList;
+	}
+	
 }

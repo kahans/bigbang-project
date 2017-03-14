@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team4.project.government.diagnosisPrescription.domain.GoDiagnosis;
+import com.team4.project.government.dto.GoHospital;
 import com.team4.project.government.treat.domain.GoTreat;
 
 @Repository
@@ -31,6 +32,11 @@ public class GoTreatDao {
 		return sqlSession.selectList("GoTreat.selectListTreatByDoctorId", doctorId);
 	}
 	
+	
+	// 하나의 병원에 여러사람의 진료리스트
+	public List<GoTreat> selectListTreatByHospitalId(String hospitalId){
+		return sqlSession.selectList("GoTreat.selectListTreatByHospitalId", hospitalId);
+	}
 	
 	
 	
