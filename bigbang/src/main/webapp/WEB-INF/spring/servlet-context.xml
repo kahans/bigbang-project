@@ -44,8 +44,8 @@
 			
 			<mvc:exclude-mapping path="/government/getHospitalInfo" />
 			<mvc:exclude-mapping path="/government/getListTreatByHospitalId" />
-			<mvc:exclude-mapping path="/government/getListDiagnosisByHospitalId" />
-			<mvc:exclude-mapping path="/government/getListPrescriptionByHospitalId" />
+			<mvc:exclude-mapping path="/government/getListDiagnosisByTopcount" />
+			<mvc:exclude-mapping path="/government/getListPrescriptionByTopcount" />
 			
 			<!-- 로그인체크 인터셉터 클래스 -->
 			<bean class="com.team4.project.government.interceptor.Interceptor" />
@@ -70,12 +70,12 @@
 	<!-- dataSource 설정 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		
-		<property name="url" value="jdbc:mysql://loverman85.cafe24.com:3306/loverman85?useUnicode=true&amp;characterEncoding=utf-8" />
-		
 		<!-- 
-		<property name="url" value="jdbc:mysql://localhost:3306/loverman85?useUnicode=true&amp;characterEncoding=utf-8" />
+		<property name="url" value="jdbc:mysql://loverman85.cafe24.com:3306/loverman85?useUnicode=true&amp;characterEncoding=utf-8" />
 		 -->
+		
+		<property name="url" value="jdbc:mysql://localhost:3306/loverman85?useUnicode=true&amp;characterEncoding=utf-8" />
+		
 		<property name="username" value="loverman85" />
 		<property name="password" value="java5963" />
 	</bean>

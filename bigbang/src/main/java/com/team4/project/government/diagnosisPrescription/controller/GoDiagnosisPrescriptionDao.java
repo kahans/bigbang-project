@@ -1,6 +1,7 @@
 package com.team4.project.government.diagnosisPrescription.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,9 @@ public class GoDiagnosisPrescriptionDao {
 		return sql.selectList("goDiagnosisPrescription.selectListDiagnosisByDoctorId", doctorId);
 	}
 	
-	
-	// 병원아이디로 진단결과 가져오기
-	public List<GoDiagnosis> selectListDiagnosisByHospitalId(String hospitalId){
-		return sql.selectList("goDiagnosisPrescription.selectListDiagnosisByHospitalId", hospitalId);
+	// 최근7일간 진단된 최고 10순위 결과 가져오기
+	public List<Map> selectListDiagnosisByTopcount(int period){
+		return sql.selectList("goDiagnosisPrescription.selectListDiagnosisByTopcount",period);
 	}
 	
 	
@@ -56,8 +56,8 @@ public class GoDiagnosisPrescriptionDao {
 		return sql.selectList("goDiagnosisPrescription.selectListPrescriptionByDoctorId", doctorId);
 	}
 	
-	// 병원아이디로 처방결과 가져오기
-	public List<GoPrescription> selectListPrescriptionByHospitalId(String hospitalId){
-		return sql.selectList("goDiagnosisPrescription.selectListPrescriptionByHospitalId", hospitalId);
+	// 최근 7일간 처방된 10순위 결과 가져오기
+	public List<Map> selectListPrescriptionByTopcount(int period){
+		return sql.selectList("goDiagnosisPrescription.selectListPrescriptionByTopcount",period);
 	}
 }

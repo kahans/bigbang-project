@@ -130,41 +130,45 @@ public class GoDiagnosisPrescriptionController {
 		return diagnosisList;
 	}
 	
-	// 7.병원아이디로 진단결과 가져오기(test)
-	@RequestMapping(value="/government/getListDiagnosisByHospitalId", method=RequestMethod.GET,
+	// 최근 7일간 진단된 최고 10순위 결과 가져오기(test)
+	@RequestMapping(value="/government/getListDiagnosisByTopcount", method=RequestMethod.GET,
 			produces = "text/json; charset=UTF-8")
-	public String getListDiagnosisByHospitalId(String hospitalId, String test){
-		logger.debug("getListDiagnosisByDoctorId GET 진입");
-		String diagnosisList = gson.toJson(goDPService.getListDiagnosisByHospitalId(hospitalId));
+	public String getListDiagnosisByTopcount(String period, String test){
+		logger.debug("getListDiagnosisByTopcount GET 진입");
+		int periodNum = Integer.parseInt(period);
+		String diagnosisList = gson.toJson(goDPService.getListDiagnosisByTopcount(periodNum));
 		return diagnosisList;
 	}
 	
-	// 7.병원아이디로 진단결과 가져오기
-	@RequestMapping(value="/government/getListDiagnosisByHospitalId", method=RequestMethod.POST,
+	// 최근 7일간 진단된 최고 10순위 결과 가져오기
+	@RequestMapping(value="/government/getListDiagnosisByTopcount", method=RequestMethod.POST,
 			produces = "text/json; charset=UTF-8")
-	public String getListDiagnosisByHospitalId(String hospitalId){
-		logger.debug("getListDiagnosisByDoctorId GET 진입");
-		String diagnosisList = gson.toJson(goDPService.getListDiagnosisByHospitalId(hospitalId));
+	public String getListDiagnosisByTopcount(String period){
+		logger.debug("getListDiagnosisByTopcount GET 진입");
+		int periodNum = Integer.parseInt(period);
+		String diagnosisList = gson.toJson(goDPService.getListDiagnosisByTopcount(periodNum));
 		return diagnosisList;
 	}
 	
 	
-	// 8.병원아이디로 처방(약)결과 가져오기(test)
-	@RequestMapping(value="/government/getListPrescriptionByHospitalId", method=RequestMethod.GET,
+	// 최근 7일간 처방된 10순위 결과 가져오기(test)
+	@RequestMapping(value="/government/getListPrescriptionByTopcount", method=RequestMethod.GET,
 			produces = "text/json; charset=UTF-8")
-	public String getListPrescriptionByHospitalId(String hospitalId, String test){
-		logger.debug("getListPrescriptionByDoctorId GET 진입");
-		String prescriptionList = gson.toJson(goDPService.getListPrescriptionByHospitalId(hospitalId));
+	public String getListPrescriptionByTopcount(String period, String test){
+		logger.debug("getListPrescriptionByTopcount GET 진입");
+		int periodNum = Integer.parseInt(period);
+		String prescriptionList = gson.toJson(goDPService.getListPrescriptionByTopcount(periodNum));
 		return prescriptionList;
 	}
 	
 	
-	// 8.병원아이디로 처방(약)결과 가져오기
-	@RequestMapping(value="/government/getListPrescriptionByHospitalId", method=RequestMethod.POST,
+	// 최근 7일간 처방된 10순위 결과 가져오기
+	@RequestMapping(value="/government/getListPrescriptionByTopcount", method=RequestMethod.POST,
 			produces = "text/json; charset=UTF-8")
-	public String getListPrescriptionByHospitalId(String hospitalId){
-		logger.debug("getListPrescriptionByDoctorId GET 진입");
-		String prescriptionList = gson.toJson(goDPService.getListPrescriptionByHospitalId(hospitalId));
+	public String getListPrescriptionByTopcount(String period){
+		logger.debug("getListPrescriptionByTopcount GET 진입");
+		int periodNum = Integer.parseInt(period);
+		String prescriptionList = gson.toJson(goDPService.getListPrescriptionByTopcount(periodNum));
 		return prescriptionList;
 	}
 	

@@ -1,6 +1,7 @@
 package com.team4.project.government.diagnosisPrescription.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,9 +32,9 @@ public class GoDiagnosisPrescriptionService {
 		return goDPDao.selectListDiagnosisByDoctorId(doctorId);
 	}
 	
-	// 병원아이디로 진단결과 가져오기
-	public List<GoDiagnosis> getListDiagnosisByHospitalId(String hospitalId){
-		return goDPDao.selectListDiagnosisByHospitalId(hospitalId);
+	// 최근7일간 진단된 최고 10순위 결과 가져오기
+	public List<Map> getListDiagnosisByTopcount(int period){
+		return goDPDao.selectListDiagnosisByTopcount(period);
 	}
 	
 	
@@ -55,8 +56,8 @@ public class GoDiagnosisPrescriptionService {
 		return goDPDao.selectListPrescriptionByDoctorId(doctorId);
 	}
 	
-	// 병원아이디로 처방결과 가져오기
-	public List<GoPrescription> getListPrescriptionByHospitalId(String hospitalId){
-		return goDPDao.selectListPrescriptionByHospitalId(hospitalId);
+	// 최근 7일간 처방된 10순위 결과 가져오기
+	public List<Map> getListPrescriptionByTopcount(int period){
+		return goDPDao.selectListPrescriptionByTopcount(period);
 	}
 }
