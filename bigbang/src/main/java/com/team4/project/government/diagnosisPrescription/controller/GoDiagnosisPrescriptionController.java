@@ -135,6 +135,9 @@ public class GoDiagnosisPrescriptionController {
 			produces = "text/json; charset=UTF-8")
 	public String getListDiagnosisByTopcount(String period, String test){
 		logger.debug("getListDiagnosisByTopcount GET 진입");
+		if(period==null){
+			return "period를 보내주세요";
+		}
 		int periodNum = Integer.parseInt(period);
 		String diagnosisList = gson.toJson(goDPService.getListDiagnosisByTopcount(periodNum));
 		return diagnosisList;
@@ -145,6 +148,9 @@ public class GoDiagnosisPrescriptionController {
 			produces = "text/json; charset=UTF-8")
 	public String getListDiagnosisByTopcount(String period){
 		logger.debug("getListDiagnosisByTopcount GET 진입");
+		if(period==null){
+			return "period를 보내주세요";
+		}
 		int periodNum = Integer.parseInt(period);
 		String diagnosisList = gson.toJson(goDPService.getListDiagnosisByTopcount(periodNum));
 		return diagnosisList;
@@ -156,6 +162,9 @@ public class GoDiagnosisPrescriptionController {
 			produces = "text/json; charset=UTF-8")
 	public String getListPrescriptionByTopcount(String period, String test){
 		logger.debug("getListPrescriptionByTopcount GET 진입");
+		if(period==null){
+			return "period를 보내주세요";
+		}
 		int periodNum = Integer.parseInt(period);
 		String prescriptionList = gson.toJson(goDPService.getListPrescriptionByTopcount(periodNum));
 		return prescriptionList;
@@ -167,6 +176,9 @@ public class GoDiagnosisPrescriptionController {
 			produces = "text/json; charset=UTF-8")
 	public String getListPrescriptionByTopcount(String period){
 		logger.debug("getListPrescriptionByTopcount GET 진입");
+		if(period==null){
+			return "period를 보내주세요";
+		}
 		int periodNum = Integer.parseInt(period);
 		String prescriptionList = gson.toJson(goDPService.getListPrescriptionByTopcount(periodNum));
 		return prescriptionList;
