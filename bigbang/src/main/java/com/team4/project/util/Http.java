@@ -120,7 +120,7 @@ public class Http {
 				while ((buffer = br.readLine()) != null) {
 					result.append(buffer).append("\r\n");
 				}
-				//System.out.println(result);
+				//logger.debug(result);
 			} finally {
 				response.close();
 			}

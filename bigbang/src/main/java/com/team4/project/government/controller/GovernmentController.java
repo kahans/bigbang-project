@@ -85,11 +85,11 @@ public class GovernmentController {
 	// 파일업로드 테스트
 	@RequestMapping(value = "/getFile", method = RequestMethod.POST)
 	public String getURL(String id, String name, MultipartFile file, MultipartFile file2) {
-		System.out.println("/getFile 들어옴!");
-		System.out.println("id:" + id);
-		System.out.println("name:" + name);
-		System.out.println("file:" + file);
-		System.out.println("file2:" + file2);
+		logger.debug("/getFile 들어옴!");
+		logger.debug("id:" + id);
+		logger.debug("name:" + name);
+		logger.debug("file:" + file);
+		logger.debug("file2:" + file2);
 		return "";
 	}
 
@@ -198,7 +198,7 @@ public class GovernmentController {
 	// 약코드가져오는 controller 호출하기
 	@RequestMapping(value = "/government/getMedicine", method = RequestMethod.GET)
 	public String getMedicineHochul() {
-		System.out.println("getMedicine 진입");
+		logger.debug("getMedicine 진입");
 
 		HttpUrlCon huc = new HttpUrlCon("http://localhost/project/government/getMedicineCode?id=dd");
 		Map<String, String> map = new HashMap<String, String>();
@@ -206,7 +206,7 @@ public class GovernmentController {
 		map.put("name", "똥꾸");
 		try {
 			String result = huc.HttpUrlGET();
-			System.out.println("result:" + result);
+			logger.debug("result:" + result);
 			Gson gson = new Gson();
 
 			// json to list 방법1
@@ -215,17 +215,17 @@ public class GovernmentController {
 			for (int i = 0; i < list.size(); i++) {
 				// GoMedicine goMedicine = gson.fromJson(list.get(i),
 				// GoMedicine.class);
-				System.out.println("코드:" + list.get(i).getGoMedicineCode() + " 이름:" + list.get(i).getGoMedicineName());
+				logger.debug("코드:" + list.get(i).getGoMedicineCode() + " 이름:" + list.get(i).getGoMedicineName());
 			}
 
 			/*
 			 * // json to list 방법2 List<GoMedicine> list2 =
 			 * gson.fromJson(result, new
 			 * TypeToken<List<GoMedicine>>(){}.getType());
-			 * System.out.println("=======list 돌리기======"); for(int i=0;
+			 * logger.debug("=======list 돌리기======"); for(int i=0;
 			 * i<list2.size();i++){ //GoMedicine goMedicine =
 			 * gson.fromJson(list.get(i), GoMedicine.class);
-			 * System.out.println("코드:"+list2.get(i).getGoMedicineCode()+
+			 * logger.debug("코드:"+list2.get(i).getGoMedicineCode()+
 			 * " 이름:"+list2.get(i).getGoMedicineName()); }
 			 */
 		} catch (Exception e) {
@@ -248,7 +248,7 @@ public class GovernmentController {
 		 * InputStreamReader(conn.getInputStream(), "UTF-8")); // 캐릭터셋 설정
 		 * StringBuilder sb = new StringBuilder(); String line = null; while
 		 * ((line = br.readLine()) != null) { if (sb.length() > 0) {
-		 * sb.append("\n"); } sb.append(line); } System.out.println("response:"
+		 * sb.append("\n"); } sb.append(line); } logger.debug("response:"
 		 * + sb.toString());
 		 * 
 		 * 
@@ -271,7 +271,7 @@ public class GovernmentController {
 		HttpUrlCon huc = new HttpUrlCon("http://192.168.123.147/project/government/goImageTest");
 		try {
 			// String result = huc.HttpUrlPOST(map);
-			// System.out.println("result:"+result);
+			// logger.debug("result:"+result);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

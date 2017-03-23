@@ -3,6 +3,8 @@ package com.team4.project.government.hopitalizationSurgery.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ import com.team4.project.util.Util;
 
 @Service
 public class GoHospitalizationSurgeryService {
+	private static final Logger logger = LoggerFactory.getLogger(GoHospitalizationSurgeryService.class);
 
 	@Autowired
 	private GoHospitalizationSurgeryDao goHSDao;
@@ -83,7 +86,7 @@ public class GoHospitalizationSurgeryService {
 		returnMap.put("secondDate", secondDate);
 		
 		List<GoSearchSurgerySub> goSurgeryList = goHSDao.goSurgeryList(returnMap);
-		System.out.println("데이터가 왔는지 확인 : " + goSurgeryList.toString());
+		logger.debug("데이터가 왔는지 확인 : " + goSurgeryList.toString());
 		
 		return goSurgeryList;
 	}
@@ -106,7 +109,7 @@ public class GoHospitalizationSurgeryService {
 		returnMap.put("searchContents", hospitalName);
 		returnMap.put("secondDate", secondDate2);
 		returnMap.put("firstDate", firstDate02);
-		System.out.println("service에서 returnMap의 데이터 : " + returnMap);
+		logger.debug("service에서 returnMap의 데이터 : " + returnMap);
 
 		List<GoSearchHospitalizationSub> goHospitalization = goHSDao.goHospitalizationList(returnMap);
 		// 질병을 갯수를 한 글에 출력
@@ -115,13 +118,13 @@ public class GoHospitalizationSurgeryService {
 			List<GoDiagnosis> diagnosisList = goHSDao.goDiagnosis(goTreatCode);
 			goHospitalization.get(i).setDiagnosisList(diagnosisList);
 		}
-		System.out.println(goHospitalization.toString());
+		logger.debug(goHospitalization.toString());
 
 		return goHospitalization;
 	}
 
 	public List<GoSearchSurgerySub> goSurgeryStatistics(int citizen) {
-		System.out.println(citizen);
+		logger.debug("citizen:"+citizen);
 		// TODO Auto-generated method stub
 		return goHSDao.goSurgeryStatistics(citizen);
 	}

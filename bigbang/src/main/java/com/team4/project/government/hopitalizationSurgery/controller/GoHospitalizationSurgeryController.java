@@ -143,9 +143,9 @@ public class GoHospitalizationSurgeryController {
 										@RequestParam(value="secondDate", required=false)String secondDate,
 										@RequestParam(value="firstDate", required=false)String firstDate
 										){
-		System.out.println(searchContents);
-		System.out.println("Today: "+secondDate);
-		System.out.println("yastday : "+firstDate);		
+		logger.debug(searchContents);
+		logger.debug("Today: "+secondDate);
+		logger.debug("yastday : "+firstDate);		
 		
 		String citizen = (String) session.getAttribute("GOCITIZENID");//로그인세션	
 		
@@ -156,9 +156,9 @@ public class GoHospitalizationSurgeryController {
 		returnMap.put("secondDate", secondDate);
 		returnMap.put("citizen", citizen);
 		
-		System.out.println("service : "+returnMap.put("searchContents", searchContents));
-		System.out.println("test1 : "+(String)returnMap.get("firstDate"));
-		System.out.println("test : "+secondDate);
+		logger.debug("service : "+returnMap.put("searchContents", searchContents));
+		logger.debug("test1 : "+(String)returnMap.get("firstDate"));
+		logger.debug("test : "+secondDate);
 		
 		
 		List<GoSearchSurgerySub> goSurgeryList = goHSService.goSurgeryList(returnMap);
@@ -170,7 +170,7 @@ public class GoHospitalizationSurgeryController {
 	public String surgeryList(HttpSession session, Model model){
 		
 		int citizen = (Integer) session.getAttribute("GOCITIZENNO");//로그인 세션에서 시민no를 가져온다.
-		System.out.println(citizen);
+		logger.debug("citizen:"+citizen);
 		List<GoSearchSurgerySub> surgeryStatistics = goHSService.goSurgeryStatistics(citizen);//대입
 		model.addAttribute("surgeryStatistics", surgeryStatistics);
 		
@@ -197,7 +197,7 @@ public class GoHospitalizationSurgeryController {
 		returnMap.put("firstDate", firstDate);
 		returnMap.put("citizen", citizen);
 		
-		System.out.println("service : "+returnMap.put("searchContents", searchContents));
+		logger.debug("service : "+returnMap.put("searchContents", searchContents));
 		
 		List<GoSearchHospitalizationSub> goHospitalizationList = goHSService.goHospitalizationList(returnMap);
 		return goHospitalizationList;
@@ -207,7 +207,7 @@ public class GoHospitalizationSurgeryController {
 	public String hospitalizationList(HttpSession session, Model model, GoHospitalization goHospitalization){
 		
 		int citizen = (Integer) session.getAttribute("GOCITIZENNO");//로그인 세션에서 시민no를 가져온다.
-		System.out.println(citizen);
+		logger.debug("citizen:"+citizen);
 		List<GoSearchHospitalizationSub> hospitalization = goHSService.hospitalizationStatistics(citizen);//대입
 		model.addAttribute("hospitalization", hospitalization);
 		

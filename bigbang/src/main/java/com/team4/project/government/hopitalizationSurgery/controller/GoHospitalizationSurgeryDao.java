@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +17,7 @@ import com.team4.project.government.hopitalizationSurgery.domain.GoSurgeryResult
 
 @Repository
 public class GoHospitalizationSurgeryDao {
+	private static final Logger logger = LoggerFactory.getLogger(GoHospitalizationSurgeryDao.class);
 
 	@Autowired
 	private SqlSessionTemplate sql;
@@ -52,13 +55,13 @@ public class GoHospitalizationSurgeryDao {
 	
 	public List<GoSearchSurgerySub> goSurgeryList(Map<String, Object> returnMap) {
 		
-		System.out.println("goSurgeryList Dao : "+returnMap);
+		logger.debug("goSurgeryList Dao : "+returnMap);
 		return sql.selectList("GoHospitalizationSurgery.goSurgeryList", returnMap);
 	}
 	//입,퇴원 목록 출력
 	public List<GoSearchHospitalizationSub> goHospitalizationList(Map<String, Object> returnMap) {
 		// TODO Auto-generated method stub
-		System.out.println("goHospitalizationList Dao : "+returnMap);
+		logger.debug("goHospitalizationList Dao : "+returnMap);
 		return sql.selectList("GoHospitalizationSurgery.goHospitalizationList", returnMap);
 	}
 	//입,퇴원코드를 통해서 검색하여 질병 통합

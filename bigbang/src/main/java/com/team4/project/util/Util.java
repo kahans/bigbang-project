@@ -12,8 +12,8 @@ public class Util {
 	private static final Logger logger = LoggerFactory.getLogger(Util.class);
 	//날짜검색시 공백인 칸에 날짜 만들어주는 메소드
 	public static Map<String, Object> createDate(String firstDate, String secondDate){
-		System.out.println("입력된 firstDate 확인 : "+firstDate);
-		System.out.println("입력된 secondDate 확인 : "+secondDate);
+		logger.debug("입력된 firstDate 확인 : "+firstDate);
+		logger.debug("입력된 secondDate 확인 : "+secondDate);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		//Date객체를 생성하여 오늘날짜를 받아옴
@@ -22,7 +22,7 @@ public class Util {
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		//받아온 현재날짜를 yyyy-mm-dd형태로 바꿔줌
 		String currentdate = transFormat.format(date);
-		System.out.println("currentDate 확인 : "+currentdate);
+		logger.debug("currentDate 확인 : "+currentdate);
 		
 		//if문을 통해 날짜검색시 입력된 날짜의 공백여부를 확인하여 값을 만들어 맵에 넣어줌
 		if(firstDate.equals("")&secondDate.equals("")){

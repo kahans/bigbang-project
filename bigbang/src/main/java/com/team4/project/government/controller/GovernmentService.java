@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import com.team4.project.government.dto.GoMedicine;
 
 @Service
 public class GovernmentService {
+	private static final Logger logger = LoggerFactory.getLogger(GovernmentService.class);
+
 	@Autowired
 	private GovernmentDao goDao;
 	
@@ -31,14 +35,14 @@ public class GovernmentService {
 	
 	//국민 로그인체크
 	public GoCitizen loginCheck(GoCitizen goCitizen){
-		System.out.println("GovernmentService_loginInfo:"+goCitizen);
+		logger.debug("GovernmentService_loginInfo:"+goCitizen);
 		
 		return goDao.loginCheck(goCitizen);
 	}
 	
 	//국민 로그인체크
 	public GoHospital loginCheck(GoHospital goHospital){
-		System.out.println("GovernmentService_loginInfo:"+goHospital);
+		logger.debug("GovernmentService_loginInfo:"+goHospital);
 		return goDao.loginCheck(goHospital);
 	}
 	

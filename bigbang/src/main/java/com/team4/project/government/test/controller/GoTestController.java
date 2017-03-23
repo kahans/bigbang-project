@@ -30,7 +30,7 @@ public class GoTestController {
 		logger.debug("goBloodTest 확인 : "+goBloodTest);
 		//혈액검사결과를 json타입으로 바꿔줌
 		String bloodTestResult = gson.toJson(goBloodTest);
-		System.out.println("혈액검사결과 확인 : "+bloodTestResult);
+		logger.debug("혈액검사결과 확인 : "+bloodTestResult);
 		//String 타입의 json 객체를 리턴시킴
 		return bloodTestResult;
 	}
@@ -44,7 +44,7 @@ public class GoTestController {
 		logger.debug("goBloodTest 확인 : "+goBloodTest);
 		//혈액검사결과를 json타입으로 바꿔줌
 		String bloodTestResult = gson.toJson(goBloodTest);
-		System.out.println("혈액검사결과 확인 : "+bloodTestResult);
+		logger.debug("혈액검사결과 확인 : "+bloodTestResult);
 		//String 타입의 json 객체를 리턴시킴
 		return bloodTestResult;
 	}
@@ -58,7 +58,7 @@ public class GoTestController {
 		logger.debug("goBloodTest 확인 : "+getListBloodTestResult);
 		//혈액검사결과리스트를 json타입으로 바꿔줌
 		String bloodTestResult = gson.toJson(getListBloodTestResult);
-		System.out.println("혈액검사결과 확인 : "+bloodTestResult);
+		logger.debug("혈액검사결과 확인 : "+bloodTestResult);
 		//String 타입의 json 객체를 리턴시킴
 		return bloodTestResult;
 	}
@@ -72,7 +72,7 @@ public class GoTestController {
 		logger.debug("goBloodTest 확인 : "+getListBloodTestResult);
 		//혈액검사결과리스트를 json타입으로 바꿔줌
 		String bloodTestResult = gson.toJson(getListBloodTestResult);
-		System.out.println("혈액검사결과 확인 : "+bloodTestResult);
+		logger.debug("혈액검사결과 확인 : "+bloodTestResult);
 		//String 타입의 json 객체를 리턴시킴
 		return bloodTestResult;
 	}
@@ -84,7 +84,7 @@ public class GoTestController {
 		List<GoBloodTest> getListBloodTestResult = goTestService.getListBloodTestResultByDoctorId(doctorId);
 		logger.debug("goBloodTest 확인 : "+getListBloodTestResult);
 		String bloodTestResult = gson.toJson(getListBloodTestResult);
-		System.out.println("혈액검사결과 확인 : "+bloodTestResult);
+		logger.debug("혈액검사결과 확인 : "+bloodTestResult);
 		//String 타입의 json 객체를 리턴시킴
 		return bloodTestResult;
 	}
@@ -96,7 +96,7 @@ public class GoTestController {
 		List<GoBloodTest> getListBloodTestResult = goTestService.getListBloodTestResultByDoctorId(doctorId);
 		logger.debug("goBloodTest 확인 : "+getListBloodTestResult);
 		String bloodTestResult = gson.toJson(getListBloodTestResult);
-		System.out.println("혈액검사결과 확인 : "+bloodTestResult);
+		logger.debug("혈액검사결과 확인 : "+bloodTestResult);
 		//String 타입의 json 객체를 리턴시킴
 		return bloodTestResult;
 	}
@@ -108,7 +108,7 @@ public class GoTestController {
 		 try {
 			
 			String jsonString = http.HttpUrlPOST(map);
-			System.out.println("jsonString : "+jsonString);
+			logger.debug("jsonString : "+jsonString);
 			
 		
 			
@@ -212,7 +212,7 @@ public class GoTestController {
 		 try {
 			
 			String jsonString = http.HttpUrlPOST(map);
-			System.out.println("jsonString : "+jsonString);
+			logger.debug("jsonString : "+jsonString);
 			
 			
 			
